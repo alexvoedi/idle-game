@@ -1,6 +1,6 @@
 import { useInventoryStore } from "./inventory";
 import GeneratorItem from "@/interfaces/GeneratorItem";
-import blueprints, { baseBlueprints } from "@/blueprints";
+import blueprints, { baseBlueprints } from "@/data/blueprints";
 
 export type GeneratorStore = {
   generators: Array<GeneratorItem>;

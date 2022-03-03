@@ -4,6 +4,7 @@ enum Item {
   CopperWire = "Copper Wire",
   InsulatedWire = "Insulated Wire",
   Water = "Water",
+  Iron = "Iron",
 }
 
 export default Item;

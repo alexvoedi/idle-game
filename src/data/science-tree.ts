@@ -1,4 +1,4 @@
-import Science from "./interfaces/Science";
+import Science from "../interfaces/Science";
 import Item from "./item";
 
 export enum ScienceName {

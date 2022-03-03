@@ -1,5 +1,5 @@
 import ItemAmount from "@/interfaces/ItemAmount";
-import Item from "@/item";
+import Item from "@/data/item/item";
 
 export type InventoryStore = {
   inventory: Array<ItemAmount>;

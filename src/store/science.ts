@@ -1,7 +1,6 @@
-import blueprints from "@/blueprints";
-import Blueprint from "@/interfaces/Blueprint";
+import blueprints from "@/data/blueprints";
 import Science from "@/interfaces/Science";
-import scienceTree, { ScienceName } from "@/science-tree";
+import scienceTree, { ScienceName } from "@/data/science-tree";
 import { useInventoryStore } from "./inventory";
 
 type CurrentResearch = {

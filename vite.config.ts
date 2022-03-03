@@ -10,12 +10,15 @@ import WindiCSS from "vite-plugin-windicss";
 import PurgeIcons from "vite-plugin-purge-icons";
 
 export default defineConfig({
+  base: "/idle-game/",
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
       "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
     },
   },
+
   plugins: [
     Vue(),
 

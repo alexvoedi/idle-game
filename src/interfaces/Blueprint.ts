@@ -1,5 +1,5 @@
-import Item from "@/item";
-import { ScienceName } from "@/science-tree";
+import Item from "@/data/item";
+import { ScienceName } from "@/data/science-tree";
 import ItemAmount from "./ItemAmount";
 
 type Blueprint = {

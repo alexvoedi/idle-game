@@ -1,4 +1,4 @@
-import { ScienceName } from "@/science-tree";
+import { ScienceName } from "@/data/science-tree";
 import ItemAmount from "./ItemAmount";
 
 type Science = {
