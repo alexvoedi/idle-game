@@ -1,15 +1,15 @@
 import routes from "./routes";
 
 import i18n from "./plugins/i18n";
+import pinia from "./plugins/pinia";
 
 import { createApp } from "vue";
-import { createPinia } from "pinia";
 import { createHead } from "@vueuse/head";
 
 import App from "./App.vue";
 
 const app = createApp(App);
-const pinia = createPinia();
+
 const head = createHead();
 
 import "virtual:windi-base.css";

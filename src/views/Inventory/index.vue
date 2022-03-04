@@ -5,7 +5,7 @@ import { useInventoryStore } from "@/store/inventory";
 const inventoryStore = useInventoryStore();
 const generatorStore = useGeneratorStore();
 
-const tableData = computed(() => {
+const inventory = computed(() => {
   return inventoryStore.inventory.map((item) => {
     const generator = generatorStore.generators.find(
       (generator) => generator.blueprint.item === item.item
@@ -18,6 +18,14 @@ const tableData = computed(() => {
     };
   });
 });
+
+const formatProductionRate = (productionRate: number) => {
+  if (productionRate > 0) {
+    return (1 / productionRate).toFixed(3).toLocaleString();
+  } else {
+    return (0).toFixed(3).toLocaleString();
+  }
+};
 </script>
 
 <template>
@@ -29,18 +37,24 @@ const tableData = computed(() => {
         <tr>
           <th class="text-left whitespace-nowrap">Item</th>
           <th class="text-right">Amount</th>
-          <th class="text-right">Current Production Rate</th>
+          <th class="text-right">Items per Second</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="({ item, amount, productionRate }, index) in tableData"
-          :key="index"
-        >
-          <td>{{ item }}</td>
-          <td class="font-mono text-right">{{ amount.toLocaleString() }}</td>
+        <tr v-for="(inventoryItem, index) in inventory" :key="index">
+          <td>{{ inventoryItem.item }}</td>
           <td class="font-mono text-right">
-            {{ productionRate.toLocaleString() }}
+            {{ inventoryItem.amount.toLocaleString() }}
+          </td>
+          <td
+            class="font-mono text-right"
+            :class="[
+              inventoryItem.productionRate === 0
+                ? 'text-red-500'
+                : 'text-green-500',
+            ]"
+          >
+            {{ formatProductionRate(inventoryItem.productionRate) }}
           </td>
         </tr>
       </tbody>

@@ -19,6 +19,8 @@ export const useBaseStore = defineStore("base", {
 
       generatorStore.generate(delta);
       scienceStore.research(delta);
+
+      this.timePassed += delta;
     },
   },
 

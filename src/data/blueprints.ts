@@ -1,11 +1,11 @@
+import { ScienceName } from "./science-tree";
 import Blueprint from "../interfaces/Blueprint";
 import Item from "./item";
-import { ScienceName } from "./science-tree";
 
 export const baseBlueprints = [
   {
     item: Item.Copper,
-    productionTime: 2,
+    productionTime: 4,
     requirements: {
       sciences: [],
     },
@@ -13,7 +13,7 @@ export const baseBlueprints = [
   },
   {
     item: Item.Iron,
-    productionTime: 1,
+    productionTime: 6,
     requirements: {
       sciences: [],
     },
@@ -22,6 +22,30 @@ export const baseBlueprints = [
   {
     item: Item.Water,
     productionTime: 1,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [],
+  },
+  {
+    item: Item.Sand,
+    productionTime: 1,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [],
+  },
+  {
+    item: Item.Stone,
+    productionTime: 1,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [],
+  },
+  {
+    item: Item.Magnetit,
+    productionTime: 600,
     requirements: {
       sciences: [],
     },

@@ -1,7 +1,30 @@
 <script setup lang="ts">
 import { useBaseStore } from "./store/base";
+import { StateTree } from "pinia";
+import pinia from "@/plugins/pinia";
+import localForage from "localforage";
 
 const baseStore = useBaseStore();
+
+const loadGame = async () => {
+  const gameState = await localForage.getItem<Record<string, StateTree>>(
+    "game"
+  );
+
+  if (gameState) {
+    pinia.state.value = gameState;
+  }
+};
+
+loadGame();
+
+watch(
+  pinia.state,
+  (state) => {
+    localForage.setItem("game", toRaw(state));
+  },
+  { deep: true }
+);
 
 let timerId: ReturnType<typeof setInterval>;
 
