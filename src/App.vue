@@ -44,6 +44,8 @@ watch(
 onUnmounted(() => {
   clearInterval(timerId);
 });
+
+console.count();
 </script>
 
 <template>
