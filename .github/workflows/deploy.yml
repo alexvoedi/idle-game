@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: Build-Vue
-      uses: alexvoedi/VuePagesAction@2.0.6
+      uses: alexvoedi/VuePagesAction@2.0.7
       with:
         username: 'alexvoedi'
         reponame: 'idle-game'
