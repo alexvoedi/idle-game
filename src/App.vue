@@ -36,9 +36,12 @@ onMounted(async () => {
 
   runGame();
 
+  console.log(pinia.state);
+
   watch(
     pinia.state,
     (state) => {
+      console.log(toRaw(state));
       localForage.setItem("alexvoedi-idle-game", toRaw(state));
     },
     { deep: true }
