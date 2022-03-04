@@ -12,6 +12,7 @@ const loadGame = async () => {
   );
 
   if (gameState) {
+    console.log(gameState);
     pinia.state.value = gameState;
   }
 };
@@ -21,6 +22,7 @@ loadGame();
 watch(
   pinia.state,
   (state) => {
+    console.log(toRaw(state));
     localForage.setItem("game", toRaw(state));
   },
   { deep: true }
