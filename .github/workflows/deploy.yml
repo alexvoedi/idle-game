@@ -1,17 +1,22 @@
-name: Build Vue
+name: Build and Deploy
 
 on: [push]
 
 jobs:
   build_vue:
     runs-on: ubuntu-latest
-    name: Build Vue
     steps:
-    - uses: actions/checkout@v2
-    - id: Build-Vue
-      uses: alexvoedi/VuePagesAction@2.0.9
-      with:
-        username: 'alexvoedi'
-        reponame: 'idle-game'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        packagemanager: 'pnpm'
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install and Build
+        run: |
+          npm install -g pnpm
+          pnpm install --frozen-lockfile
+          pnpm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: dist
