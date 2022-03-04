@@ -8,5 +8,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
   },
-  "i18n-ally.sourceLanguage": "en"
+  "i18n-ally.sourceLanguage": "en",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///d%3A/Repositories/github.com/alexvoedi/idle-game/.github/workflows/deploy.yml"
+  }
 }
