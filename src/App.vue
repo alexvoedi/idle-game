@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { useBaseStore } from "./store/base";
-import { StateTree } from "pinia";
 import pinia from "@/plugins/pinia";
-import localForage from "localforage";
+import store from "store2";
 
 const baseStore = useBaseStore();
 
-const loadGame = async () => {
-  const gameState = await localForage.getItem<Record<string, StateTree>>(
-    "alexvoedi-idle-game"
-  );
-
-  console.log(gameState);
+const loadGame = () => {
+  const gameState = store.get("alexvoedi-idle-game");
 
   if (gameState) {
     pinia.state.value = gameState;
@@ -34,19 +29,17 @@ const runGame = () => {
 };
 
 onMounted(async () => {
-  await loadGame();
-
+  loadGame();
   runGame();
-
-  watch(
-    pinia.state,
-    (state) => {
-      console.log(toRaw(state));
-      localForage.setItem("alexvoedi-idle-game", toRaw(state));
-    },
-    { deep: true }
-  );
 });
+
+watch(
+  pinia.state,
+  (state) => {
+    store.set("alexvoedi-idle-game", toRaw(state));
+  },
+  { deep: true }
+);
 
 onUnmounted(() => {
   clearInterval(timerId);

@@ -19,6 +19,7 @@ specifiers:
   localforage: ^1.10.0
   pinia: ^2.0.11
   prettier: ^2.5.1
+  store2: ^2.13.1
   typescript: ^4.5.5
   unplugin-auto-import: ^0.6.1
   unplugin-icons: ^0.13.2
@@ -36,6 +37,7 @@ dependencies:
   '@vueuse/head': 0.7.5_vue@3.2.31
   localforage: 1.10.0
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
+  store2: 2.13.1
   vue: 3.2.31
   vue-i18n: 9.1.9_vue@3.2.31
   vue-router: 4.0.12_vue@3.2.31
@@ -2275,6 +2277,10 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+
+  /store2/2.13.1:
+    resolution: {integrity: sha512-iJtHSGmNgAUx0b/MCS6ASGxb//hGrHHRgzvN+K5bvkBTN7A9RTpPSf1WSp+nPGvWCJ1jRnvY7MKnuqfoi3OEqg==}
+    dev: false
 
   /strip-ansi/6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
