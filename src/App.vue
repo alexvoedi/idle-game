@@ -11,6 +11,8 @@ const loadGame = async () => {
     "alexvoedi-idle-game"
   );
 
+  console.log(gameState);
+
   if (gameState) {
     pinia.state.value = gameState;
   }
@@ -35,8 +37,6 @@ onMounted(async () => {
   await loadGame();
 
   runGame();
-
-  console.log(pinia.state);
 
   watch(
     pinia.state,
