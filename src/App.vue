@@ -8,29 +8,17 @@ const baseStore = useBaseStore();
 
 const loadGame = async () => {
   const gameState = await localForage.getItem<Record<string, StateTree>>(
-    "game"
+    "alexvoedi-idle-game"
   );
 
   if (gameState) {
-    console.log(gameState);
     pinia.state.value = gameState;
   }
 };
 
-loadGame();
-
-watch(
-  pinia.state,
-  (state) => {
-    console.log(toRaw(state));
-    localForage.setItem("game", toRaw(state));
-  },
-  { deep: true }
-);
-
 let timerId: ReturnType<typeof setInterval>;
 
-onMounted(() => {
+const runGame = () => {
   let lastUpdate = Date.now();
 
   timerId = setInterval(() => {
@@ -41,6 +29,20 @@ onMounted(() => {
 
     lastUpdate = now;
   }, 50);
+};
+
+onMounted(async () => {
+  await loadGame();
+
+  runGame();
+
+  watch(
+    pinia.state,
+    (state) => {
+      localForage.setItem("alexvoedi-idle-game", toRaw(state));
+    },
+    { deep: true }
+  );
 });
 
 onUnmounted(() => {
