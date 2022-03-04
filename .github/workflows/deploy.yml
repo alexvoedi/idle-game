@@ -9,8 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: Build-Vue
-      uses: alexvoedi/VuePagesAction@1.0.0
+      uses: alexvoedi/VuePagesAction@2.0.0
       with:
         username: 'alexvoedi'
         reponame: 'idle-game'
         token: ${{ secrets.GITHUB_TOKEN }}
+        packagemanager: 'pnpm'
