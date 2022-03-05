@@ -4,7 +4,7 @@ import { useScienceStore } from "@/store/science";
 const scienceStore = useScienceStore();
 
 const tableData = computed(() => {
-  return scienceStore.sciences.filter(
+  return scienceStore.availableSciences.filter(
     (science) => !scienceStore.researched.includes(science.name)
   );
 });

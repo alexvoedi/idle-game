@@ -2,6 +2,9 @@ import blueprints from "@/data/blueprints";
 import Science from "@/interfaces/Science";
 import scienceTree, { ScienceName } from "@/data/science-tree";
 import { useInventoryStore } from "./inventory";
+import effects, { EffectType } from "@/data/effects";
+import { useEffectStore } from "./effect";
+import { useGeneratorStore } from "./generator";
 
 type CurrentResearch = {
   science: Science;
@@ -25,28 +28,12 @@ export const useScienceStore = defineStore("science", {
     startResearch(science: Science) {
       const inventoryStore = useInventoryStore();
 
-      const hasRequiredItems = science.requirements.items.every(
-        (researchItem) => {
-          const inventoryItem = inventoryStore.inventory.find(
-            (inventoryItem) => inventoryItem.item === researchItem.item
-          );
-
-          if (inventoryItem) {
-            return inventoryItem.amount >= researchItem.amount;
-          }
-        }
+      const hasRequiredItems = inventoryStore.hasItems(
+        science.requirements.items
       );
 
       if (hasRequiredItems) {
-        science.requirements.items.forEach((researchItem) => {
-          const inventoryItem = inventoryStore.inventory.find(
-            (inventoryItem) => inventoryItem.item === researchItem.item
-          );
-
-          if (inventoryItem) {
-            inventoryItem.amount -= researchItem.amount;
-          }
-        });
+        inventoryStore.spendItems(science.requirements.items);
 
         this.currentResearch = {
           science,
@@ -62,24 +49,54 @@ export const useScienceStore = defineStore("science", {
         if (
           this.currentResearch.time >= this.currentResearch.science.researchTime
         ) {
-          this.researched.push(this.currentResearch.science.name);
-
-          this.currentResearch = null;
+          this.finishResearch(this.currentResearch.science);
         }
       }
+    },
+
+    finishResearch(science: Science) {
+      this.researched.push(science.name);
+
+      this.loadNewGenerators(science);
+      this.loadNewEffects(science);
+
+      this.currentResearch = null;
+    },
+
+    loadNewGenerators(science: Science) {
+      const generatorStore = useGeneratorStore();
+
+      const newBlueprints = blueprints.filter((blueprint) => {
+        blueprint.requirements.sciences.includes(science.name);
+      });
+
+      generatorStore.addGenerators(newBlueprints);
+    },
+
+    loadNewEffects(science: Science) {
+      const generatorStore = useGeneratorStore();
+      const effectStore = useEffectStore();
+
+      const newEffects = effects.filter((effect) =>
+        effect.requirements.sciences.includes(science.name)
+      );
+
+      effectStore.addEffects(newEffects);
+
+      newEffects.forEach((effect) => {
+        if (effect.type === EffectType.ProductionSpeed) {
+          const generator = generatorStore.generators.find(
+            (generator) => generator.blueprint.item === effect.item.name
+          );
+
+          generator?.effects.push(effect);
+        }
+      });
     },
   },
 
   getters: {
-    blueprints: (store) => {
-      return blueprints.filter((blueprint) =>
-        blueprint.requirements.sciences.every((science) =>
-          store.researched.includes(science)
-        )
-      );
-    },
-
-    sciences: (store) => {
+    availableSciences: (store) => {
       return scienceTree.filter((science) => {
         const hasRequiredSciences = science.requirements.sciences.every(
           (science) => store.researched.includes(science)

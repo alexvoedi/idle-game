@@ -10,6 +10,10 @@ declare module 'vue' {
     Factory: typeof import('./src/views/Factory/index.vue')['default']
     FactoryActiveProductions: typeof import('./src/views/Factory/components/ActiveProductions.vue')['default']
     FactoryInactiveProductions: typeof import('./src/views/Factory/components/InactiveProductions.vue')['default']
+    'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
+    IconMdiClock: typeof import('~icons/mdi/clock')['default']
+    IconMdiClose: typeof import('~icons/mdi/close')['default']
+    IconMdiHammer: typeof import('~icons/mdi/hammer')['default']
     Inventory: typeof import('./src/views/Inventory/index.vue')['default']
     Science: typeof import('./src/views/Science/index.vue')['default']
   }

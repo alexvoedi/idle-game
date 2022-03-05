@@ -1,4 +1,6 @@
+import { useEffectStore } from "./effect";
 import { useGeneratorStore } from "./generator";
+import { useInventoryStore } from "./inventory";
 import { useScienceStore } from "./science";
 
 export type BaseStore = {
@@ -21,6 +23,20 @@ export const useBaseStore = defineStore("base", {
       scienceStore.research(delta);
 
       this.timePassed += delta;
+    },
+
+    resetGame() {
+      this.$reset();
+
+      const generatorStore = useGeneratorStore();
+      const inventoryStore = useInventoryStore();
+      const scienceStore = useScienceStore();
+      const effectStore = useEffectStore();
+
+      generatorStore.$reset();
+      inventoryStore.$reset();
+      scienceStore.$reset();
+      effectStore.$reset();
     },
   },
 

@@ -1,78 +1,81 @@
 import { useInventoryStore } from "./inventory";
+import { baseBlueprints } from "@/data/blueprints";
+import { useEffectStore } from "./effect";
+import { Effect, EffectType } from "@/data/effects";
 import GeneratorItem from "@/interfaces/GeneratorItem";
-import blueprints, { baseBlueprints } from "@/data/blueprints";
+import Item from "@/data/item";
+import Blueprint from "@/interfaces/Blueprint";
 
 export type GeneratorStore = {
   generators: Array<GeneratorItem>;
 };
 
-const defaultGenerator: GeneratorStore = {
-  generators: baseBlueprints.map((blueprint) => ({ blueprint, timer: 0 })),
+const defaultState: GeneratorStore = {
+  generators: baseBlueprints.map((blueprint) => ({
+    blueprint,
+    timer: 0,
+    active: true,
+    effects: [],
+  })),
 };
 
 export const useGeneratorStore = defineStore("generator", {
-  state: (): GeneratorStore => defaultGenerator,
+  state: (): GeneratorStore => defaultState,
 
   actions: {
+    addGenerators(blueprints: Blueprint[], effects: Effect[] = []) {
+      blueprints.forEach((blueprint) => {
+        this.generators.push({
+          blueprint,
+          timer: 0,
+          active: false,
+          effects,
+        });
+      });
+    },
+
     generate(delta: number) {
       const inventoryStore = useInventoryStore();
 
-      this.generators.forEach((generator) => {
-        const blueprint = blueprints.find(
-          (blueprint) => generator.blueprint.item === blueprint.item
-        );
+      const activeGenerators = this.generators.filter(
+        (generator) => generator.active
+      );
 
-        if (blueprint) {
-          const hasRequiredIngredients = blueprint.ingredients.every(
-            (ingredient) => {
-              const inventoryItem = inventoryStore.inventory.find(
-                (item) => item.item === ingredient.item
-              );
+      for (const generator of activeGenerators) {
+        if (inventoryStore.remainingInventorySpace < 1) continue;
 
-              if (inventoryItem) {
-                return inventoryItem.amount >= ingredient.amount;
-              } else {
-                return false;
-              }
-            }
+        if (generator.timer === 0) {
+          const hasBlueprintIngredients = inventoryStore.hasItems(
+            generator.blueprint.ingredients
           );
 
-          if (hasRequiredIngredients && generator.timer === 0) {
+          if (hasBlueprintIngredients) {
             generator.timer += delta;
 
-            blueprint.ingredients.forEach((ingredient) => {
-              const inventoryItem = inventoryStore.inventory.find(
-                (item) => item.item === ingredient.item
-              );
-
-              if (inventoryItem) {
-                inventoryItem.amount -= ingredient.amount;
-              }
-            });
+            inventoryStore.spendItems(generator.blueprint.ingredients);
           }
+        } else {
+          generator.timer += delta;
 
-          if (generator.timer > 0) {
-            generator.timer += delta;
+          const totalProductionTime = this.calculateProductionTime(generator);
 
-            if (generator.timer >= generator.blueprint.productionTime) {
-              generator.timer = 0;
+          if (generator.timer >= totalProductionTime) {
+            generator.timer = 0;
 
-              const inventoryItem = inventoryStore.inventory.find(
-                (item) => item.item === generator.blueprint.item
-              );
-
-              if (inventoryItem) {
-                inventoryItem.amount++;
-              } else {
-                inventoryStore.inventory.push({
-                  item: generator.blueprint.item,
-                  amount: 1,
-                });
-              }
-            }
+            inventoryStore.addItem(generator.blueprint.item);
           }
         }
-      });
+      }
+    },
+
+    calculateProductionTime(generator: GeneratorItem) {
+      return generator.effects.reduce((productionTime, effect) => {
+        if (effect.type === EffectType.ProductionSpeed) {
+          return productionTime / effect.item.value;
+        }
+
+        return productionTime;
+      }, generator.blueprint.productionTime);
     },
   },
 

@@ -25,7 +25,7 @@ const runGame = () => {
     baseStore.update(delta / 1000);
 
     lastUpdate = now;
-  }, 50);
+  }, 20);
 };
 
 onMounted(async () => {
@@ -44,8 +44,6 @@ watch(
 onUnmounted(() => {
   clearInterval(timerId);
 });
-
-console.count();
 </script>
 
 <template>

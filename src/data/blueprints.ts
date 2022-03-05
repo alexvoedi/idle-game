@@ -51,10 +51,6 @@ export const baseBlueprints = [
     },
     ingredients: [],
   },
-];
-
-const blueprints: Blueprint[] = [
-  ...baseBlueprints,
   {
     item: Item.CopperWire,
     productionTime: 4,
@@ -76,6 +72,11 @@ const blueprints: Blueprint[] = [
     },
     ingredients: [],
   },
+];
+
+const blueprints: Blueprint[] = [
+  ...baseBlueprints,
+
   {
     item: Item.InsulatedWire,
     productionTime: 6,

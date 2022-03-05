@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Item from "@/data/item";
 import { useGeneratorStore } from "@/store/generator";
 import { useInventoryStore } from "@/store/inventory";
 
@@ -19,11 +20,19 @@ const inventory = computed(() => {
   });
 });
 
-const formatProductionRate = (productionRate: number) => {
-  if (productionRate > 0) {
-    return (1 / productionRate).toFixed(3).toLocaleString();
+const getProductionRate = (item: Item) => {
+  const generator = generatorStore.generators.find(
+    (generator) => generator.blueprint.item === item
+  );
+
+  if (!generator) throw new Error("Generator not found");
+
+  if (generator.active) {
+    const productionTime = generatorStore.calculateProductionTime(generator);
+
+    return 1 / productionTime;
   } else {
-    return (0).toFixed(3).toLocaleString();
+    return 0;
   }
 };
 </script>
@@ -31,6 +40,10 @@ const formatProductionRate = (productionRate: number) => {
 <template>
   <BaseCard class="max-w-screen-lg mx-auto space-y-4 overflow-hidden">
     <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Inventory</h2>
+
+    <div class="px-6">
+      Storage Space: {{ inventoryStore.remainingInventorySpace }}
+    </div>
 
     <table class="w-full">
       <thead>
@@ -49,12 +62,14 @@ const formatProductionRate = (productionRate: number) => {
           <td
             class="font-mono text-right"
             :class="[
-              inventoryItem.productionRate === 0
+              getProductionRate(inventoryItem.item) === 0
                 ? 'text-red-500'
                 : 'text-green-500',
             ]"
           >
-            {{ formatProductionRate(inventoryItem.productionRate) }}
+            {{
+              getProductionRate(inventoryItem.item).toFixed(4).toLocaleString()
+            }}
           </td>
         </tr>
       </tbody>
