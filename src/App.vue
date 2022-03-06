@@ -5,14 +5,6 @@ import store from "store2";
 
 const baseStore = useBaseStore();
 
-const loadGame = () => {
-  const gameState = store.get("alexvoedi-idle-game");
-
-  if (gameState) {
-    pinia.state.value = gameState;
-  }
-};
-
 let timerId: ReturnType<typeof setInterval>;
 
 const runGame = () => {
@@ -28,15 +20,16 @@ const runGame = () => {
   }, 20);
 };
 
-onMounted(async () => {
-  loadGame();
+onMounted(() => {
+  baseStore.loadGame();
+
   runGame();
 });
 
 watch(
   pinia.state,
   (state) => {
-    store.set("alexvoedi-idle-game", toRaw(state));
+    store.set("alexvoedi-idle-game", state);
   },
   { deep: true }
 );

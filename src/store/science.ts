@@ -16,13 +16,8 @@ export type ScienceStore = {
   researched: ScienceID[];
 };
 
-const defaultScience: ScienceStore = {
-  currentResearch: null,
-  researched: [],
-};
-
 export const useScienceStore = defineStore("science", {
-  state: (): ScienceStore => defaultScience,
+  state: (): ScienceStore => ({ currentResearch: null, researched: [] }),
 
   actions: {
     startResearch(science: Science) {

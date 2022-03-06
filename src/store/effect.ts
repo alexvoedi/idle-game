@@ -4,12 +4,8 @@ export type EffectStore = {
   effects: Effect[];
 };
 
-const defaultState: EffectStore = {
-  effects: [],
-};
-
 export const useEffectStore = defineStore("effect", {
-  state: (): EffectStore => defaultState,
+  state: (): EffectStore => ({ effects: [] }),
 
   actions: {
     addEffects(effects: Effect[]) {

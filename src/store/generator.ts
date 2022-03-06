@@ -8,17 +8,15 @@ export type GeneratorStore = {
   generators: Array<Generator>;
 };
 
-const defaultState: GeneratorStore = {
-  generators: baseBlueprints.map((blueprint) => ({
-    blueprint,
-    timer: 0,
-    active: true,
-    effects: [],
-  })),
-};
-
 export const useGeneratorStore = defineStore("generator", {
-  state: (): GeneratorStore => defaultState,
+  state: (): GeneratorStore => ({
+    generators: baseBlueprints.map((blueprint) => ({
+      blueprint,
+      timer: 0,
+      active: true,
+      effects: [],
+    })),
+  }),
 
   actions: {
     addGenerators(blueprints: Blueprint[], effects: Effect[] = []) {

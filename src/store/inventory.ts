@@ -5,13 +5,8 @@ export type InventoryStore = {
   storage: number;
 };
 
-const defaultInventory: InventoryStore = {
-  inventory: [],
-  storage: 2500,
-};
-
 export const useInventoryStore = defineStore("inventory", {
-  state: (): InventoryStore => defaultInventory,
+  state: (): InventoryStore => ({ inventory: [], storage: 2500 }),
 
   actions: {
     addItems(items: ItemAmount[]) {
@@ -28,7 +23,7 @@ export const useInventoryStore = defineStore("inventory", {
       if (inventoryItem) {
         inventoryItem.amount++;
       } else {
-        this.inventory.push(item);
+        this.inventory.push({ ...item });
       }
     },
 

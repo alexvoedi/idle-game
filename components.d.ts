@@ -11,7 +11,6 @@ declare module 'vue' {
     Factory: typeof import('./src/views/Factory/index.vue')['default']
     FactoryActiveProductions: typeof import('./src/views/Factory/components/ActiveProductions.vue')['default']
     FactoryInactiveProductions: typeof import('./src/views/Factory/components/InactiveProductions.vue')['default']
-    'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
     IconMdiDelete: typeof import('~icons/mdi/delete')['default']
