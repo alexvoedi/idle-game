@@ -1,0 +1,1 @@
+import{_ as e}from"./index.e3829e11.js";import{o,e as t,f as c}from"./vendor.9740482d.js";const r={},s=c("h1",null,"effects",-1),n=[s];function _(a,f){return o(),t("div",null,n)}var l=e(r,[["render",_]]);export{l as default};
