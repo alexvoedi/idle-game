@@ -4,12 +4,12 @@ import ItemAmount from "./ItemAmount";
 
 type Blueprint = {
   id: BlueprintID;
-  items: ItemAmount[];
   productionTime: number;
   requirements: {
     sciences: ScienceID[];
   };
-  ingredients: ItemAmount[];
+  input?: ItemAmount[];
+  output: ItemAmount[];
 };
 
 export default Blueprint;

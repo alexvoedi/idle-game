@@ -6,10 +6,11 @@ import store from "store2";
 
 export type BaseStore = {
   timePassed: number;
+  running: boolean;
 };
 
 export const useBaseStore = defineStore("base", {
-  state: (): BaseStore => ({ timePassed: 0 }),
+  state: (): BaseStore => ({ timePassed: 0, running: true }),
 
   actions: {
     loadGame() {
@@ -51,6 +52,10 @@ export const useBaseStore = defineStore("base", {
       inventoryStore.$reset();
       scienceStore.$reset();
       effectStore.$reset();
+    },
+
+    toggleRunning() {
+      this.running = !this.running;
     },
   },
 

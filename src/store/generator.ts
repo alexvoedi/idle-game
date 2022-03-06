@@ -41,14 +41,18 @@ export const useGeneratorStore = defineStore("generator", {
         if (inventoryStore.remainingInventorySpace < 1) continue;
 
         if (generator.timer === 0) {
-          const hasBlueprintIngredients = inventoryStore.hasItems(
-            generator.blueprint.ingredients
-          );
+          if (generator.blueprint.input) {
+            const hasInputItems = inventoryStore.hasItems(
+              generator.blueprint.input
+            );
 
-          if (hasBlueprintIngredients) {
+            if (hasInputItems) {
+              generator.timer += delta;
+
+              inventoryStore.spendItems(generator.blueprint.input);
+            }
+          } else {
             generator.timer += delta;
-
-            inventoryStore.spendItems(generator.blueprint.ingredients);
           }
         } else {
           generator.timer += delta;
@@ -58,7 +62,7 @@ export const useGeneratorStore = defineStore("generator", {
           if (generator.timer >= totalProductionTime) {
             generator.timer = 0;
 
-            inventoryStore.addItems(generator.blueprint.items);
+            inventoryStore.addItems(generator.blueprint.output);
           }
         }
       }

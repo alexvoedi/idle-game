@@ -1,12 +1,13 @@
 import ItemAmount from "@/interfaces/ItemAmount";
 
 export type InventoryStore = {
-  inventory: Array<ItemAmount>;
+  inventory: ItemAmount[];
   storage: number;
+  money: number;
 };
 
 export const useInventoryStore = defineStore("inventory", {
-  state: (): InventoryStore => ({ inventory: [], storage: 2500 }),
+  state: (): InventoryStore => ({ inventory: [], storage: 2500, money: 0 }),
 
   actions: {
     addItems(items: ItemAmount[]) {
@@ -21,7 +22,7 @@ export const useInventoryStore = defineStore("inventory", {
       );
 
       if (inventoryItem) {
-        inventoryItem.amount++;
+        inventoryItem.amount += item.amount;
       } else {
         this.inventory.push({ ...item });
       }

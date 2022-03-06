@@ -15,107 +15,95 @@ export enum BlueprintID {
 }
 
 export const baseBlueprints: Blueprint[] = [
-  {
-    id: BlueprintID.Copper,
-    items: [
-      {
-        id: ItemID.Copper,
-        amount: 1,
-      },
-    ],
-    productionTime: 4,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
-  {
-    id: BlueprintID.Iron,
-    items: [
-      {
-        id: ItemID.Iron,
-        amount: 1,
-      },
-    ],
-    productionTime: 6,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
+  // {
+  //   id: BlueprintID.Copper,
+  //   productionTime: 4,
+  //   requirements: {
+  //     sciences: [],
+  //   },
+  //   output: [
+  //     {
+  //       id: ItemID.Copper,
+  //       amount: 1,
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: BlueprintID.Iron,
+  //   productionTime: 6,
+  //   requirements: {
+  //     sciences: [],
+  //   },
+  //   output: [
+  //     {
+  //       id: ItemID.Iron,
+  //       amount: 1,
+  //     },
+  //   ],
+  // },
   {
     id: BlueprintID.Water,
-    items: [
+    productionTime: 1,
+    requirements: {
+      sciences: [],
+    },
+    output: [
       {
         id: ItemID.Water,
         amount: 1,
       },
     ],
-    productionTime: 1,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
   },
-  {
-    id: BlueprintID.Sand,
-    items: [
-      {
-        id: ItemID.Sand,
-        amount: 1,
-      },
-    ],
-    productionTime: 1,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
-  {
-    id: BlueprintID.Stone,
-    items: [
-      {
-        id: ItemID.Stone,
-        amount: 1,
-      },
-    ],
-    productionTime: 1,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
+  // {
+  //   id: BlueprintID.Sand,
+  //   productionTime: 1,
+  //   requirements: {
+  //     sciences: [],
+  //   },
+  //   output: [
+  //     {
+  //       id: ItemID.Sand,
+  //       amount: 1,
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: BlueprintID.Stone,
+  //   productionTime: 1,
+  //   requirements: {
+  //     sciences: [],
+  //   },
+  //   output: [
+  //     {
+  //       id: ItemID.Stone,
+  //       amount: 1,
+  //     },
+  //   ],
+  // },
 ];
 
 const blueprints: Blueprint[] = [
   ...baseBlueprints,
   {
     id: BlueprintID.Magnetit,
-    items: [
+    productionTime: 600,
+    requirements: {
+      sciences: [ScienceID.Magnetism1],
+    },
+    output: [
       {
         id: ItemID.Magnetit,
         amount: 1,
       },
     ],
-    productionTime: 600,
-    requirements: {
-      sciences: [ScienceID.Magnetism1],
-    },
-    ingredients: [],
   },
   {
     id: BlueprintID.Magnet,
-    items: [
-      {
-        id: ItemID.Magnet,
-        amount: 1,
-      },
-    ],
     productionTime: 30,
     requirements: {
       sciences: [ScienceID.Magnetism1],
     },
-    ingredients: [
+    input: [
       {
         id: ItemID.Iron,
         amount: 5,
@@ -125,29 +113,45 @@ const blueprints: Blueprint[] = [
         amount: 3,
       },
     ],
-  },
-  {
-    id: BlueprintID.CopperWire,
-    items: [
+    output: [
       {
-        id: ItemID.CopperWire,
+        id: ItemID.Magnet,
         amount: 1,
       },
     ],
+  },
+  {
+    id: BlueprintID.CopperWire,
     productionTime: 4,
     requirements: {
       sciences: [],
     },
-    ingredients: [
+    input: [
       {
         id: ItemID.Copper,
         amount: 3,
       },
     ],
+    output: [
+      {
+        id: ItemID.CopperWire,
+        amount: 1,
+      },
+    ],
   },
   {
     id: BlueprintID.StoneProbing,
-    items: [
+    productionTime: 10,
+    requirements: {
+      sciences: [ScienceID.StoneProbing1],
+    },
+    input: [
+      {
+        id: ItemID.Stone,
+        amount: 15,
+      },
+    ],
+    output: [
       {
         id: ItemID.Copper,
         amount: 1,
@@ -155,16 +159,6 @@ const blueprints: Blueprint[] = [
       {
         id: ItemID.Iron,
         amount: 1,
-      },
-    ],
-    productionTime: 10,
-    requirements: {
-      sciences: [ScienceID.StoneProbing1],
-    },
-    ingredients: [
-      {
-        id: ItemID.Stone,
-        amount: 10,
       },
     ],
   },

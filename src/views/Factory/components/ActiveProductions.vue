@@ -22,8 +22,8 @@ const disableGenerator = (generator: Generator) => {
     <table v-if="activeGenerators.length > 0" class="w-full">
       <thead>
         <tr>
-          <th class="text-left">Blueprint</th>
-          <th class="text-right w-min-32">Ingredients</th>
+          <th class="text-left">Output</th>
+          <th class="text-right w-min-32">Input</th>
           <th class="text-right">
             <icon-mdi-clock></icon-mdi-clock>
           </th>
@@ -34,7 +34,7 @@ const disableGenerator = (generator: Generator) => {
         <tr v-for="(generator, index) in activeGenerators" :key="index">
           <td>
             <div
-              v-for="(item, index) in generator.blueprint.items"
+              v-for="(item, index) in generator.blueprint.output"
               :key="index"
             >
               {{ getItemName(item.id) }}
@@ -42,10 +42,10 @@ const disableGenerator = (generator: Generator) => {
           </td>
           <td class="font-mono text-right whitespace-nowrap">
             <div
-              v-for="(ingredient, index) in generator.blueprint.ingredients"
+              v-for="(item, index) in generator.blueprint.input"
               :key="index"
             >
-              {{ getItemName(ingredient.id) }} × {{ ingredient.amount }}
+              {{ getItemName(item.id) }} × {{ item.amount }}
             </div>
           </td>
           <td class="font-mono text-right">

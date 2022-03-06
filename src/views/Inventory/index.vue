@@ -21,9 +21,10 @@ const inventory = computed(() => {
 const getProductionRate = (itemID: ItemID) => {
   const generators = generatorStore.generators.filter(
     (generator) =>
-      generator.blueprint.items.some(
+      generator.active &&
+      generator.blueprint.output.some(
         (blueprintItem) => blueprintItem.id === itemID
-      ) && generator.active
+      )
   );
 
   if (generators.length > 0) {

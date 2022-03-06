@@ -8,6 +8,8 @@ const baseStore = useBaseStore();
 let timerId: ReturnType<typeof setInterval>;
 
 const runGame = () => {
+  if (!baseStore.running) return;
+
   let lastUpdate = Date.now();
 
   timerId = setInterval(() => {
