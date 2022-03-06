@@ -11,12 +11,16 @@ declare module 'vue' {
     Factory: typeof import('./src/views/Factory/index.vue')['default']
     FactoryActiveProductions: typeof import('./src/views/Factory/components/ActiveProductions.vue')['default']
     FactoryInactiveProductions: typeof import('./src/views/Factory/components/InactiveProductions.vue')['default']
+    'IconHealthicons:moneyBag': typeof import('~icons/healthicons/money-bag')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
     IconMdiDelete: typeof import('~icons/mdi/delete')['default']
     IconMdiHammer: typeof import('~icons/mdi/hammer')['default']
+    IconMdiPause: typeof import('~icons/mdi/pause')['default']
+    IconMdiPlay: typeof import('~icons/mdi/play')['default']
     Inventory: typeof import('./src/views/Inventory/index.vue')['default']
     Science: typeof import('./src/views/Science/index.vue')['default']
+    Sell: typeof import('./src/views/Sell/index.vue')['default']
     Stats: typeof import('./src/views/Stats/index.vue')['default']
   }
 }

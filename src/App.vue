@@ -5,39 +5,17 @@ import store from "store2";
 
 const baseStore = useBaseStore();
 
-let timerId: ReturnType<typeof setInterval>;
-
-const runGame = () => {
-  if (!baseStore.running) return;
-
-  let lastUpdate = Date.now();
-
-  timerId = setInterval(() => {
-    const now = Date.now();
-    const delta = now - lastUpdate;
-
-    baseStore.update(delta / 1000);
-
-    lastUpdate = now;
-  }, 20);
-};
-
 onMounted(() => {
   baseStore.loadGame();
-
-  runGame();
+  baseStore.runGame();
 });
 
-watch(
-  pinia.state,
-  (state) => {
-    store.set("alexvoedi-idle-game", state);
-  },
-  { deep: true }
-);
+setInterval(() => {
+  store.set("save-game", toRaw(pinia.state.value));
+}, 500);
 
 onUnmounted(() => {
-  clearInterval(timerId);
+  baseStore.unloadGame();
 });
 </script>
 

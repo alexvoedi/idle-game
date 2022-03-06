@@ -17,13 +17,17 @@ const inventoryStore = useInventoryStore();
       {{ inventoryStore.money.toFixed(2) }}
     </div>
 
-    <div>
+    <div class="flex gap-8 text-lg">
       <button
         @click="baseStore.toggleRunning"
         class="flex justify-center items-center gap-2"
       >
-        <icon-mdi-delete></icon-mdi-delete>
-        <span>Pause Game</span>
+        <template v-if="baseStore.running">
+          <icon-mdi-pause class="text-green-600"></icon-mdi-pause>
+        </template>
+        <template v-else>
+          <icon-mdi-play class="text-red-600"></icon-mdi-play>
+        </template>
       </button>
 
       <button
@@ -31,7 +35,6 @@ const inventoryStore = useInventoryStore();
         class="flex justify-center items-center gap-2"
       >
         <icon-mdi-delete></icon-mdi-delete>
-        <span>Reset Game</span>
       </button>
     </div>
   </div>

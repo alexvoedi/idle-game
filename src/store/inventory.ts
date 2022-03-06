@@ -14,17 +14,17 @@ export const useInventoryStore = defineStore("inventory", {
       items.forEach((item) => this.addItem(item));
     },
 
-    addItem(item: ItemAmount) {
+    addItem({ id, amount }: ItemAmount) {
       if (!this.hasInventorySpace) return;
 
       const inventoryItem = this.inventory.find(
-        (inventoryItem) => inventoryItem.id === item.id
+        (inventoryItem) => inventoryItem.id === id
       );
 
       if (inventoryItem) {
-        inventoryItem.amount += item.amount;
+        inventoryItem.amount += amount;
       } else {
-        this.inventory.push({ ...item });
+        this.inventory.push({ id, amount });
       }
     },
 
