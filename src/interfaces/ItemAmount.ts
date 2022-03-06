@@ -1,5 +1,5 @@
-import Item from "@/data/item";
+import { ItemID } from "@/data/item";
 
-type ItemAmount = { item: Item; amount: number };
+type ItemAmount = { id: ItemID; amount: number };
 
 export default ItemAmount;

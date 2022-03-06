@@ -1,4 +1,4 @@
-import { Effect, EffectName } from "@/data/effects";
+import { Effect, EffectID } from "@/data/effects";
 
 export type EffectStore = {
   effects: Effect[];
@@ -17,13 +17,13 @@ export const useEffectStore = defineStore("effect", {
     },
 
     addEffect(effect: Effect) {
-      if (this.hasEffect(effect.name)) return;
+      if (this.hasEffect(effect.id)) return;
 
       this.effects.push(effect);
     },
 
-    hasEffect(effectName: EffectName) {
-      return this.effects.some((effect) => effect.name === effectName);
+    hasEffect(effectID: EffectID) {
+      return this.effects.some((effect) => effect.id === effectID);
     },
   },
 

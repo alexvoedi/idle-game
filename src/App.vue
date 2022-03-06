@@ -47,11 +47,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="text-true-gray-200">
-    <AppNavigation></AppNavigation>
+  <div class="text-true-gray-200 h-full flex flex-col">
+    <AppBar></AppBar>
 
-    <div class="gap-16 p-8">
-      <router-view></router-view>
+    <div class="flex flex-grow">
+      <AppNavigation></AppNavigation>
+
+      <div class="w-full max-w-screen-xl mx-auto p-8">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +64,6 @@ onUnmounted(() => {
 html,
 body,
 #app {
-  @apply bg-true-gray-900;
+  @apply bg-true-gray-900 h-full;
 }
 </style>

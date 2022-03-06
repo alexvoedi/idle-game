@@ -1,34 +1,35 @@
 <script setup lang="ts">
-import Item from "@/data/item";
+import { ItemID } from "@/data/item";
 import { useGeneratorStore } from "@/store/generator";
 import { useInventoryStore } from "@/store/inventory";
+import { useItem } from "@/composables/useItem";
 
 const inventoryStore = useInventoryStore();
 const generatorStore = useGeneratorStore();
+const { getItemName } = useItem();
 
 const inventory = computed(() => {
   return inventoryStore.inventory.map((item) => {
-    const generator = generatorStore.generators.find(
-      (generator) => generator.blueprint.item === item.item
-    );
-
     return {
       ...item,
       amount: item.amount,
-      productionRate: generator ? generator.blueprint.productionTime : 0,
+      productionRate: getProductionRate(item.id),
     };
   });
 });
 
-const getProductionRate = (item: Item) => {
-  const generator = generatorStore.generators.find(
-    (generator) => generator.blueprint.item === item
+const getProductionRate = (itemID: ItemID) => {
+  const generators = generatorStore.generators.filter(
+    (generator) =>
+      generator.blueprint.items.some(
+        (blueprintItem) => blueprintItem.id === itemID
+      ) && generator.active
   );
 
-  if (!generator) throw new Error("Generator not found");
-
-  if (generator.active) {
-    const productionTime = generatorStore.calculateProductionTime(generator);
+  if (generators.length > 0) {
+    const productionTime = generators.reduce((t, generator) => {
+      return generatorStore.calculateProductionTime(generator);
+    }, 0);
 
     return 1 / productionTime;
   } else {
@@ -38,7 +39,7 @@ const getProductionRate = (item: Item) => {
 </script>
 
 <template>
-  <BaseCard class="max-w-screen-lg mx-auto space-y-4 overflow-hidden">
+  <BaseCard class="space-y-4 overflow-hidden">
     <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Inventory</h2>
 
     <div class="px-6">
@@ -55,21 +56,19 @@ const getProductionRate = (item: Item) => {
       </thead>
       <tbody>
         <tr v-for="(inventoryItem, index) in inventory" :key="index">
-          <td>{{ inventoryItem.item }}</td>
+          <td>{{ getItemName(inventoryItem.id) }}</td>
           <td class="font-mono text-right">
             {{ inventoryItem.amount.toLocaleString() }}
           </td>
           <td
             class="font-mono text-right"
             :class="[
-              getProductionRate(inventoryItem.item) === 0
+              inventoryItem.productionRate === 0
                 ? 'text-red-500'
                 : 'text-green-500',
             ]"
           >
-            {{
-              getProductionRate(inventoryItem.item).toFixed(4).toLocaleString()
-            }}
+            {{ inventoryItem.productionRate.toFixed(4).toLocaleString() }}
           </td>
         </tr>
       </tbody>

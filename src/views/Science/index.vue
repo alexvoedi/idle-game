@@ -1,17 +1,19 @@
 <script setup lang="ts">
+import { useItem } from "@/composables/useItem";
 import { useScienceStore } from "@/store/science";
 
 const scienceStore = useScienceStore();
+const { getItemName } = useItem();
 
 const tableData = computed(() => {
   return scienceStore.availableSciences.filter(
-    (science) => !scienceStore.researched.includes(science.name)
+    (science) => !scienceStore.researched.includes(science.id)
   );
 });
 </script>
 
 <template>
-  <BaseCard class="max-w-screen-lg mx-auto space-y-4 overflow-hidden">
+  <BaseCard class="space-y-4 overflow-hidden">
     <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Science</h2>
 
     <div v-if="scienceStore.currentResearch">
@@ -46,7 +48,7 @@ const tableData = computed(() => {
               v-for="(item, index) in science.requirements.items"
               :key="index"
             >
-              {{ item.item }} * {{ item.amount }}
+              {{ getItemName(item.id) }} * {{ item.amount }}
             </div>
           </td>
           <td class="text-center">

@@ -1,12 +1,13 @@
-import { ScienceName } from "@/data/science-tree";
+import { ScienceID } from "@/data/techtree";
 import ItemAmount from "./ItemAmount";
 
 type Science = {
-  name: ScienceName;
+  id: ScienceID;
+  name: string;
   researchTime: number;
   requirements: {
     items: ItemAmount[];
-    sciences: ScienceName[];
+    sciences: ScienceID[];
   };
 };
 

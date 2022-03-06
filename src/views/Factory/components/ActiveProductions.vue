@@ -1,23 +1,17 @@
 <script setup lang="ts">
-import Blueprint from "@/interfaces/Blueprint";
 import { useGeneratorStore } from "@/store/generator";
+import Generator from "@/interfaces/Generator";
+import { useItem } from "@/composables/useItem";
 
 const generatorStore = useGeneratorStore();
+const { getItemName } = useItem();
 
 const activeGenerators = computed(() => {
-  return generatorStore.generators
-    .filter((generator) => generator.active)
-    .sort((a, b) => a.blueprint.item.localeCompare(b.blueprint.item));
+  return generatorStore.generators.filter((generator) => generator.active);
 });
 
-const disableGenerator = (blueprint: Blueprint) => {
-  const generator = generatorStore.generators.find(
-    (generator) => generator.blueprint.item === blueprint.item
-  );
-
-  if (generator) {
-    generator.active = false;
-  }
+const disableGenerator = (generator: Generator) => {
+  generator.active = false;
 };
 </script>
 
@@ -38,20 +32,27 @@ const disableGenerator = (blueprint: Blueprint) => {
       </thead>
       <tbody>
         <tr v-for="(generator, index) in activeGenerators" :key="index">
-          <td>{{ generator.blueprint.item }}</td>
+          <td>
+            <div
+              v-for="(item, index) in generator.blueprint.items"
+              :key="index"
+            >
+              {{ getItemName(item.id) }}
+            </div>
+          </td>
           <td class="font-mono text-right whitespace-nowrap">
             <div
               v-for="(ingredient, index) in generator.blueprint.ingredients"
               :key="index"
             >
-              {{ ingredient.item }} × {{ ingredient.amount }}
+              {{ getItemName(ingredient.id) }} × {{ ingredient.amount }}
             </div>
           </td>
           <td class="font-mono text-right">
             {{ generatorStore.calculateProductionTime(generator).toFixed(2) }}
           </td>
           <td class="text-center">
-            <button @click="disableGenerator(generator.blueprint)">
+            <button @click="disableGenerator(generator)">
               <icon-mdi-close></icon-mdi-close>
             </button>
           </td>

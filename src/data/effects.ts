@@ -1,9 +1,8 @@
-import { ScienceName } from "@/data/science-tree";
-import Blueprint from "@/interfaces/Blueprint";
-import Item from "./item";
+import { ScienceID } from "@/data/techtree";
+import { ItemID } from "./item";
 
-export enum EffectName {
-  FastProduction = "Faster Production",
+export enum EffectID {
+  FastProduction,
 }
 
 export enum EffectType {
@@ -11,16 +10,17 @@ export enum EffectType {
 }
 
 interface BaseEffect {
-  name: EffectName;
+  id: EffectID;
+  name: string;
   type: EffectType;
   requirements: {
-    sciences: ScienceName[];
+    sciences: ScienceID[];
   };
 }
 
 export interface ProductionSpeed extends BaseEffect {
   item: {
-    name: Item;
+    name: ItemID;
     value: number;
   };
 }
@@ -29,13 +29,14 @@ export type Effect = ProductionSpeed;
 
 const effects: Effect[] = [
   {
-    name: EffectName.FastProduction,
+    id: EffectID.FastProduction,
+    name: "Faster Production",
     type: EffectType.ProductionSpeed,
     requirements: {
-      sciences: [ScienceName.Alpha],
+      sciences: [ScienceID.CopperProduction1],
     },
     item: {
-      name: Item.Copper,
+      name: ItemID.Copper,
       value: 1.25,
     },
   },

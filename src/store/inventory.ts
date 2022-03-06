@@ -1,4 +1,3 @@
-import Item from "@/data/item";
 import ItemAmount from "@/interfaces/ItemAmount";
 
 export type InventoryStore = {
@@ -15,20 +14,21 @@ export const useInventoryStore = defineStore("inventory", {
   state: (): InventoryStore => defaultInventory,
 
   actions: {
-    addItem(item: Item) {
+    addItems(items: ItemAmount[]) {
+      items.forEach((item) => this.addItem(item));
+    },
+
+    addItem(item: ItemAmount) {
       if (!this.hasInventorySpace) return;
 
       const inventoryItem = this.inventory.find(
-        (inventoryItem) => inventoryItem.item === item
+        (inventoryItem) => inventoryItem.id === item.id
       );
 
       if (inventoryItem) {
         inventoryItem.amount++;
       } else {
-        this.inventory.push({
-          item,
-          amount: 1,
-        });
+        this.inventory.push(item);
       }
     },
 
@@ -37,7 +37,7 @@ export const useInventoryStore = defineStore("inventory", {
 
       items.forEach((item) => {
         const inventoryItem = inventoryStore.inventory.find(
-          (inventoryItem) => inventoryItem.item === item.item
+          (inventoryItem) => inventoryItem.id === item.id
         );
 
         if (inventoryItem) {
@@ -49,7 +49,7 @@ export const useInventoryStore = defineStore("inventory", {
     hasItems(items: ItemAmount[]) {
       return items.every((item) => {
         const inventoryItem = this.inventory.find(
-          (inventoryItem) => inventoryItem.item === item.item
+          (inventoryItem) => inventoryItem.id === item.id
         );
 
         if (inventoryItem) {

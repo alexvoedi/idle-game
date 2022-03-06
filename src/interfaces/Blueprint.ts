@@ -1,12 +1,13 @@
-import Item from "@/data/item";
-import { ScienceName } from "@/data/science-tree";
+import { BlueprintID } from "@/data/blueprints";
+import { ScienceID } from "@/data/techtree";
 import ItemAmount from "./ItemAmount";
 
 type Blueprint = {
-  item: Item;
+  id: BlueprintID;
+  items: ItemAmount[];
   productionTime: number;
   requirements: {
-    sciences: ScienceName[];
+    sciences: ScienceID[];
   };
   ingredients: ItemAmount[];
 };

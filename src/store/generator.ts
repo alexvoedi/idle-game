@@ -1,13 +1,11 @@
 import { useInventoryStore } from "./inventory";
 import { baseBlueprints } from "@/data/blueprints";
-import { useEffectStore } from "./effect";
 import { Effect, EffectType } from "@/data/effects";
-import GeneratorItem from "@/interfaces/GeneratorItem";
-import Item from "@/data/item";
+import Generator from "@/interfaces/Generator";
 import Blueprint from "@/interfaces/Blueprint";
 
 export type GeneratorStore = {
-  generators: Array<GeneratorItem>;
+  generators: Array<Generator>;
 };
 
 const defaultState: GeneratorStore = {
@@ -62,13 +60,13 @@ export const useGeneratorStore = defineStore("generator", {
           if (generator.timer >= totalProductionTime) {
             generator.timer = 0;
 
-            inventoryStore.addItem(generator.blueprint.item);
+            inventoryStore.addItems(generator.blueprint.items);
           }
         }
       }
     },
 
-    calculateProductionTime(generator: GeneratorItem) {
+    calculateProductionTime(generator: Generator) {
       return generator.effects.reduce((productionTime, effect) => {
         if (effect.type === EffectType.ProductionSpeed) {
           return productionTime / effect.item.value;

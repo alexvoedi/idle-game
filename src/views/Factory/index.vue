@@ -1,11 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="max-w-screen-xl mx-auto space-y-8">
-    <div xl="grid grid-cols-2 gap-4">
-      <FactoryActiveProductions></FactoryActiveProductions>
-      <FactoryInactiveProductions></FactoryInactiveProductions>
-    </div>
+  <div class="grid gap-4" xl="grid-cols-2 ">
+    <FactoryActiveProductions></FactoryActiveProductions>
+    <FactoryInactiveProductions></FactoryInactiveProductions>
   </div>
 </template>
 

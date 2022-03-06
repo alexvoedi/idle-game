@@ -1,6 +1,6 @@
 import blueprints from "@/data/blueprints";
 import Science from "@/interfaces/Science";
-import scienceTree, { ScienceName } from "@/data/science-tree";
+import techTree, { ScienceID } from "@/data/techtree";
 import { useInventoryStore } from "./inventory";
 import effects, { EffectType } from "@/data/effects";
 import { useEffectStore } from "./effect";
@@ -13,7 +13,7 @@ type CurrentResearch = {
 
 export type ScienceStore = {
   currentResearch: CurrentResearch | null;
-  researched: ScienceName[];
+  researched: ScienceID[];
 };
 
 const defaultScience: ScienceStore = {
@@ -55,7 +55,7 @@ export const useScienceStore = defineStore("science", {
     },
 
     finishResearch(science: Science) {
-      this.researched.push(science.name);
+      this.researched.push(science.id);
 
       this.loadNewGenerators(science);
       this.loadNewEffects(science);
@@ -67,7 +67,7 @@ export const useScienceStore = defineStore("science", {
       const generatorStore = useGeneratorStore();
 
       const newBlueprints = blueprints.filter((blueprint) => {
-        blueprint.requirements.sciences.includes(science.name);
+        blueprint.requirements.sciences.includes(science.id);
       });
 
       generatorStore.addGenerators(newBlueprints);
@@ -85,11 +85,11 @@ export const useScienceStore = defineStore("science", {
 
       newEffects.forEach((effect) => {
         if (effect.type === EffectType.ProductionSpeed) {
-          const generator = generatorStore.generators.find(
-            (generator) => generator.blueprint.item === effect.item.name
-          );
-
-          generator?.effects.push(effect);
+          // todo: effects
+          // const generator = generatorStore.generators.find(
+          //   (generator) => generator.blueprint.item === effect.item.name
+          // );
+          // generator?.effects.push(effect);
         }
       });
     },
@@ -97,7 +97,7 @@ export const useScienceStore = defineStore("science", {
 
   getters: {
     availableSciences: (store) => {
-      return scienceTree.filter((science) => {
+      return techTree.filter((science) => {
         const hasRequiredSciences = science.requirements.sciences.every(
           (science) => store.researched.includes(science)
         );

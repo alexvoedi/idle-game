@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { useBaseStore } from "@/store/base";
-import InventoryIcon from "~icons/mdi/factory";
-import ScienceIcon from "~icons/mdi/factory";
+import InventoryIcon from "~icons/mdi/sitemap";
 import FactoryIcon from "~icons/mdi/factory";
-
-const baseStore = useBaseStore();
+import ScienceIcon from "~icons/ic/round-science";
+import EffectsIcon from "~icons/carbon/upgrade";
+import StatsIcon from "~icons/ion/ios-stats";
 
 const links = [
   {
@@ -22,28 +21,31 @@ const links = [
     text: "Science",
     icon: ScienceIcon,
   },
+  {
+    to: "Effects",
+    text: "Effects",
+    icon: EffectsIcon,
+  },
+  {
+    to: "Stats",
+    text: "Stats",
+    icon: StatsIcon,
+  },
 ];
 </script>
 
 <template>
-  <nav class="h-16 flex justify-between items-center bg-true-gray-800 px-8">
-    <div class="text-2xl">Factorior</div>
-
-    <div class="space-x-12 flex justify-center items-center">
-      <router-link
-        v-for="link in links"
-        :key="link.to"
-        :to="{ name: link.to }"
-        class="flex justify-center items-center gap-2"
-      >
-        <component :is="link.icon"></component>
-        <span>{{ link.text }}</span>
-      </router-link>
-    </div>
-
-    <div>
-      <button @click="baseStore.resetGame">clear</button>
-    </div>
+  <nav class="w-200px flex flex-col items-start bg-true-gray-800">
+    <router-link
+      v-for="link in links"
+      :key="link.to"
+      :to="{ name: link.to }"
+      class="flex h-12 items-center gap-2 border-b border-transparent px-8 w-full"
+      hover="bg-true-gray-700"
+    >
+      <component :is="link.icon"></component>
+      <span>{{ link.text }}</span>
+    </router-link>
   </nav>
 </template>
 

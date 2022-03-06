@@ -1,10 +1,28 @@
-import { ScienceName } from "./science-tree";
 import Blueprint from "../interfaces/Blueprint";
-import Item from "./item";
+import { ItemID } from "./item";
+import { ScienceID } from "./techtree";
 
-export const baseBlueprints = [
+export enum BlueprintID {
+  Copper,
+  Iron,
+  Water,
+  Sand,
+  Stone,
+  Magnetit,
+  Magnet,
+  CopperWire,
+  StoneProbing,
+}
+
+export const baseBlueprints: Blueprint[] = [
   {
-    item: Item.Copper,
+    id: BlueprintID.Copper,
+    items: [
+      {
+        id: ItemID.Copper,
+        amount: 1,
+      },
+    ],
     productionTime: 4,
     requirements: {
       sciences: [],
@@ -12,7 +30,13 @@ export const baseBlueprints = [
     ingredients: [],
   },
   {
-    item: Item.Iron,
+    id: BlueprintID.Iron,
+    items: [
+      {
+        id: ItemID.Iron,
+        amount: 1,
+      },
+    ],
     productionTime: 6,
     requirements: {
       sciences: [],
@@ -20,53 +44,42 @@ export const baseBlueprints = [
     ingredients: [],
   },
   {
-    item: Item.Water,
-    productionTime: 1,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
-  {
-    item: Item.Sand,
-    productionTime: 1,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
-  {
-    item: Item.Stone,
-    productionTime: 1,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
-  {
-    item: Item.Magnetit,
-    productionTime: 600,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [],
-  },
-  {
-    item: Item.CopperWire,
-    productionTime: 4,
-    requirements: {
-      sciences: [],
-    },
-    ingredients: [
+    id: BlueprintID.Water,
+    items: [
       {
-        item: Item.Copper,
-        amount: 3,
+        id: ItemID.Water,
+        amount: 1,
       },
     ],
+    productionTime: 1,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [],
   },
   {
-    item: Item.Plastic,
-    productionTime: 2,
+    id: BlueprintID.Sand,
+    items: [
+      {
+        id: ItemID.Sand,
+        amount: 1,
+      },
+    ],
+    productionTime: 1,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [],
+  },
+  {
+    id: BlueprintID.Stone,
+    items: [
+      {
+        id: ItemID.Stone,
+        amount: 1,
+      },
+    ],
+    productionTime: 1,
     requirements: {
       sciences: [],
     },
@@ -76,21 +89,82 @@ export const baseBlueprints = [
 
 const blueprints: Blueprint[] = [
   ...baseBlueprints,
-
   {
-    item: Item.InsulatedWire,
-    productionTime: 6,
+    id: BlueprintID.Magnetit,
+    items: [
+      {
+        id: ItemID.Magnetit,
+        amount: 1,
+      },
+    ],
+    productionTime: 600,
     requirements: {
-      sciences: [ScienceName.Alpha],
+      sciences: [ScienceID.Magnetism1],
+    },
+    ingredients: [],
+  },
+  {
+    id: BlueprintID.Magnet,
+    items: [
+      {
+        id: ItemID.Magnet,
+        amount: 1,
+      },
+    ],
+    productionTime: 30,
+    requirements: {
+      sciences: [ScienceID.Magnetism1],
     },
     ingredients: [
       {
-        item: Item.CopperWire,
+        id: ItemID.Iron,
+        amount: 5,
+      },
+      {
+        id: ItemID.Magnetit,
+        amount: 3,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.CopperWire,
+    items: [
+      {
+        id: ItemID.CopperWire,
+        amount: 1,
+      },
+    ],
+    productionTime: 4,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [
+      {
+        id: ItemID.Copper,
+        amount: 3,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.StoneProbing,
+    items: [
+      {
+        id: ItemID.Copper,
         amount: 1,
       },
       {
-        item: Item.Plastic,
-        amount: 2,
+        id: ItemID.Iron,
+        amount: 1,
+      },
+    ],
+    productionTime: 10,
+    requirements: {
+      sciences: [],
+    },
+    ingredients: [
+      {
+        id: ItemID.Stone,
+        amount: 10,
       },
     ],
   },

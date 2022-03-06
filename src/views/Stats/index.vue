@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <h1>effects</h1>
+    <h1>stats</h1>
   </div>
 </template>
 

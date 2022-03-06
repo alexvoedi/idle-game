@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppBar: typeof import('./src/components/App/Bar.vue')['default']
     AppNavigation: typeof import('./src/components/App/Navigation.vue')['default']
     BaseCard: typeof import('./src/layouts/BaseCard.vue')['default']
     Effects: typeof import('./src/views/Effects/index.vue')['default']
@@ -13,9 +14,11 @@ declare module 'vue' {
     'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
+    IconMdiDelete: typeof import('~icons/mdi/delete')['default']
     IconMdiHammer: typeof import('~icons/mdi/hammer')['default']
     Inventory: typeof import('./src/views/Inventory/index.vue')['default']
     Science: typeof import('./src/views/Science/index.vue')['default']
+    Stats: typeof import('./src/views/Stats/index.vue')['default']
   }
 }
 
