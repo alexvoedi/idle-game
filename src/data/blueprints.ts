@@ -159,7 +159,7 @@ const blueprints: Blueprint[] = [
     ],
     productionTime: 10,
     requirements: {
-      sciences: [],
+      sciences: [ScienceID.StoneProbing1],
     },
     ingredients: [
       {

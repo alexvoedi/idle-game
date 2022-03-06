@@ -27,7 +27,7 @@ const enableGenerator = (generator: Generator) => {
           <th class="text-right">
             <icon-mdi-clock></icon-mdi-clock>
           </th>
-          <th>Start Production</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>

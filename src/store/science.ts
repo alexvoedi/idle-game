@@ -66,32 +66,29 @@ export const useScienceStore = defineStore("science", {
     loadNewGenerators(science: Science) {
       const generatorStore = useGeneratorStore();
 
-      const newBlueprints = blueprints.filter((blueprint) => {
-        blueprint.requirements.sciences.includes(science.id);
-      });
+      const newBlueprints = blueprints.filter((blueprint) =>
+        blueprint.requirements.sciences.includes(science.id)
+      );
 
       generatorStore.addGenerators(newBlueprints);
     },
 
     loadNewEffects(science: Science) {
-      const generatorStore = useGeneratorStore();
-      const effectStore = useEffectStore();
-
-      const newEffects = effects.filter((effect) =>
-        effect.requirements.sciences.includes(science.name)
-      );
-
-      effectStore.addEffects(newEffects);
-
-      newEffects.forEach((effect) => {
-        if (effect.type === EffectType.ProductionSpeed) {
-          // todo: effects
-          // const generator = generatorStore.generators.find(
-          //   (generator) => generator.blueprint.item === effect.item.name
-          // );
-          // generator?.effects.push(effect);
-        }
-      });
+      // todo: effects
+      // const generatorStore = useGeneratorStore();
+      // const effectStore = useEffectStore();
+      // const newEffects = effects.filter((effect) =>
+      //   effect.requirements.sciences.includes(science.name)
+      // );
+      // effectStore.addEffects(newEffects);
+      // newEffects.forEach((effect) => {
+      //   if (effect.type === EffectType.ProductionSpeed) {
+      // const generator = generatorStore.generators.find(
+      //   (generator) => generator.blueprint.item === effect.item.name
+      // );
+      // generator?.effects.push(effect);
+      //   }
+      // });
     },
   },
 
