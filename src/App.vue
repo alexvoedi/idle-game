@@ -6,7 +6,12 @@ import store from "store2";
 const baseStore = useBaseStore();
 
 onMounted(() => {
-  baseStore.loadGame();
+  const gameState = store.get("save-game");
+
+  if (gameState) {
+    baseStore.loadGame(gameState);
+  }
+
   baseStore.runGame();
 });
 

@@ -15,11 +15,7 @@ export const useBaseStore = defineStore("base", {
   state: (): BaseStore => ({ timerID: null, timePassed: 0, running: true }),
 
   actions: {
-    loadGame() {
-      const gameState = store.get("save-game");
-
-      if (!gameState) return;
-
+    loadGame(gameState: any) {
       const generatorStore = useGeneratorStore();
       const inventoryStore = useInventoryStore();
       const scienceStore = useScienceStore();
