@@ -5,6 +5,7 @@ export enum ScienceID {
   CopperProduction1,
   Magnetism1,
   StoneProbing1,
+  Automation1,
 }
 
 const techTree: Science[] = [
@@ -60,6 +61,24 @@ const techTree: Science[] = [
         },
       ],
       sciences: [],
+    },
+  },
+  {
+    id: ScienceID.Automation1,
+    name: "Automation 1",
+    researchTime: 5,
+    requirements: {
+      items: [
+        {
+          id: ItemID.Magnet,
+          amount: 5,
+        },
+        {
+          id: ItemID.CopperWire,
+          amount: 10,
+        },
+      ],
+      sciences: [ScienceID.Magnetism1],
     },
   },
 ];

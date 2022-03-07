@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useItem } from "@/composables/useItem";
+import { useInventoryStore } from "@/store/inventory";
 import { useScienceStore } from "@/store/science";
+import ProgressBar from "@/components/Base/ProgressBar.vue";
 
 const scienceStore = useScienceStore();
-const { getItemName } = useItem();
+const inventoryStore = useInventoryStore();
+const { getItem } = useItem();
 
 const tableData = computed(() => {
   return scienceStore.availableSciences.filter(
@@ -28,6 +31,13 @@ const tableData = computed(() => {
           ).toFixed(1)
         }}%
       </div>
+
+      <ProgressBar
+        :progress="
+          scienceStore.currentResearch.time /
+          scienceStore.currentResearch.science.researchTime
+        "
+      ></ProgressBar>
     </div>
 
     <table class="w-full">
@@ -48,11 +58,15 @@ const tableData = computed(() => {
               v-for="(item, index) in science.requirements.items"
               :key="index"
             >
-              {{ getItemName(item.id) }} * {{ item.amount }}
+              {{ getItem(item.id).name }} * {{ item.amount }}
             </div>
           </td>
           <td class="text-center">
-            <button @click="scienceStore.startResearch(science)">
+            <button
+              @click="scienceStore.startResearch(science)"
+              :disabled="!inventoryStore.hasItems(science.requirements.items)"
+              class="disabled:opacity-25"
+            >
               <icon-fontisto:laboratory></icon-fontisto:laboratory>
             </button>
           </td>

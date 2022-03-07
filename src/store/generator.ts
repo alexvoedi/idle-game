@@ -6,6 +6,8 @@ import Blueprint from "@/interfaces/Blueprint";
 
 export type GeneratorStore = {
   generators: Array<Generator>;
+  maxActiveGenerators: number;
+  effects: Effect[];
 };
 
 export const useGeneratorStore = defineStore("generator", {
@@ -13,12 +15,24 @@ export const useGeneratorStore = defineStore("generator", {
     generators: baseBlueprints.map((blueprint) => ({
       blueprint,
       timer: 0,
-      active: true,
+      active: false,
       effects: [],
     })),
+    maxActiveGenerators: 4,
+    effects: [],
   }),
 
   actions: {
+    setGeneratorActive(generator: Generator, isActive: boolean) {
+      if (isActive) {
+        if (this.activeGeneratorCount < this.maxActiveGenerators) {
+          generator.active = isActive;
+        }
+      } else {
+        generator.active = isActive;
+      }
+    },
+
     addGenerators(blueprints: Blueprint[], effects: Effect[] = []) {
       blueprints.forEach((blueprint) => {
         this.generators.push({
@@ -79,5 +93,9 @@ export const useGeneratorStore = defineStore("generator", {
     },
   },
 
-  getters: {},
+  getters: {
+    activeGeneratorCount: (state) => {
+      return state.generators.filter((generator) => generator.active).length;
+    },
+  },
 });

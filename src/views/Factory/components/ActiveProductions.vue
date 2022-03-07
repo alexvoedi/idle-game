@@ -4,20 +4,33 @@ import Generator from "@/interfaces/Generator";
 import { useItem } from "@/composables/useItem";
 
 const generatorStore = useGeneratorStore();
-const { getItemName } = useItem();
+const { getItem } = useItem();
 
 const activeGenerators = computed(() => {
   return generatorStore.generators.filter((generator) => generator.active);
 });
-
-const disableGenerator = (generator: Generator) => {
-  generator.active = false;
-};
 </script>
 
 <template>
   <BaseCard class="space-y-4 overflow-hidden">
-    <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Active Productions</h2>
+    <div class="px-6 py-6">
+      <h2 class="text-2xl font-bold">Active Productions</h2>
+
+      <div
+        :class="[
+          generatorStore.activeGeneratorCount <
+          generatorStore.maxActiveGenerators
+            ? 'text-green-400'
+            : 'text-red-400',
+        ]"
+      >
+        Active Generators:
+        <span>
+          {{ generatorStore.activeGeneratorCount }} |
+          {{ generatorStore.maxActiveGenerators }}
+        </span>
+      </div>
+    </div>
 
     <table v-if="activeGenerators.length > 0" class="w-full">
       <thead>
@@ -37,7 +50,7 @@ const disableGenerator = (generator: Generator) => {
               v-for="(item, index) in generator.blueprint.output"
               :key="index"
             >
-              {{ getItemName(item.id) }}
+              {{ getItem(item.id).name }}
             </div>
           </td>
           <td class="font-mono text-right whitespace-nowrap">
@@ -45,14 +58,16 @@ const disableGenerator = (generator: Generator) => {
               v-for="(item, index) in generator.blueprint.input"
               :key="index"
             >
-              {{ getItemName(item.id) }} × {{ item.amount }}
+              {{ getItem(item.id).name }} × {{ item.amount }}
             </div>
           </td>
           <td class="font-mono text-right">
             {{ generatorStore.calculateProductionTime(generator).toFixed(2) }}
           </td>
           <td class="text-center">
-            <button @click="disableGenerator(generator)">
+            <button
+              @click="generatorStore.setGeneratorActive(generator, false)"
+            >
               <icon-mdi-close></icon-mdi-close>
             </button>
           </td>

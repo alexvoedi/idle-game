@@ -1,4 +1,6 @@
+import { useItem } from "@/composables/useItem";
 import ItemAmount from "@/interfaces/ItemAmount";
+import { useStatsStore } from "./stats";
 
 export type InventoryStore = {
   inventory: ItemAmount[];
@@ -14,46 +16,66 @@ export const useInventoryStore = defineStore("inventory", {
       items.forEach((item) => this.addItem(item));
     },
 
-    addItem({ id, amount }: ItemAmount) {
+    addItem(item: ItemAmount) {
       if (!this.hasInventorySpace) return;
 
       const inventoryItem = this.inventory.find(
-        (inventoryItem) => inventoryItem.id === id
+        (inventoryItem) => inventoryItem.id === item.id
       );
 
       if (inventoryItem) {
-        inventoryItem.amount += amount;
+        inventoryItem.amount += item.amount;
       } else {
-        this.inventory.push({ id, amount });
+        this.inventory.push({ ...item });
       }
     },
 
     spendItems(items: ItemAmount[]) {
-      const inventoryStore = useInventoryStore();
+      items.forEach((item) => this.spendItem(item));
+    },
 
-      items.forEach((item) => {
-        const inventoryItem = inventoryStore.inventory.find(
-          (inventoryItem) => inventoryItem.id === item.id
-        );
+    spendItem(item: ItemAmount) {
+      const inventoryItem = this.inventory.find(
+        (inventoryItem) => inventoryItem.id === item.id
+      );
 
-        if (inventoryItem) {
-          inventoryItem.amount -= item.amount;
-        }
-      });
+      if (inventoryItem) {
+        inventoryItem.amount -= item.amount;
+      }
     },
 
     hasItems(items: ItemAmount[]) {
-      return items.every((item) => {
-        const inventoryItem = this.inventory.find(
-          (inventoryItem) => inventoryItem.id === item.id
-        );
+      return items.every((item) => this.hasItem(item));
+    },
 
-        if (inventoryItem) {
-          return inventoryItem.amount >= item.amount;
-        } else {
-          return false;
-        }
-      });
+    hasItem(item: ItemAmount) {
+      const inventoryItem = this.inventory.find(
+        (inventoryItem) => inventoryItem.id === item.id
+      );
+
+      if (inventoryItem) {
+        return inventoryItem.amount >= item.amount;
+      } else {
+        return false;
+      }
+    },
+
+    sellItem(item: ItemAmount) {
+      const hasEnoughItem = this.hasItem(item);
+
+      if (hasEnoughItem) {
+        const { getItem } = useItem();
+        const statsStore = useStatsStore();
+
+        this.spendItem(item);
+
+        const income = getItem(item.id).saleValue * item.amount;
+
+        statsStore.stats.soldItems += item.amount;
+        statsStore.stats.moneyEarned += income;
+
+        this.money += income;
+      }
     },
   },
 

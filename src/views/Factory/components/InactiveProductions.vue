@@ -4,15 +4,11 @@ import Generator from "@/interfaces/Generator";
 import { useGeneratorStore } from "@/store/generator";
 
 const generatorStore = useGeneratorStore();
-const { getItemName } = useItem();
+const { getItem } = useItem();
 
 const inactiveGenerators = computed(() => {
   return generatorStore.generators.filter((generator) => !generator.active);
 });
-
-const enableGenerator = (generator: Generator) => {
-  generator.active = true;
-};
 </script>
 
 <template>
@@ -37,7 +33,7 @@ const enableGenerator = (generator: Generator) => {
               v-for="(item, index) in generator.blueprint.output"
               :key="index"
             >
-              {{ getItemName(item.id) }}
+              {{ getItem(item.id).name }}
             </div>
           </td>
           <td class="font-mono text-right whitespace-nowrap">
@@ -45,14 +41,14 @@ const enableGenerator = (generator: Generator) => {
               v-for="(item, index) in generator.blueprint.input"
               :key="index"
             >
-              {{ getItemName(item.id) }} × {{ item.amount }}
+              {{ getItem(item.id).name }} × {{ item.amount }}
             </div>
           </td>
           <td class="font-mono text-right">
             {{ generatorStore.calculateProductionTime(generator).toFixed(2) }}
           </td>
           <td class="text-center">
-            <button @click="enableGenerator(generator)">
+            <button @click="generatorStore.setGeneratorActive(generator, true)">
               <icon-mdi-hammer></icon-mdi-hammer>
             </button>
           </td>

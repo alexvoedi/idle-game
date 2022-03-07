@@ -3,6 +3,7 @@ import { useGeneratorStore } from "./generator";
 import { useInventoryStore } from "./inventory";
 import { useScienceStore } from "./science";
 import store from "store2";
+import { useStatsStore } from "./stats";
 
 export type BaseStore = {
   timerID: ReturnType<typeof setInterval> | null;
@@ -23,12 +24,14 @@ export const useBaseStore = defineStore("base", {
       const inventoryStore = useInventoryStore();
       const scienceStore = useScienceStore();
       const effectStore = useEffectStore();
+      const statsStore = useStatsStore();
 
       this.$state = gameState.base;
       generatorStore.$state = gameState.generator;
       inventoryStore.$state = gameState.inventory;
       scienceStore.$state = gameState.science;
       effectStore.$state = gameState.effect;
+      statsStore.$state = gameState.stats;
     },
 
     unloadGame() {
@@ -69,11 +72,13 @@ export const useBaseStore = defineStore("base", {
       const inventoryStore = useInventoryStore();
       const scienceStore = useScienceStore();
       const effectStore = useEffectStore();
+      const statsStore = useStatsStore();
 
       generatorStore.$reset();
       inventoryStore.$reset();
       scienceStore.$reset();
       effectStore.$reset();
+      statsStore.$reset();
     },
 
     toggleRunning() {

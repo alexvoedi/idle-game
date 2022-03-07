@@ -6,16 +6,23 @@ import { useItem } from "@/composables/useItem";
 
 const inventoryStore = useInventoryStore();
 const generatorStore = useGeneratorStore();
-const { getItemName } = useItem();
+const { getItem } = useItem();
 
 const inventory = computed(() => {
-  return inventoryStore.inventory.map((item) => {
-    return {
-      ...item,
-      amount: item.amount,
-      productionRate: getProductionRate(item.id),
-    };
-  });
+  return inventoryStore.inventory
+    .map((item) => {
+      const { saleValue } = getItem(item.id);
+      const totalSaleValue = item.amount * saleValue;
+      const productionRate = getProductionRate(item.id);
+
+      return {
+        ...item,
+        saleValue,
+        totalSaleValue,
+        productionRate,
+      };
+    })
+    .sort((a, b) => a.id - b.id);
 });
 
 const getProductionRate = (itemID: ItemID) => {
@@ -37,14 +44,19 @@ const getProductionRate = (itemID: ItemID) => {
     return 0;
   }
 };
+
+const totalSaleValue = computed(() => {
+  return inventory.value.reduce((sum, item) => sum + item.totalSaleValue, 0);
+});
 </script>
 
 <template>
   <BaseCard class="space-y-4 overflow-hidden">
     <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Inventory</h2>
 
-    <div class="px-6">
-      Storage Space: {{ inventoryStore.remainingInventorySpace }}
+    <div class="px-6 space-y-4">
+      <div>Storage Space: {{ inventoryStore.remainingInventorySpace }}</div>
+      <div>Total Sale Value: {{ totalSaleValue.toFixed(2) }}</div>
     </div>
 
     <table class="w-full">
@@ -52,14 +64,20 @@ const getProductionRate = (itemID: ItemID) => {
         <tr>
           <th class="text-left whitespace-nowrap">Item</th>
           <th class="text-right">Amount</th>
+          <th class="text-center">Sale Value</th>
           <th class="text-right">Items per Second</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(inventoryItem, index) in inventory" :key="index">
-          <td>{{ getItemName(inventoryItem.id) }}</td>
+          <td>{{ getItem(inventoryItem.id).name }}</td>
           <td class="font-mono text-right">
-            {{ inventoryItem.amount.toLocaleString() }}
+            {{ inventoryItem.amount }}
+          </td>
+          <td class="font-mono text-center">
+            {{ inventoryItem.saleValue.toFixed(2) }} |
+            {{ inventoryItem.totalSaleValue.toFixed(2) }}
           </td>
           <td
             class="font-mono text-right"
@@ -69,7 +87,16 @@ const getProductionRate = (itemID: ItemID) => {
                 : 'text-green-500',
             ]"
           >
-            {{ inventoryItem.productionRate.toFixed(4).toLocaleString() }}
+            {{ inventoryItem.productionRate.toFixed(4) }}
+          </td>
+          <td class="text-center">
+            <button
+              @click="
+                inventoryStore.sellItem({ id: inventoryItem.id, amount: 1 })
+              "
+            >
+              <icon-healthicons:money-bag></icon-healthicons:money-bag>
+            </button>
           </td>
         </tr>
       </tbody>
