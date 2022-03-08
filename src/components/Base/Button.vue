@@ -29,13 +29,13 @@ defineProps<ComponentProps>();
       'bg-red-700 text-white': filled && error,
       'hover:bg-red-800': filled && error && !disabled,
 
-      'text-indigo-400 border-indigo-400': primary,
+      'text-indigo-400 border-indigo-400': primary && outlined,
       'hover:bg-indigo-900': primary && !disabled,
 
-      'text-orange-400 border-orange-400': warning,
+      'text-orange-400 border-orange-400': warning && outlined,
       'hover:bg-orange-900': warning && !disabled,
 
-      'text-red-500 border-red-500': error,
+      'text-red-500 border-red-500': error && outlined,
       'hover:bg-red-900': error && !disabled,
 
       'opacity-25 cursor-not-allowed': disabled,
