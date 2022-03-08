@@ -38,7 +38,7 @@ defineProps<ComponentProps>();
       'text-red-500 border-red-500': error,
       'hover:bg-red-900': error && !disabled,
 
-      'opacity-30 cursor-not-allowed': disabled,
+      'opacity-25 cursor-not-allowed': disabled,
     }"
   >
     <slot name="icon"></slot>
