@@ -4,7 +4,7 @@ import FactoryIcon from "~icons/mdi/factory";
 import ScienceIcon from "~icons/ic/round-science";
 import EffectsIcon from "~icons/carbon/upgrade";
 import StatsIcon from "~icons/ion/ios-stats";
-import SaleIcon from "~icons/ion/ios-stats";
+import SaleIcon from "~icons/ic/baseline-sell";
 
 const links = [
   {
@@ -49,8 +49,7 @@ const links = [
         v-for="link in links"
         :key="link.to"
         :to="{ name: link.to }"
-        class="flex h-12 items-center gap-4 border-b border-transparent px-6 w-full"
-        hover="bg-true-gray-700"
+        class="router-link"
       >
         <component :is="link.icon"></component>
         <span>{{ link.text }}</span>
@@ -58,11 +57,7 @@ const links = [
     </div>
 
     <div class="w-full py-4">
-      <router-link
-        :to="{ name: 'Game' }"
-        class="flex h-12 items-center gap-4 border-b border-transparent px-6 w-full"
-        hover="bg-true-gray-700"
-      >
+      <router-link :to="{ name: 'Game' }" class="router-link">
         <icon-mdi-cog></icon-mdi-cog>
         <span>Game</span>
       </router-link>
@@ -71,7 +66,12 @@ const links = [
 </template>
 
 <style lang="postcss" scoped>
+.router-link {
+  @apply flex h-12 items-center gap-4 border-b border-transparent px-6 w-full transition font-semibold;
+  @apply hover:bg-true-gray-700;
+}
+
 .router-link-active {
-  @apply text-blue-400;
+  @apply text-white bg-indigo-600 hover:bg-indigo-600;
 }
 </style>

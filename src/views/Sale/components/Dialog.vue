@@ -19,7 +19,11 @@ const rules = computed(() => {
 <template>
   <BaseDialog>
     <template #activator="{ setIsOpen }">
-      <button @click="setIsOpen(true)">sell</button>
+      <BaseButton @click="setIsOpen(true)" primary>
+        <template #icon>
+          <icon-mdi-cog></icon-mdi-cog>
+        </template>
+      </BaseButton>
     </template>
 
     <template #title>
@@ -48,7 +52,13 @@ const rules = computed(() => {
           add test rule
         </button>
 
-        <BaseButton @click="setIsOpen(false)" primary>Close</BaseButton>
+        <BaseButton
+          @click="setIsOpen(false)"
+          class="text-indigo-600"
+          hover="bg-indigo-100"
+        >
+          Close
+        </BaseButton>
       </div>
     </template>
   </BaseDialog>

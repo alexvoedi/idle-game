@@ -30,10 +30,10 @@ const columns = ref([
     classes: "text-center",
   },
   {
-    id: "actions",
-    text: "Actions",
-    field: "actions",
-    classes: "text-center",
+    id: "selling-options",
+    text: "",
+    field: "selling-options",
+    classes: "text-right flex justify-end",
   },
 ]);
 </script>
@@ -57,7 +57,7 @@ const columns = ref([
           <template v-else> - </template>
         </template>
 
-        <template #actions="{ item }">
+        <template #selling-options="{ item }">
           <SaleDialog :item="item"></SaleDialog>
         </template>
       </BaseTable>

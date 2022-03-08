@@ -58,10 +58,14 @@ table thead tr {
 
 table thead tr th,
 table tbody tr td {
-  @apply px-4 py-2;
+  @apply px-6 py-2;
 }
 
 table tbody tr:nth-child(odd) {
   @apply bg-true-gray-700;
+}
+
+table tbody tr:nth-child(even) {
+  @apply bg-true-gray-800;
 }
 </style>

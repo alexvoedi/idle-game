@@ -67,7 +67,11 @@ const importGame = () => {
         <p>Export and download the game to your computer.</p>
 
         <div class="flex justify-end">
-          <BaseButton @click="exportGame" primary filled>
+          <BaseButton
+            @click="exportGame"
+            class="bg-indigo-600 text-white"
+            not-disabled:hover="bg-indigo-500"
+          >
             <template #icon>
               <icon-mdi-export></icon-mdi-export>
             </template>
@@ -93,7 +97,12 @@ const importGame = () => {
           />
 
           <div class="flex justify-end">
-            <BaseButton @click="importGame" :disabled="!file" error filled>
+            <BaseButton
+              @click="importGame"
+              :disabled="!file"
+              class="bg-red-700 text-white"
+              not-disabled:hover="bg-red-600"
+            >
               <template #icon>
                 <icon-mdi-import></icon-mdi-import>
               </template>
@@ -109,7 +118,11 @@ const importGame = () => {
         <p>All game data will be lost. This action cannot be undone!</p>
 
         <div class="flex justify-end">
-          <BaseButton @click="baseStore.resetGame" error filled>
+          <BaseButton
+            @click="baseStore.resetGame"
+            class="bg-red-700 text-white"
+            not-disabled:hover="bg-red-600"
+          >
             <template #icon>
               <icon-mdi-delete></icon-mdi-delete>
             </template>

@@ -21,6 +21,7 @@ export const useBaseStore = defineStore("base", {
       const scienceStore = useScienceStore();
       const effectStore = useEffectStore();
       const statsStore = useStatsStore();
+      const saleStore = useSaleStore();
 
       this.$state = gameState.base;
       generatorStore.$state = gameState.generator;
@@ -28,6 +29,7 @@ export const useBaseStore = defineStore("base", {
       scienceStore.$state = gameState.science;
       effectStore.$state = gameState.effect;
       statsStore.$state = gameState.stats;
+      saleStore.$state = gameState.sale;
     },
 
     unloadGame() {
@@ -71,12 +73,14 @@ export const useBaseStore = defineStore("base", {
       const scienceStore = useScienceStore();
       const effectStore = useEffectStore();
       const statsStore = useStatsStore();
+      const saleStore = useSaleStore();
 
       generatorStore.$reset();
       inventoryStore.$reset();
       scienceStore.$reset();
       effectStore.$reset();
       statsStore.$reset();
+      saleStore.$reset();
     },
 
     toggleRunning() {
