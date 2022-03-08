@@ -1,6 +1,6 @@
 import { useItem } from "@/composables/useItem";
-import ItemAmount from "@/interfaces/ItemAmount";
 import { useStatsStore } from "./stats";
+import ItemAmount from "@/interfaces/items/ItemAmount";
 
 export type InventoryStore = {
   inventory: ItemAmount[];

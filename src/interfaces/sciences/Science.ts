@@ -1,5 +1,5 @@
-import { ScienceID } from "@/data/techtree";
-import ItemAmount from "./ItemAmount";
+import ScienceID from "@/data/sciences/ScienceID";
+import ItemAmount from "../items/ItemAmount";
 
 type Science = {
   id: ScienceID;

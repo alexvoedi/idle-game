@@ -1,4 +1,5 @@
-import { Effect, EffectID } from "@/data/effects";
+import EffectID from "@/data/effects/EffectID";
+import Effect from "@/interfaces/effects/Effect";
 
 export type EffectStore = {
   effects: Effect[];

@@ -1,6 +1,6 @@
-import { BlueprintID } from "@/data/blueprints";
-import { ScienceID } from "@/data/techtree";
-import ItemAmount from "./ItemAmount";
+import BlueprintID from "../../data/blueprints/BlueprintID";
+import ItemAmount from "../items/ItemAmount";
+import ScienceID from "../../data/sciences/ScienceID";
 
 type Blueprint = {
   id: BlueprintID;

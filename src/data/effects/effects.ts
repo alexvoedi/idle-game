@@ -1,39 +1,8 @@
-import { ScienceID } from "@/data/techtree";
-import { ItemID } from "./item";
-
-export enum EffectID {
-  CopperProduction1,
-  Automation1,
-  MagneticFieldDetection,
-}
-
-export enum EffectType {
-  ProductionSpeed,
-  MaxGeneratorsCount,
-}
-
-interface BaseEffect {
-  id: EffectID;
-  name: string;
-  requirements: {
-    sciences: ScienceID[];
-  };
-}
-
-export interface ProductionSpeed extends BaseEffect {
-  type: EffectType.ProductionSpeed;
-  item: {
-    id: ItemID;
-    value: number;
-  };
-}
-
-export interface MaxGeneratorsCount extends BaseEffect {
-  type: EffectType.MaxGeneratorsCount;
-  count: number;
-}
-
-export type Effect = ProductionSpeed | MaxGeneratorsCount;
+import Effect from "@/interfaces/effects/Effect";
+import EffectID from "@/data/effects/EffectID";
+import EffectType from "@/data/effects/EffectType";
+import ItemID from "@/data/items/ItemID";
+import ScienceID from "@/data/sciences/ScienceID";
 
 const effects: Effect[] = [
   {

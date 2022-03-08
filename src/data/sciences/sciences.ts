@@ -1,14 +1,8 @@
-import Science from "../interfaces/Science";
-import { ItemID } from "./item";
+import ItemID from "@/data/items/ItemID";
+import ScienceID from "@/data/sciences/ScienceID";
+import Science from "../../interfaces/sciences/Science";
 
-export enum ScienceID {
-  CopperProduction1,
-  Magnetism1,
-  StoneProbing1,
-  Automation1,
-}
-
-const techTree: Science[] = [
+const sciences: Science[] = [
   {
     id: ScienceID.CopperProduction1,
     name: "Copper Production 1",
@@ -83,4 +77,4 @@ const techTree: Science[] = [
   },
 ];
 
-export default techTree;
+export default sciences;

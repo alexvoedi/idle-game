@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useItem } from "@/composables/useItem";
-import Generator from "@/interfaces/Generator";
 import { useGeneratorStore } from "@/store/generator";
 
 const generatorStore = useGeneratorStore();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Item } from "@/data/item";
+import Item from "@/interfaces/items/Item";
+import SaleRule from "@/data/sales/SaleRule";
 import { useSaleStore } from "@/store/sale";
-import { SellingRuleType } from "@/interfaces/Sale";
 
 interface ComponentProps {
   item: Item;
@@ -40,7 +40,7 @@ const rules = computed(() => {
           @click="
             saleStore.addSale({
               itemID: item.id,
-              rule: SellingRuleType.SellUntil,
+              rule: SaleRule.SellUntil,
               stock: 100,
             })
           "

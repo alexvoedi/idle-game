@@ -2,7 +2,6 @@ import { useEffectStore } from "./effect";
 import { useGeneratorStore } from "./generator";
 import { useInventoryStore } from "./inventory";
 import { useScienceStore } from "./science";
-import store from "store2";
 import { useStatsStore } from "./stats";
 import { useSaleStore } from "./sale";
 

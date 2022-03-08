@@ -1,0 +1,28 @@
+enum ItemID {
+  Capacitor,
+  Cog,
+  Copper,
+  CopperWire,
+  ElectricCoil,
+  ElectricGenerator,
+  ElectricRelay,
+  ElectricResistor,
+  ElectricSwitch,
+  Glass,
+  InsulatedWire,
+  Iron,
+  Magnet,
+  Magnetit,
+  Methan,
+  Petroleum,
+  Plastic,
+  Sand,
+  Screw,
+  Stone,
+  Water,
+  Wood,
+  WoodenChair,
+  WoodenPlank,
+}
+
+export default ItemID;

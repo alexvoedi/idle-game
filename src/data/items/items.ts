@@ -1,35 +1,5 @@
-export enum ItemID {
-  Capacitor,
-  Cog,
-  Copper,
-  CopperWire,
-  ElectricCoil,
-  ElectricGenerator,
-  ElectricRelay,
-  ElectricResistor,
-  ElectricSwitch,
-  Glass,
-  InsulatedWire,
-  Iron,
-  Magnet,
-  Magnetit,
-  Methan,
-  Petroleum,
-  Plastic,
-  Sand,
-  Screw,
-  Stone,
-  Water,
-  Wood,
-  WoodenChair,
-  WoodenPlank,
-}
-
-export interface Item {
-  id: ItemID;
-  name: string;
-  saleValue: number;
-}
+import ItemID from "@/data/items/ItemID";
+import Item from "@/interfaces/items/Item";
 
 const items: Item[] = [
   {

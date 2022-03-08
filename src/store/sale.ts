@@ -1,5 +1,6 @@
-import { ItemID } from "@/data/item";
-import { Sale, SellingRuleType } from "@/interfaces/Sale";
+import ItemID from "@/data/items/ItemID";
+import SaleRule from "@/data/sales/SaleRule";
+import Sale from "@/interfaces/sales/Sale";
 import { useInventoryStore } from "./inventory";
 
 export type SaleStore = {
@@ -28,7 +29,7 @@ export const useSaleStore = defineStore("sale", {
       const inventoryStore = useInventoryStore();
 
       this.sales.forEach((sale) => {
-        if (sale.rule === SellingRuleType.SellUntil) {
+        if (sale.rule === SaleRule.SellUntil) {
           const inventoryItem = inventoryStore.inventory.find(
             (inventoryItem) => inventoryItem.id === sale.itemID
           );

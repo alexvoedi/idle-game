@@ -1,8 +1,9 @@
 import { useInventoryStore } from "./inventory";
-import { baseBlueprints } from "@/data/blueprints";
-import { Effect, EffectType } from "@/data/effects";
-import Generator from "@/interfaces/Generator";
-import Blueprint from "@/interfaces/Blueprint";
+import Generator from "@/interfaces/generators/Generator";
+import Blueprint from "@/interfaces/blueprints/Blueprint";
+import baseBlueprints from "@/data/blueprints/baseBlueprints";
+import Effect from "@/interfaces/effects/Effect";
+import EffectType from "@/data/effects/EffectType";
 
 export type GeneratorStore = {
   generators: Array<Generator>;

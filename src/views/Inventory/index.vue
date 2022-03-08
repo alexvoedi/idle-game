@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ItemID } from "@/data/item";
 import { useGeneratorStore } from "@/store/generator";
 import { useInventoryStore } from "@/store/inventory";
 import { useItem } from "@/composables/useItem";
+import ItemID from "@/data/items/ItemID";
 
 const inventoryStore = useInventoryStore();
 const generatorStore = useGeneratorStore();

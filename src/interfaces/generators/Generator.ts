@@ -1,5 +1,5 @@
-import { Effect } from "@/data/effects";
-import Blueprint from "./Blueprint";
+import Blueprint from "../blueprints/Blueprint";
+import Effect from "../effects/Effect";
 
 export default interface Generator {
   blueprint: Blueprint;

@@ -1,4 +1,5 @@
-import items, { ItemID } from "@/data/item";
+import ItemID from "@/data/items/ItemID";
+import items from "@/data/items/items";
 
 export const useItem = () => {
   const getItem = (itemID: ItemID) => {

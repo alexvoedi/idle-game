@@ -1,10 +1,12 @@
-import blueprints from "@/data/blueprints";
-import Science from "@/interfaces/Science";
-import techTree, { ScienceID } from "@/data/techtree";
+import Science from "@/interfaces/sciences/Science";
 import { useInventoryStore } from "./inventory";
-import effects, { EffectType } from "@/data/effects";
 import { useEffectStore } from "./effect";
 import { useGeneratorStore } from "./generator";
+import ScienceID from "@/data/sciences/ScienceID";
+import blueprints from "@/data/blueprints/blueprints";
+import effects from "@/data/effects/effects";
+import EffectType from "@/data/effects/EffectType";
+import sciences from "@/data/sciences/sciences";
 
 type CurrentResearch = {
   science: Science;
@@ -97,7 +99,7 @@ export const useScienceStore = defineStore("science", {
 
   getters: {
     availableSciences: (store) => {
-      return techTree.filter((science) => {
+      return sciences.filter((science) => {
         const hasRequiredSciences = science.requirements.sciences.every(
           (science) => store.researched.includes(science)
         );
