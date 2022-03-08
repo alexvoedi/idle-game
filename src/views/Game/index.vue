@@ -54,26 +54,37 @@ const importGame = () => {
 </script>
 
 <template>
-  <div class="space-y-8">
-    <h1 class="text-2xl">Game</h1>
+  <div class="space-y-8 max-w-screen-md mx-auto">
+    <h1 class="text-2xl font-semibold flex items-center gap-4">
+      <icon-mdi-cog></icon-mdi-cog>
+      <span>Game</span>
+    </h1>
 
-    <div class="flex gap-8">
+    <div class="grid grid-cols-1 gap-8">
       <BaseCard class="px-8 py-6 space-y-6">
         <h2 class="text-xl">Export Game</h2>
 
-        <button
-          @click="exportGame"
-          class="flex justify-center items-center gap-2"
-        >
-          <icon-mdi-export></icon-mdi-export>
-          Export
-        </button>
+        <p>Export and download the game to your computer.</p>
+
+        <div class="flex justify-end">
+          <BaseButton @click="exportGame" primary filled>
+            <template #icon>
+              <icon-mdi-export></icon-mdi-export>
+            </template>
+            Export
+          </BaseButton>
+        </div>
       </BaseCard>
 
       <BaseCard class="px-8 py-6 space-y-6">
         <h2 class="text-xl">Import Game</h2>
 
         <form ref="fileInputForm" class="space-y-4" action="">
+          <p>
+            Load an exported game from you local computer. The current game data
+            will be overwritten. This action cannot be undone!
+          </p>
+
           <input
             type="file"
             @change="loadFile"
@@ -81,15 +92,30 @@ const importGame = () => {
             ref="fileUpload"
           />
 
-          <button
-            :disabled="!file"
-            @click="importGame"
-            class="flex justify-center items-center gap-2 disabled:opacity-40"
-          >
-            <icon-mdi-import></icon-mdi-import>
-            Import
-          </button>
+          <div class="flex justify-end">
+            <BaseButton @click="importGame" :disabled="!file" error filled>
+              <template #icon>
+                <icon-mdi-import></icon-mdi-import>
+              </template>
+              <span>Import</span>
+            </BaseButton>
+          </div>
         </form>
+      </BaseCard>
+
+      <BaseCard class="px-8 py-6 space-y-6">
+        <h2 class="text-2xl font-semibold">Restart Game</h2>
+
+        <p>All game data will be lost. This action cannot be undone!</p>
+
+        <div class="flex justify-end">
+          <BaseButton @click="baseStore.resetGame" error filled>
+            <template #icon>
+              <icon-mdi-delete></icon-mdi-delete>
+            </template>
+            Restart
+          </BaseButton>
+        </div>
       </BaseCard>
     </div>
   </div>

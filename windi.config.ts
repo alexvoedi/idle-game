@@ -1,4 +1,5 @@
 import { defineConfig } from "windicss/helpers";
+import { colors } from "./src/style/colors";
 
 export default defineConfig({
   darkMode: "class",
@@ -7,7 +8,11 @@ export default defineConfig({
 
   plugins: [require("windicss/plugin/typography")],
 
-  theme: {},
+  theme: {
+    extend: {
+      colors,
+    },
+  },
 
   shortcuts: {},
 });

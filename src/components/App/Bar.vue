@@ -29,13 +29,6 @@ const inventoryStore = useInventoryStore();
           <icon-mdi-play class="text-red-600"></icon-mdi-play>
         </template>
       </button>
-
-      <button
-        @click="baseStore.resetGame"
-        class="flex justify-center items-center gap-2"
-      >
-        <icon-mdi-delete></icon-mdi-delete>
-      </button>
     </div>
   </div>
 </template>
