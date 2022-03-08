@@ -1,0 +1,1 @@
+import{g as t,o as n,e as a,E as s}from"./vendor.1c3ce266.js";const d=["disabled"],r=t({props:{disabled:{type:Boolean}},setup(o){return(e,l)=>(n(),a("button",{disabled:o.disabled,class:"flex justify-center items-center gap-3 px-4 py-2 rounded-lg transition font-semibold disabled:opacity-30"},[s(e.$slots,"icon"),s(e.$slots,"default")],8,d))}});export{r as _};
