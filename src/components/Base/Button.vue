@@ -20,6 +20,9 @@ defineProps<ComponentProps>();
 
       'hover:bg-opacity-50': outlined && !disabled,
 
+      'text-indigo-400 border-indigo-400': primary,
+      'hover:bg-indigo-100': primary && !disabled,
+
       'bg-indigo-600 text-white': filled && primary,
       'hover:bg-indigo-700': filled && primary && !disabled,
 

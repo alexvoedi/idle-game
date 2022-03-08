@@ -4,6 +4,7 @@ import { useInventoryStore } from "./inventory";
 import { useScienceStore } from "./science";
 import store from "store2";
 import { useStatsStore } from "./stats";
+import { useSaleStore } from "./sale";
 
 export type BaseStore = {
   timerID: ReturnType<typeof setInterval> | null;
@@ -54,9 +55,11 @@ export const useBaseStore = defineStore("base", {
     update(delta: number) {
       const generatorStore = useGeneratorStore();
       const scienceStore = useScienceStore();
+      const saleStore = useSaleStore();
 
       generatorStore.generate(delta);
       scienceStore.research(delta);
+      saleStore.sellItems();
 
       this.timePassed += delta;
     },

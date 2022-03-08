@@ -4,7 +4,7 @@ import FactoryIcon from "~icons/mdi/factory";
 import ScienceIcon from "~icons/ic/round-science";
 import EffectsIcon from "~icons/carbon/upgrade";
 import StatsIcon from "~icons/ion/ios-stats";
-import SellIcon from "~icons/ion/ios-stats";
+import SaleIcon from "~icons/ion/ios-stats";
 
 const links = [
   {
@@ -33,9 +33,9 @@ const links = [
     icon: StatsIcon,
   },
   {
-    to: "Sell",
-    text: "Sell",
-    icon: SellIcon,
+    to: "Sale",
+    text: "Sale",
+    icon: SaleIcon,
   },
 ];
 </script>

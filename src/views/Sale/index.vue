@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useItem } from "@/composables/useItem";
 import { useInventoryStore } from "@/store/inventory";
+import { useSaleStore } from "@/store/sale";
 
 const { getItem } = useItem();
 const inventoryStore = useInventoryStore();
+const saleStore = useSaleStore();
 
 const items = computed(() =>
   inventoryStore.inventory.map((inventoryItem) => ({
@@ -16,15 +18,22 @@ const columns = ref([
   { id: "item", text: "Item", field: "name", headClasses: "text-left" },
   {
     id: "amount",
-    text: "Amount",
+    text: "Stock",
     field: "amount",
     headClasses: "text-right",
     bodyClasses: "font-mono text-right",
   },
   {
+    id: "rules",
+    text: "Selling Rules",
+    field: "rules",
+    classes: "text-center",
+  },
+  {
     id: "actions",
     text: "Actions",
     field: "actions",
+    classes: "text-center",
   },
 ]);
 </script>
@@ -35,22 +44,21 @@ const columns = ref([
 
     <BaseCard class="overflow-hidden">
       <BaseTable :items="items" :columns="columns">
+        <template #rules="{ item }">
+          <template v-if="saleStore.getSales(item.id).length > 0">
+            <div
+              v-for="(rule, index) in saleStore.getSales(item.id)"
+              :key="index"
+            >
+              {{ rule }}
+            </div>
+          </template>
+
+          <template v-else> - </template>
+        </template>
+
         <template #actions="{ item }">
-          <BaseDialog>
-            <template #activator="{ setIsOpen }">
-              <button @click="setIsOpen(true)">sell</button>
-            </template>
-
-            <template #title> Selling </template>
-
-            <template #description> Sell items from you inventory </template>
-
-            <template #default="{ setIsOpen }">
-              {{ item }}
-
-              <button @click="setIsOpen(false)">close</button>
-            </template>
-          </BaseDialog>
+          <SaleDialog :item="item"></SaleDialog>
         </template>
       </BaseTable>
     </BaseCard>

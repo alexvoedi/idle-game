@@ -44,7 +44,7 @@ const setIsOpen = (value: boolean) => (isOpen.value = value);
           leave-to="opacity-0 scale-95"
         >
           <div
-            class="p-4 mx-auto overflow-hidden transition-all transform bg-true-gray-100 rounded-xl"
+            class="p-6 mx-auto overflow-hidden transition-all transform bg-true-gray-100 rounded-xl space-y-4"
           >
             <DialogTitle>
               <slot name="title"></slot>
