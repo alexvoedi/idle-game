@@ -52,13 +52,30 @@ withDefaults(defineProps<ComponentProps>(), {
 </template>
 
 <style lang="postcss" scoped>
+table {
+  @apply w-full;
+}
+
 table thead tr {
   @apply bg-true-gray-900;
 }
 
-table thead tr th,
+table thead tr th {
+  @apply px-2 py-4 sticky top-0 bg-true-gray-900;
+}
+
 table tbody tr td {
-  @apply px-6 py-2;
+  @apply p-2;
+}
+
+table thead tr th:first-child,
+table tbody tr td:first-child {
+  @apply pl-8;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+  @apply pr-8;
 }
 
 table tbody tr:nth-child(odd) {

@@ -36,6 +36,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "Game",
     component: () => import("@/views/Game/index.vue"),
   },
+  {
+    path: "/achievements",
+    name: "Achievements",
+    component: () => import("@/views/Achievements/index.vue"),
+  },
+  {
+    path: "/library",
+    name: "Library",
+    component: () => import("@/views/Library/index.vue"),
+  },
 ];
 
 const router = createRouter({

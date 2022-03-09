@@ -5,6 +5,8 @@ import ScienceIcon from "~icons/ic/round-science";
 import EffectsIcon from "~icons/carbon/upgrade";
 import StatsIcon from "~icons/ion/ios-stats";
 import SaleIcon from "~icons/ic/baseline-sell";
+import AchievementsIcon from "~icons/mdi/trophy";
+import LibraryIcon from "~icons/ion/library";
 
 const links = [
   {
@@ -36,6 +38,16 @@ const links = [
     to: "Sale",
     text: "Sale",
     icon: SaleIcon,
+  },
+  {
+    to: "Achievements",
+    text: "Achievements",
+    icon: AchievementsIcon,
+  },
+  {
+    to: "Library",
+    text: "Library",
+    icon: LibraryIcon,
   },
 ];
 </script>

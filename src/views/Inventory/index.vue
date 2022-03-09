@@ -51,16 +51,23 @@ const totalSaleValue = computed(() => {
 </script>
 
 <template>
-  <BaseCard class="space-y-4 overflow-hidden">
-    <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Inventory</h2>
+  <div class="space-y-8">
+    <h1 class="text-3xl font-bold">Inventory</h1>
 
-    <div class="px-6 space-y-4">
-      <div>Storage Space: {{ inventoryStore.remainingInventorySpace }}</div>
-      <div>Total Sale Value: {{ totalSaleValue.toFixed(2) }}</div>
+    <div class="flex flex-wrap">
+      <InventoryStorageSpaceCard></InventoryStorageSpaceCard>
+
+      <div class="px-8 pt-6 space-y-4">
+        <div class="space-y-4">
+          <div>Total Sale Value: {{ totalSaleValue.toFixed(2) }}</div>
+        </div>
+      </div>
     </div>
 
-    <InventoryItemTable></InventoryItemTable>
-  </BaseCard>
+    <BaseCard class="overflow-hidden">
+      <InventoryItemTable></InventoryItemTable>
+    </BaseCard>
+  </div>
 </template>
 
 <style lang="postcss" scoped></style>

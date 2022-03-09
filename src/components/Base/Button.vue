@@ -9,7 +9,7 @@ defineProps<ComponentProps>();
 <template>
   <button
     :disabled="disabled"
-    class="flex justify-center items-center gap-3 px-4 py-2 rounded-lg transition font-semibold disabled:opacity-30"
+    class="px-4 py-2 rounded-lg transition font-semibold disabled:opacity-30 disabled:hover:cursor-not-allowed"
   >
     <slot name="icon"></slot>
     <slot name="default"></slot>

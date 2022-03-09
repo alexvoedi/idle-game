@@ -12,9 +12,9 @@ const inventoryStore = useInventoryStore();
   >
     <div class="text-2xl">Factorior</div>
 
-    <div class="grid grid-cols-2 items-center justify-center font-mono">
+    <div class="grid grid-cols-2 items-center justify-center gap-2 font-mono">
+      {{ inventoryStore.money.toLocaleString() }}
       <icon-healthicons:money-bag></icon-healthicons:money-bag>
-      {{ inventoryStore.money.toFixed(2) }}
     </div>
 
     <div class="flex gap-8 text-lg">

@@ -36,14 +36,16 @@ onUnmounted(() => {
 
 <template>
   <div class="text-true-gray-200 h-full flex flex-col">
-    <AppBar></AppBar>
+    <AppBar class="flex-shrink-0"></AppBar>
 
     <div class="flex flex-grow">
       <AppNavigation></AppNavigation>
 
-      <div class="w-full max-w-screen-xl mx-auto p-8">
+      <div
+        class="w-full flex flex-grow flex-col overflow-y-auto max-w-screen-xl mx-auto p-8"
+      >
         <router-view #default="{ Component }">
-          <transition class="fade" mode="out-in">
+          <transition name="fade" mode="out-in">
             <component :is="Component"></component>
           </transition>
         </router-view>

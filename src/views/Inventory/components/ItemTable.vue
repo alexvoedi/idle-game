@@ -42,7 +42,7 @@ const inventory = computed(() => {
         productionRate,
       };
     })
-    .sort((a: ItemID, b: ItemID) => a.id - b.id);
+    .sort((a, b) => a.id - b.id);
 });
 
 const columns = ref([

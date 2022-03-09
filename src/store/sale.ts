@@ -7,6 +7,8 @@ export type SaleStore = {
   sales: Sale[];
 };
 
+type SaleIdentifier = { itemID: number; rule: SaleRule };
+
 export const useSaleStore = defineStore("sale", {
   state: (): SaleStore => ({
     sales: [],
@@ -25,27 +27,41 @@ export const useSaleStore = defineStore("sale", {
       this.sales.push(sale);
     },
 
+    removeSale(sale: SaleIdentifier) {
+      this.sales
+        .reduce((indices, curr, index) => {
+          if (curr.itemID === sale.itemID && curr.rule === sale.rule) {
+            indices.push(index);
+          }
+
+          return indices;
+        }, [] as number[])
+        .forEach((index) => {
+          this.sales.splice(index, 1);
+        });
+    },
+
     sellItems() {
       const inventoryStore = useInventoryStore();
 
-      this.sales.forEach((sale) => {
-        if (sale.rule === SaleRule.SellUntil) {
-          const inventoryItem = inventoryStore.inventory.find(
-            (inventoryItem) => inventoryItem.id === sale.itemID
-          );
+      this.sales
+        .filter((sale) => sale.active)
+        .forEach((sale) => {
+          if (sale.rule === SaleRule.SellUntil) {
+            const inventoryItem = inventoryStore.getItem(sale.itemID);
 
-          if (inventoryItem) {
-            const difference = inventoryItem.amount - sale.stock;
+            if (inventoryItem) {
+              const difference = inventoryItem.amount - sale.stock;
 
-            if (difference > 0) {
-              inventoryStore.sellItem({
-                id: sale.itemID,
-                amount: difference,
-              });
+              if (difference > 0) {
+                inventoryStore.sellItem({
+                  id: sale.itemID,
+                  amount: difference,
+                });
+              }
             }
           }
-        }
-      });
+        });
     },
 
     getSales(itemID: ItemID) {

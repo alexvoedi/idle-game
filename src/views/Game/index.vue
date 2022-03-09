@@ -55,7 +55,7 @@ const importGame = () => {
 
 <template>
   <div class="space-y-8 max-w-screen-md mx-auto">
-    <h1 class="text-2xl font-semibold flex items-center gap-4">
+    <h1 class="text-3xl font-semibold flex items-center gap-4">
       <icon-mdi-cog></icon-mdi-cog>
       <span>Game</span>
     </h1>
@@ -69,7 +69,7 @@ const importGame = () => {
         <div class="flex justify-end">
           <BaseButton
             @click="exportGame"
-            class="bg-indigo-600 text-white"
+            class="bg-indigo-600 text-white flex items-center gap-2"
             not-disabled:hover="bg-indigo-500"
           >
             <template #icon>
@@ -85,8 +85,8 @@ const importGame = () => {
 
         <form ref="fileInputForm" class="space-y-4" action="">
           <p>
-            Load an exported game from you local computer. The current game data
-            will be overwritten. This action cannot be undone!
+            Load an exported game from your local computer. The current game
+            data will be overwritten. This action cannot be undone!
           </p>
 
           <input
@@ -100,7 +100,7 @@ const importGame = () => {
             <BaseButton
               @click="importGame"
               :disabled="!file"
-              class="bg-red-700 text-white"
+              class="bg-red-700 text-white flex items-center gap-2"
               not-disabled:hover="bg-red-600"
             >
               <template #icon>
@@ -120,7 +120,7 @@ const importGame = () => {
         <div class="flex justify-end">
           <BaseButton
             @click="baseStore.resetGame"
-            class="bg-red-700 text-white"
+            class="bg-red-700 text-white flex items-center gap-2"
             not-disabled:hover="bg-red-600"
           >
             <template #icon>

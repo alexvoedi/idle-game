@@ -62,13 +62,12 @@ const tableData = computed(() => {
             </div>
           </td>
           <td class="text-center">
-            <button
+            <BaseButton
               @click="scienceStore.startResearch(science)"
               :disabled="!inventoryStore.hasItems(science.requirements.items)"
-              class="disabled:opacity-25"
             >
               <icon-fontisto:laboratory></icon-fontisto:laboratory>
-            </button>
+            </BaseButton>
           </td>
         </tr>
       </tbody>

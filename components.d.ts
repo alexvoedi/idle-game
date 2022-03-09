@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Achievements: typeof import('./src/views/Achievements/index.vue')['default']
     AppBar: typeof import('./src/components/App/Bar.vue')['default']
     AppNavigation: typeof import('./src/components/App/Navigation.vue')['default']
     BaseButton: typeof import('./src/components/Base/Button.vue')['default']
@@ -18,6 +19,8 @@ declare module 'vue' {
     Game: typeof import('./src/views/Game/index.vue')['default']
     'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     'IconHealthicons:moneyBag': typeof import('~icons/healthicons/money-bag')['default']
+    'IconIc:baselineSell': typeof import('~icons/ic/baseline-sell')['default']
+    'IconIon:library': typeof import('~icons/ion/library')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
     IconMdiCog: typeof import('~icons/mdi/cog')['default']
@@ -27,8 +30,12 @@ declare module 'vue' {
     IconMdiImport: typeof import('~icons/mdi/import')['default']
     IconMdiPause: typeof import('~icons/mdi/pause')['default']
     IconMdiPlay: typeof import('~icons/mdi/play')['default']
+    IconMdiTrashCan: typeof import('~icons/mdi/trash-can')['default']
     Inventory: typeof import('./src/views/Inventory/index.vue')['default']
-    InventoryItemTable: typeof import('./src/views/Inventory/ItemTable.vue')['default']
+    InventoryItemTable: typeof import('./src/views/Inventory/components/ItemTable.vue')['default']
+    InventoryStorageSpaceCard: typeof import('./src/views/Inventory/components/StorageSpaceCard.vue')['default']
+    Library: typeof import('./src/views/Library/index.vue')['default']
+    LibraryItemTable: typeof import('./src/views/Library/components/ItemTable.vue')['default']
     Sale: typeof import('./src/views/Sale/index.vue')['default']
     SaleDialog: typeof import('./src/views/Sale/components/Dialog.vue')['default']
     Science: typeof import('./src/views/Science/index.vue')['default']

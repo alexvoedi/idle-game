@@ -1,6 +1,7 @@
 import { useItem } from "@/composables/useItem";
 import { useStatsStore } from "./stats";
 import ItemAmount from "@/interfaces/items/ItemAmount";
+import ItemID from "@/data/items/ItemID";
 
 export type InventoryStore = {
   inventory: ItemAmount[];
@@ -28,6 +29,10 @@ export const useInventoryStore = defineStore("inventory", {
       } else {
         this.inventory.push({ ...item });
       }
+    },
+
+    getItem(itemID: ItemID) {
+      return this.inventory.find((item) => item.id === itemID);
     },
 
     spendItems(items: ItemAmount[]) {
@@ -80,13 +85,12 @@ export const useInventoryStore = defineStore("inventory", {
   },
 
   getters: {
-    remainingInventorySpace: (state) => {
-      const inventoryItemsAmount = state.inventory.reduce(
-        (sum, item) => sum + item.amount,
-        0
-      );
+    inventorySize: (state): number => {
+      return state.inventory.reduce((sum, item) => sum + item.amount, 0);
+    },
 
-      return state.storage - inventoryItemsAmount;
+    remainingInventorySpace(): number {
+      return this.storage - this.inventorySize;
     },
 
     hasInventorySpace(): boolean {

@@ -39,8 +39,11 @@ const columns = ref([
 </script>
 
 <template>
-  <div>
-    <h1>Selling</h1>
+  <div class="space-y-8">
+    <h1 class="text-3xl font-bold flex items-center -gap-4">
+      <icon-ic:baseline-sell></icon-ic:baseline-sell>
+      <span>Automated Selling</span>
+    </h1>
 
     <BaseCard class="overflow-hidden">
       <BaseTable :items="items" :columns="columns">
@@ -49,12 +52,16 @@ const columns = ref([
             <div
               v-for="(rule, index) in saleStore.getSales(item.id)"
               :key="index"
+              class="grid grid-cols-2"
             >
-              {{ rule }}
+              <div>
+                {{ rule.stock }}
+              </div>
+              <div>
+                {{ rule.active }}
+              </div>
             </div>
           </template>
-
-          <template v-else> - </template>
         </template>
 
         <template #selling-options="{ item }">
