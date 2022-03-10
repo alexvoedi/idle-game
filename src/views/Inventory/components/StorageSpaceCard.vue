@@ -17,7 +17,7 @@ const percentage = computed(
             {{ inventoryStore.inventorySize }}
           </div>
 
-          <div class="text-sm">Used</div>
+          <div class="text-sm">In Use</div>
         </div>
 
         <div class="text-center">

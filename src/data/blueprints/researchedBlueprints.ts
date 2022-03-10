@@ -138,6 +138,33 @@ const researchedBlueprints: Blueprint[] = [
     ],
   },
   {
+    id: BlueprintID.Bread,
+    productionTime: 45,
+    requirements: {
+      sciences: [ScienceID.Agriculture1, ScienceID.SaltMining1],
+    },
+    input: [
+      {
+        id: ItemID.Salt,
+        amount: 3,
+      },
+      {
+        id: ItemID.Wheat,
+        amount: 40,
+      },
+      {
+        id: ItemID.Water,
+        amount: 30,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Salt,
+        amount: 3,
+      },
+    ],
+  },
+  {
     id: BlueprintID.Lime,
     productionTime: 3,
     requirements: {

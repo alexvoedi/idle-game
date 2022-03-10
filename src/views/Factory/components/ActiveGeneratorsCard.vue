@@ -30,7 +30,7 @@ const percentage = computed(
 
         <div class="text-center">
           <div class="font-bold text-4xl font-mono">
-            {{ 100 * percentage }}%
+            {{ (100 * percentage).toFixed(2) }}%
           </div>
 
           <div class="text-sm">Percent Active</div>

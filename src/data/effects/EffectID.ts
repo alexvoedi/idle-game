@@ -1,7 +1,8 @@
 enum EffectID {
-  CopperProduction1,
-  Automation1,
-  MagneticFieldDetection,
+  CopperProduction1 = "copper-production-1",
+  Automation1 = "automation-1",
+  MagneticFieldDetection1 = "magnetic-field-detection-1",
+  WaterProduction1 = "water-production-1",
 }
 
 export default EffectID;

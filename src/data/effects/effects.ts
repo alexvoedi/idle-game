@@ -27,7 +27,7 @@ const effects: Effect[] = [
     count: 2,
   },
   {
-    id: EffectID.MagneticFieldDetection,
+    id: EffectID.MagneticFieldDetection1,
     name: "More Active Generators",
     type: EffectType.ProductionSpeed,
     requirements: {
@@ -36,6 +36,18 @@ const effects: Effect[] = [
     item: {
       id: ItemID.Magnetit,
       value: 4,
+    },
+  },
+  {
+    id: EffectID.WaterProduction1,
+    name: "Faster Production",
+    type: EffectType.ProductionSpeed,
+    requirements: {
+      sciences: [ScienceID.WaterCollection1],
+    },
+    item: {
+      id: ItemID.Water,
+      value: 1.5,
     },
   },
 ];

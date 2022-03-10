@@ -15,6 +15,7 @@ enum BlueprintID {
   Lime = "lime",
   Quartz = "quartz",
   Cement = "cement",
+  Bread = "bread",
 }
 
 export default BlueprintID;

@@ -11,13 +11,12 @@ const items = computed(() => {
     .map((generator) => {
       const { output, input } = generator.blueprint;
 
-      const productionTime = generatorStore
-        .calculateProductionTime(generator)
-        .toFixed(2);
+      const productionTime = generatorStore.calculateProductionTime(generator);
 
       return {
         generator,
-        productionTime,
+        productionTime: productionTime.toFixed(2),
+        progress: generator.timer / productionTime,
         output: output.map((item) => ({
           name: getItem(item.id).name,
           amount: item.amount,
@@ -31,6 +30,12 @@ const items = computed(() => {
 });
 
 const columns = ref([
+  {
+    id: "progress",
+    text: "",
+    field: "progress",
+    classes: "w-10",
+  },
   {
     id: "output",
     text: "Output",
@@ -67,6 +72,12 @@ const columns = ref([
     </div>
 
     <BaseTable :items="items" :columns="columns">
+      <template #progress="{ item }">
+        <FactoryProgressCircle
+          :progress="item.progress"
+        ></FactoryProgressCircle>
+      </template>
+
       <template #output="{ item }">
         <div v-for="(output, index) in item.output" :key="index" class="">
           <span>{{ output.name }}</span
@@ -75,9 +86,12 @@ const columns = ref([
       </template>
 
       <template #input="{ item }">
-        <div v-for="(input, index) in item.input" :key="index">
-          {{ input.name }} * {{ input.amount }}
+        <div v-if="item.input">
+          <div v-for="(input, index) in item.input" :key="index">
+            {{ input.name }} * {{ input.amount }}
+          </div>
         </div>
+        <div v-else>-</div>
       </template>
 
       <template #actions="{ item }">
