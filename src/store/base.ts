@@ -1,18 +1,25 @@
+import { version } from "../../package.json";
 import { useEffectStore } from "./effect";
 import { useGeneratorStore } from "./generator";
 import { useInventoryStore } from "./inventory";
 import { useScienceStore } from "./science";
-import { useStatsStore } from "./stats";
 import { useSaleStore } from "./sale";
+import { useStatsStore } from "./stats";
 
 export type BaseStore = {
+  gameVersion: string;
   timerID: ReturnType<typeof setInterval> | null;
   timePassed: number;
   running: boolean;
 };
 
 export const useBaseStore = defineStore("base", {
-  state: (): BaseStore => ({ timerID: null, timePassed: 0, running: true }),
+  state: (): BaseStore => ({
+    gameVersion: version,
+    timerID: null,
+    timePassed: 0,
+    running: true,
+  }),
 
   actions: {
     loadGame(gameState: any) {

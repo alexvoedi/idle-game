@@ -100,14 +100,28 @@ export const useScienceStore = defineStore("science", {
   getters: {
     availableSciences: (store) => {
       return sciences.filter((science) => {
+        const generatorStore = useGeneratorStore();
+
         const hasRequiredSciences = science.requirements.sciences.every(
           (science) => store.researched.includes(science)
+        );
+
+        const newBlueprints = blueprints.filter((blueprint) =>
+          blueprint.requirements.sciences.includes(science.id)
+        );
+
+        const hasRequiredItems = newBlueprints.some((newBlueprint) =>
+          generatorStore.generators.every(
+            (generator) => generator.blueprint.id !== newBlueprint.id
+          )
         );
 
         const isCurrentlyResearching =
           store.currentResearch?.science.name === science.name;
 
-        return hasRequiredSciences && !isCurrentlyResearching;
+        return (
+          hasRequiredSciences && !isCurrentlyResearching && hasRequiredItems
+        );
       });
     },
   },

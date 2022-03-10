@@ -2,6 +2,7 @@
 import InventoryIcon from "~icons/mdi/sitemap";
 import FactoryIcon from "~icons/mdi/factory";
 import ScienceIcon from "~icons/ic/round-science";
+import ToolsIcon from "~icons/mdi/tools";
 import EffectsIcon from "~icons/carbon/upgrade";
 import StatsIcon from "~icons/ion/ios-stats";
 import SaleIcon from "~icons/ic/baseline-sell";
@@ -23,6 +24,11 @@ const links = [
     to: "Science",
     text: "Science",
     icon: ScienceIcon,
+  },
+  {
+    to: "Tools",
+    text: "Tools",
+    icon: ToolsIcon,
   },
   {
     to: "Effects",

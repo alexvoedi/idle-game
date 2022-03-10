@@ -32,48 +32,36 @@ const inventory = computed(() => {
   return inventoryStore.inventory
     .map((item) => {
       const { saleValue } = getItem(item.id);
+      const name = getItem(item.id).name;
       const totalSaleValue = item.amount * saleValue;
       const productionRate = getProductionRate(item.id);
 
       return {
         ...item,
+        name,
         saleValue,
         totalSaleValue,
         productionRate,
       };
     })
-    .sort((a, b) => a.id - b.id);
+    .sort((a, b) => a.name.localeCompare(b.name));
 });
 
 const columns = ref([
   { id: "item", text: "Item", field: "name", headClasses: "text-left" },
   {
     id: "amount",
-    text: "Stock",
+    text: "Amount",
     field: "amount",
     classes: "text-right",
     bodyClasses: "font-mono",
   },
   {
-    id: "sale-value",
-    text: "Sale Value",
-    field: "saleValue",
-    classes: "text-right",
-    bodyClasses: "font-mono",
-  },
-  {
     id: "production-rate",
-    text: "Items per Second",
+    text: "Production Rate",
     field: "productionRate",
     classes: "text-right",
     bodyClasses: "font-mono",
-  },
-  {
-    id: "actions",
-    text: "",
-    field: "actions",
-    classes: "text-right",
-    bodyClasses: "flex justify-end",
   },
 ]);
 </script>
@@ -81,28 +69,11 @@ const columns = ref([
 <template>
   <BaseTable :items="inventory" :columns="columns">
     <template #item="{ item }">
-      {{ getItem(item.id).name }}
+      {{ item.name }}
     </template>
 
     <template #production-rate="{ item }">
       {{ item.productionRate.toFixed(2) }}
-    </template>
-
-    <template #sale-value="{ item }">
-      {{ item.saleValue.toFixed(2) }} |
-      {{ item.totalSaleValue.toFixed(2) }}
-    </template>
-
-    <template #actions="{ item }">
-      <BaseButton
-        @click="inventoryStore.sellItem({ id: item.id, amount: 1 })"
-        class=""
-        hover="text-indigo-400"
-      >
-        <template #icon>
-          <icon-healthicons:money-bag></icon-healthicons:money-bag>
-        </template>
-      </BaseButton>
     </template>
   </BaseTable>
 </template>

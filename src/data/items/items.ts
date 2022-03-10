@@ -158,11 +158,6 @@ const items: Item[] = [
     saleValue: 0.24,
   },
   {
-    id: ItemID.Screw,
-    name: "Screw",
-    saleValue: 0.24,
-  },
-  {
     id: ItemID.WoodenChair,
     name: "Wooden Chair",
     saleValue: 26.0,

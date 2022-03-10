@@ -82,6 +82,137 @@ const researchedBlueprints: Blueprint[] = [
       },
     ],
   },
+  {
+    id: BlueprintID.Wheat,
+    productionTime: 600,
+    requirements: {
+      sciences: [ScienceID.Agriculture1],
+    },
+    input: [
+      {
+        id: ItemID.Water,
+        amount: 50,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Wheat,
+        amount: 500,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.Clay,
+    productionTime: 4,
+    requirements: {
+      sciences: [ScienceID.ClayExtraction1],
+    },
+    input: [
+      {
+        id: ItemID.Water,
+        amount: 1,
+      },
+      {
+        id: ItemID.Stone,
+        amount: 1,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Clay,
+        amount: 2,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.Coal,
+    productionTime: 3,
+    requirements: {
+      sciences: [ScienceID.Mining1],
+    },
+    input: [],
+    output: [
+      {
+        id: ItemID.Coal,
+        amount: 1,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.Salt,
+    productionTime: 10,
+    requirements: {
+      sciences: [ScienceID.SaltMining1],
+    },
+    input: [
+      {
+        id: ItemID.Water,
+        amount: 10,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Salt,
+        amount: 3,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.Lime,
+    productionTime: 3,
+    requirements: {
+      sciences: [ScienceID.LimeMining1],
+    },
+    input: [],
+    output: [
+      {
+        id: ItemID.Lime,
+        amount: 1,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.Quartz,
+    productionTime: 3,
+    requirements: {
+      sciences: [ScienceID.LimeMining1],
+    },
+    input: [
+      {
+        id: ItemID.Sand,
+        amount: 2,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Quartz,
+        amount: 1,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.Cement,
+    productionTime: 15,
+    requirements: {
+      sciences: [],
+    },
+    input: [
+      {
+        id: ItemID.Clay,
+        amount: 3,
+      },
+      {
+        id: ItemID.Sand,
+        amount: 3,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Cement,
+        amount: 1,
+      },
+    ],
+  },
 ];
 
 export default researchedBlueprints;

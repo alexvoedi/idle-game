@@ -46,6 +46,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Library",
     component: () => import("@/views/Library/index.vue"),
   },
+  {
+    path: "/tools",
+    name: "Tools",
+    component: () => import("@/views/Tools/index.vue"),
+  },
 ];
 
 const router = createRouter({

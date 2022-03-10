@@ -5,9 +5,57 @@ import { useItem } from "@/composables/useItem";
 const generatorStore = useGeneratorStore();
 const { getItem } = useItem();
 
-const activeGenerators = computed(() => {
-  return generatorStore.generators.filter((generator) => generator.active);
+const items = computed(() => {
+  return generatorStore.generators
+    .filter((generator) => generator.active)
+    .map((generator) => {
+      const { output, input } = generator.blueprint;
+
+      const productionTime = generatorStore
+        .calculateProductionTime(generator)
+        .toFixed(2);
+
+      return {
+        generator,
+        productionTime,
+        output: output.map((item) => ({
+          name: getItem(item.id).name,
+          amount: item.amount,
+        })),
+        input: input?.map((item) => ({
+          name: getItem(item.id).name,
+          amount: item.amount,
+        })),
+      };
+    });
 });
+
+const columns = ref([
+  {
+    id: "output",
+    text: "Output",
+    field: "output",
+    classes: "text-left font-mono",
+  },
+  {
+    id: "input",
+    text: "Input",
+    field: "input",
+    bodyClasses: "text-right font-mono",
+  },
+  {
+    id: "productionTime",
+    text: "",
+    field: "productionTime",
+    bodyClasses: "text-right font-mono",
+  },
+  {
+    id: "actions",
+    text: "",
+    field: "actions",
+    bodyClasses: "text-right",
+  },
+]);
 </script>
 
 <template>
@@ -31,48 +79,31 @@ const activeGenerators = computed(() => {
       </div>
     </div>
 
-    <table v-if="activeGenerators.length > 0" class="w-full">
-      <thead>
-        <tr>
-          <th class="text-left">Output</th>
-          <th class="text-right w-min-32">Input</th>
-          <th class="text-right">
-            <icon-mdi-clock></icon-mdi-clock>
-          </th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(generator, index) in activeGenerators" :key="index">
-          <td>
-            <div
-              v-for="(item, index) in generator.blueprint.output"
-              :key="index"
-            >
-              {{ getItem(item.id).name }}
-            </div>
-          </td>
-          <td class="font-mono text-right whitespace-nowrap">
-            <div
-              v-for="(item, index) in generator.blueprint.input"
-              :key="index"
-            >
-              {{ getItem(item.id).name }} × {{ item.amount }}
-            </div>
-          </td>
-          <td class="font-mono text-right">
-            {{ generatorStore.calculateProductionTime(generator).toFixed(2) }}
-          </td>
-          <td class="text-center">
-            <button
-              @click="generatorStore.setGeneratorActive(generator, false)"
-            >
-              <icon-mdi-close></icon-mdi-close>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <BaseTable :items="items" :columns="columns">
+      <template #output="{ item }">
+        <div v-for="(output, index) in item.output" :key="index" class="">
+          <span>{{ output.name }}</span
+          ><span v-if="output.amount > 1"> * {{ output.amount }}</span>
+        </div>
+      </template>
+
+      <template #input="{ item }">
+        <div v-for="(input, index) in item.input" :key="index">
+          {{ input.name }} * {{ input.amount }}
+        </div>
+      </template>
+
+      <template #actions="{ item }">
+        <div class="flex justify-end">
+          <button
+            @click="generatorStore.setGeneratorActive(item.generator, false)"
+            class="flex items-center"
+          >
+            <icon-mdi-close></icon-mdi-close>
+          </button>
+        </div>
+      </template>
+    </BaseTable>
   </BaseCard>
 </template>
 

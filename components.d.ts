@@ -19,7 +19,9 @@ declare module 'vue' {
     Game: typeof import('./src/views/Game/index.vue')['default']
     'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     'IconHealthicons:moneyBag': typeof import('~icons/healthicons/money-bag')['default']
+    'IconIc:baselineAttachMoney': typeof import('~icons/ic/baseline-attach-money')['default']
     'IconIc:baselineSell': typeof import('~icons/ic/baseline-sell')['default']
+    'IconIc:roundScience': typeof import('~icons/ic/round-science')['default']
     'IconIon:library': typeof import('~icons/ion/library')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
@@ -30,6 +32,7 @@ declare module 'vue' {
     IconMdiImport: typeof import('~icons/mdi/import')['default']
     IconMdiPause: typeof import('~icons/mdi/pause')['default']
     IconMdiPlay: typeof import('~icons/mdi/play')['default']
+    IconMdiSitemap: typeof import('~icons/mdi/sitemap')['default']
     IconMdiTrashCan: typeof import('~icons/mdi/trash-can')['default']
     Inventory: typeof import('./src/views/Inventory/index.vue')['default']
     InventoryItemTable: typeof import('./src/views/Inventory/components/ItemTable.vue')['default']
@@ -39,7 +42,9 @@ declare module 'vue' {
     Sale: typeof import('./src/views/Sale/index.vue')['default']
     SaleDialog: typeof import('./src/views/Sale/components/Dialog.vue')['default']
     Science: typeof import('./src/views/Science/index.vue')['default']
+    ScienceCurrentResearchCard: typeof import('./src/views/Science/components/CurrentResearchCard.vue')['default']
     Stats: typeof import('./src/views/Stats/index.vue')['default']
+    Tools: typeof import('./src/views/Tools/index.vue')['default']
   }
 }
 

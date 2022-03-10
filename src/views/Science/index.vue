@@ -16,63 +16,51 @@ const tableData = computed(() => {
 </script>
 
 <template>
-  <BaseCard class="space-y-4 overflow-hidden">
-    <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Science</h2>
+  <div class="space-y-8">
+    <h1 class="text-3xl font-bold flex items-center gap-4">
+      <icon-ic:round-science></icon-ic:round-science>
+      <span>Science</span>
+    </h1>
 
-    <div v-if="scienceStore.currentResearch">
-      <h3>Current Research</h3>
+    <ScienceCurrentResearchCard
+      v-if="scienceStore.currentResearch"
+    ></ScienceCurrentResearchCard>
 
-      <div>
-        {{ scienceStore.currentResearch.science.name }}
-        {{
-          (
-            (100 * scienceStore.currentResearch.time) /
-            scienceStore.currentResearch.science.researchTime
-          ).toFixed(1)
-        }}%
-      </div>
-
-      <ProgressBar
-        :progress="
-          scienceStore.currentResearch.time /
-          scienceStore.currentResearch.science.researchTime
-        "
-      ></ProgressBar>
-    </div>
-
-    <table class="w-full">
-      <thead>
-        <tr>
-          <th class="text-left whitespace-nowrap">Name</th>
-          <th class="text-right">Research Time</th>
-          <th class="text-right">Requirements</th>
-          <th class="text-center">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(science, index) in tableData" :key="index">
-          <td>{{ science.name }}</td>
-          <td class="text-right font-mono">{{ science.researchTime }}</td>
-          <td class="text-right font-mono">
-            <div
-              v-for="(item, index) in science.requirements.items"
-              :key="index"
-            >
-              {{ getItem(item.id).name }} * {{ item.amount }}
-            </div>
-          </td>
-          <td class="text-center">
-            <BaseButton
-              @click="scienceStore.startResearch(science)"
-              :disabled="!inventoryStore.hasItems(science.requirements.items)"
-            >
-              <icon-fontisto:laboratory></icon-fontisto:laboratory>
-            </BaseButton>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </BaseCard>
+    <BaseCard class="overflow-hidden">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="text-left whitespace-nowrap">Name</th>
+            <th class="text-right">Research Time</th>
+            <th class="text-right">Requirements</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(science, index) in tableData" :key="index">
+            <td>{{ science.name }}</td>
+            <td class="text-right font-mono">{{ science.researchTime }}</td>
+            <td class="text-right font-mono">
+              <div
+                v-for="(item, index) in science.requirements.items"
+                :key="index"
+              >
+                {{ getItem(item.id).name }} * {{ item.amount }}
+              </div>
+            </td>
+            <td class="text-center">
+              <BaseButton
+                @click="scienceStore.startResearch(science)"
+                :disabled="!inventoryStore.hasItems(science.requirements.items)"
+              >
+                <icon-fontisto:laboratory></icon-fontisto:laboratory>
+              </BaseButton>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </BaseCard>
+  </div>
 </template>
 
 <style lang="postcss" scoped>
