@@ -1,8 +1,12 @@
 {
   "name": "idle-game",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "a producing and selling idle game",
-  "keywords": ["idle", "incremental", "game"],
+  "keywords": [
+    "idle",
+    "incremental",
+    "game"
+  ],
   "homepage": "https://alexvoedi.github.io/idle-game/#/",
   "bugs": {
     "url": "https://github.com/alexvoedi/idle-game/issues"
