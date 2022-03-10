@@ -185,7 +185,7 @@ const sciences: Science[] = [
           amount: 100,
         },
       ],
-      sciences: [],
+      sciences: [ScienceID.ClayExtraction1],
     },
   },
 ];
