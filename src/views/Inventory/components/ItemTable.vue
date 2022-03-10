@@ -28,7 +28,7 @@ const getProductionRate = (itemID: ItemID) => {
   }
 };
 
-const inventory = computed(() => {
+const items = computed(() => {
   return inventoryStore.inventory
     .map((item) => {
       const { saleValue } = getItem(item.id);
@@ -67,7 +67,7 @@ const columns = ref([
 </script>
 
 <template>
-  <BaseTable :items="inventory" :columns="columns">
+  <BaseTable :items="items" :columns="columns">
     <template #item="{ item }">
       {{ item.name }}
     </template>

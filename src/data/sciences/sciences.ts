@@ -188,6 +188,24 @@ const sciences: Science[] = [
       sciences: [ScienceID.ClayExtraction1],
     },
   },
+  {
+    id: ScienceID.WaterCollection1,
+    name: "Water Collection 1",
+    researchTime: 300,
+    requirements: {
+      items: [
+        {
+          id: ItemID.Water,
+          amount: 500,
+        },
+        {
+          id: ItemID.Stone,
+          amount: 200,
+        },
+      ],
+      sciences: [ScienceID.Automation1],
+    },
+  },
 ];
 
 export default sciences;

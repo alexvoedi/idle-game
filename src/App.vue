@@ -38,7 +38,7 @@ onUnmounted(() => {
   <div class="text-true-gray-200 h-full flex flex-col">
     <AppBar class="flex-shrink-0"></AppBar>
 
-    <div class="flex flex-grow">
+    <div class="flex flex-grow overflow-hidden">
       <AppNavigation></AppNavigation>
 
       <div

@@ -9,7 +9,7 @@ defineProps<ComponentProps>();
 <template>
   <div class="h-1 bg-true-gray-300">
     <div
-      class="h-full transition-all bg-indigo-600"
+      class="h-full bg-indigo-600"
       :style="{
         width: `${progress * 100}%`,
       }"

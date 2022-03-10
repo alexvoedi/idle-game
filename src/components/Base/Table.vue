@@ -36,7 +36,7 @@ withDefaults(defineProps<ComponentProps>(), {
       </tr>
     </thead>
     <tbody v-if="items.length > 0">
-      <tr v-for="(item, index) in items" :key="index" class="hoverable">
+      <tr v-for="(item, index) in items" :key="index">
         <td
           v-for="(column, index) in columns"
           :key="index"

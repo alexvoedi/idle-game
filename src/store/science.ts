@@ -15,27 +15,46 @@ type CurrentResearch = {
 
 export type ScienceStore = {
   currentResearch: CurrentResearch | null;
+  pausedResearches: CurrentResearch[];
   researched: ScienceID[];
 };
 
 export const useScienceStore = defineStore("science", {
-  state: (): ScienceStore => ({ currentResearch: null, researched: [] }),
+  state: (): ScienceStore => ({
+    currentResearch: null,
+    pausedResearches: [],
+    researched: [],
+  }),
 
   actions: {
     startResearch(science: Science) {
       const inventoryStore = useInventoryStore();
 
-      const hasRequiredItems = inventoryStore.hasItems(
-        science.requirements.items
+      if (this.currentResearch) {
+        this.pausedResearches.push(this.currentResearch);
+      }
+
+      const pausedResearchIndex = this.pausedResearches.findIndex(
+        (pausedResearch) => pausedResearch.science.id === science.id
       );
 
-      if (hasRequiredItems) {
-        inventoryStore.spendItems(science.requirements.items);
+      if (pausedResearchIndex > -1) {
+        const pausedResearch = this.pausedResearches[pausedResearchIndex];
+        this.currentResearch = pausedResearch;
+        this.pausedResearches.splice(pausedResearchIndex, 1);
+      } else {
+        const hasRequiredItems = inventoryStore.hasItems(
+          science.requirements.items
+        );
 
-        this.currentResearch = {
-          science,
-          time: 0,
-        };
+        if (hasRequiredItems) {
+          inventoryStore.spendItems(science.requirements.items);
+
+          this.currentResearch = {
+            science,
+            time: 0,
+          };
+        }
       }
     },
 

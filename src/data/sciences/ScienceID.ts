@@ -11,6 +11,7 @@ enum ScienceID {
   SandMining1 = "sand-mining-1",
   Smelting1 = "smelting-1",
   Pottery1 = "pottery-1",
+  WaterCollection1 = "water-collection-1",
 }
 
 export default ScienceID;

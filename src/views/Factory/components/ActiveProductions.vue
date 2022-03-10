@@ -41,13 +41,15 @@ const columns = ref([
     id: "input",
     text: "Input",
     field: "input",
-    bodyClasses: "text-right font-mono",
+    classes: "text-right",
+    bodyClasses: "font-mono",
   },
   {
     id: "productionTime",
-    text: "",
+    text: "Production Time",
     field: "productionTime",
-    bodyClasses: "text-right font-mono",
+    classes: "text-right",
+    bodyClasses: "font-mono",
   },
   {
     id: "actions",
@@ -59,24 +61,9 @@ const columns = ref([
 </script>
 
 <template>
-  <BaseCard class="space-y-4 overflow-hidden">
-    <div class="px-6 py-6">
+  <BaseCard class="space-y-8 overflow-hidden">
+    <div class="px-8 pt-6">
       <h2 class="text-2xl font-bold">Active Productions</h2>
-
-      <div
-        :class="[
-          generatorStore.activeGeneratorCount <
-          generatorStore.maxActiveGenerators
-            ? 'text-green-400'
-            : 'text-red-400',
-        ]"
-      >
-        Active Generators:
-        <span>
-          {{ generatorStore.activeGeneratorCount }} |
-          {{ generatorStore.maxActiveGenerators }}
-        </span>
-      </div>
     </div>
 
     <BaseTable :items="items" :columns="columns">

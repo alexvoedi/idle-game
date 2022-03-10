@@ -41,25 +41,6 @@ const researchedBlueprints: Blueprint[] = [
     ],
   },
   {
-    id: BlueprintID.CopperWire,
-    productionTime: 4,
-    requirements: {
-      sciences: [],
-    },
-    input: [
-      {
-        id: ItemID.Copper,
-        amount: 3,
-      },
-    ],
-    output: [
-      {
-        id: ItemID.CopperWire,
-        amount: 1,
-      },
-    ],
-  },
-  {
     id: BlueprintID.StoneProbing,
     productionTime: 10,
     requirements: {
@@ -130,7 +111,6 @@ const researchedBlueprints: Blueprint[] = [
     requirements: {
       sciences: [ScienceID.Mining1],
     },
-    input: [],
     output: [
       {
         id: ItemID.Coal,
@@ -163,7 +143,6 @@ const researchedBlueprints: Blueprint[] = [
     requirements: {
       sciences: [ScienceID.LimeMining1],
     },
-    input: [],
     output: [
       {
         id: ItemID.Lime,

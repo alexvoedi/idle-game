@@ -41,13 +41,15 @@ const columns = ref([
     id: "input",
     text: "Input",
     field: "input",
-    bodyClasses: "text-right font-mono",
+    classes: "text-right",
+    bodyClasses: "font-mono",
   },
   {
     id: "productionTime",
-    text: "",
+    text: "Production Time",
     field: "productionTime",
-    bodyClasses: "text-right font-mono",
+    classes: "text-right",
+    bodyClasses: "font-mono",
   },
   {
     id: "actions",
@@ -59,8 +61,10 @@ const columns = ref([
 </script>
 
 <template>
-  <BaseCard class="space-y-4 overflow-hidden">
-    <h2 class="text-2xl font-bold px-6 pt-6 pb-2">Inactive Productions</h2>
+  <BaseCard class="space-y-8 overflow-hidden">
+    <div class="px-8 pt-6">
+      <h2 class="text-2xl font-bold">Inactive Productions</h2>
+    </div>
 
     <BaseTable :items="items" :columns="columns">
       <template #output="{ item }">
