@@ -1,0 +1,1 @@
+import{g as t,o as a,e as d,H as o}from"./vendor.f8f6a6c4.js";const l=["disabled"],i=t({props:{disabled:{type:Boolean}},setup(s){return(e,n)=>(a(),d("button",{disabled:s.disabled,class:"px-4 py-2 rounded-lg transition font-semibold disabled:opacity-30 disabled:hover:cursor-not-allowed"},[o(e.$slots,"icon"),o(e.$slots,"default")],8,l))}});export{i as _};

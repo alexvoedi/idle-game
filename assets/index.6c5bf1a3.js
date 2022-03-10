@@ -1,0 +1,1 @@
+import{h as n}from"./index.2b9d32fa.js";import{g as a,o as e,e as t,F as c,h as f,u,f as l,t as i}from"./vendor.f8f6a6c4.js";const p=l("h1",null,"effects",-1),k=a({setup(m){const s=n();return(_,d)=>(e(),t("div",null,[p,(e(!0),t(c,null,f(u(s).effects,(r,o)=>(e(),t("div",{key:o},i(r),1))),128))]))}});export{k as default};
