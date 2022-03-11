@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useItem } from "@/composables/useItem";
+import ItemID from "@/data/items/ItemID";
 import { useStatsStore } from "@/store/stats";
+
+interface ComponentEmits {
+  (event: "select-item", itemID: ItemID): void;
+}
 
 const statsStore = useStatsStore();
 const { getItem } = useItem();
@@ -13,6 +18,13 @@ const columns = ref([
     field: "produced",
     classes: "text-right",
     bodyClasses: "font-mono",
+  },
+  {
+    id: "actions",
+    text: "",
+    field: "actions",
+    classes: "",
+    bodyClasses: "",
   },
 ]);
 
@@ -30,7 +42,18 @@ const items = computed(() => {
       <h2 class="text-2xl font-bold">Item Stats</h2>
     </div>
 
-    <BaseTable :items="items" :columns="columns"></BaseTable>
+    <BaseTable :items="items" :columns="columns">
+      <template #actions="{ item }">
+        <div class="flex justify-end">
+          <button
+            @click="$emit('select-item', item.id)"
+            class="flex items-center disabled:opacity-30"
+          >
+            <icon-ion:ios-stats></icon-ion:ios-stats>
+          </button>
+        </div>
+      </template>
+    </BaseTable>
   </BaseCard>
 </template>
 

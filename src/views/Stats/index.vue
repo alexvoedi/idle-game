@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ItemID from "@/data/items/ItemID";
+
+const selectedItem = ref<ItemID>();
+
+const selectItem = (itemID: ItemID) => (selectedItem.value = itemID);
+</script>
 
 <template>
   <div class="space-y-8">
@@ -7,7 +13,10 @@
       <span>Statistic</span>
     </h1>
 
-    <StatsItemStatsCard></StatsItemStatsCard>
+    <div class="grid grid-cols-2 gap-8 min-h-40vh">
+      <StatsItemStatsCard @select-item="selectItem"></StatsItemStatsCard>
+      <StatsItemStatsChart :itemID="selectedItem"></StatsItemStatsChart>
+    </div>
   </div>
 </template>
 

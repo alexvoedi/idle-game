@@ -30,10 +30,12 @@
     "@headlessui/vue": "^1.5.0",
     "@vueuse/core": "^7.7.1",
     "@vueuse/head": "^0.7.5",
+    "chart.js": "^3.7.1",
     "export-from-json": "^1.5.2",
     "pinia": "^2.0.11",
     "store2": "^2.13.1",
     "vue": "^3.2.31",
+    "vue-chart-3": "^3.1.4",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.0.14",
     "write-json-file": "^5.0.0"

@@ -13,6 +13,7 @@ specifiers:
   '@vue/eslint-config-typescript': ^10.0.0
   '@vueuse/core': ^7.7.1
   '@vueuse/head': ^0.7.5
+  chart.js: ^3.7.1
   cross-env: ^7.0.3
   eslint: ^8.10.0
   eslint-plugin-prettier: ^4.0.0
@@ -29,6 +30,7 @@ specifiers:
   vite-plugin-purge-icons: ^0.8.1
   vite-plugin-windicss: ^1.8.3
   vue: ^3.2.31
+  vue-chart-3: ^3.1.4
   vue-i18n: ^9.1.9
   vue-router: ^4.0.14
   vue-tsc: ^0.32.1
@@ -38,10 +40,12 @@ dependencies:
   '@headlessui/vue': 1.5.0_vue@3.2.31
   '@vueuse/core': 7.7.1_vue@3.2.31
   '@vueuse/head': 0.7.5_vue@3.2.31
+  chart.js: 3.7.1
   export-from-json: 1.5.2
   pinia: 2.0.11_typescript@4.6.2+vue@3.2.31
   store2: 2.13.1
   vue: 3.2.31
+  vue-chart-3: 3.1.4_chart.js@3.7.1+vue@3.2.31
   vue-i18n: 9.1.9_vue@3.2.31
   vue-router: 4.0.14_vue@3.2.31
   write-json-file: 5.0.0
@@ -891,6 +895,10 @@ packages:
       is-regex: 1.1.4
     dev: true
 
+  /chart.js/3.7.1:
+    resolution: {integrity: sha512-8knRegQLFnPQAheZV8MjxIXc5gQEfDFD897BJgv/klO/vtIyFFmgMXrNfgrXpbTr/XbTturxRgxIXx/Y+ASJBA==}
+    dev: false
+
   /chokidar/3.5.2:
     resolution: {integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==}
     engines: {node: '>= 8.10.0'}
@@ -955,6 +963,10 @@ packages:
 
   /csstype/2.6.19:
     resolution: {integrity: sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ==}
+    dev: false
+
+  /csstype/3.0.11:
+    resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
     dev: false
 
   /debug/4.3.3:
@@ -1857,6 +1869,10 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
@@ -2714,6 +2730,20 @@ packages:
       vscode-pug-languageservice: 0.32.1
       vscode-typescript-languageservice: 0.32.1
     dev: true
+
+  /vue-chart-3/3.1.4_chart.js@3.7.1+vue@3.2.31:
+    resolution: {integrity: sha512-6ynam+Lky6iUCC1Kr140HtnzrCwyy5CKuprWgDFiJCr5pzZ20L4ZE2fyz3z5zTSg+QUnsrujtZGw7TJKvseKoQ==}
+    peerDependencies:
+      chart.js: '=> ^3.1.0'
+      vue: '>= 3'
+    dependencies:
+      '@vue/runtime-core': 3.2.31
+      '@vue/runtime-dom': 3.2.31
+      chart.js: 3.7.1
+      csstype: 3.0.11
+      lodash-es: 4.17.21
+      vue: 3.2.31
+    dev: false
 
   /vue-demi/0.12.1_vue@3.2.31:
     resolution: {integrity: sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==}

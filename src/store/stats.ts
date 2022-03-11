@@ -56,9 +56,15 @@ export const useStatsStore = defineStore("stats", {
       const addHistoryEntry = () => item.history.push([now, item.produced]);
 
       if (lastEntry) {
-        if (now - lastEntry[0] > 10000) {
-          addHistoryEntry();
+        const timeDifference = now - lastEntry[0];
+
+        if (timeDifference > 1000) {
+          for (let i = 0; i < timeDifference; i += 1000) {
+            item.history.push([lastEntry[0] + i, lastEntry[1]]);
+          }
         }
+
+        addHistoryEntry();
       } else {
         addHistoryEntry();
       }

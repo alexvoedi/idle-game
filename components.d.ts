@@ -51,6 +51,7 @@ declare module 'vue' {
     ScienceResearchedSciencesCard: typeof import('./src/views/Science/components/ResearchedSciencesCard.vue')['default']
     Stats: typeof import('./src/views/Stats/index.vue')['default']
     StatsItemStatsCard: typeof import('./src/views/Stats/components/ItemStatsCard.vue')['default']
+    StatsItemStatsChart: typeof import('./src/views/Stats/components/ItemStatsChart.vue')['default']
     Tools: typeof import('./src/views/Tools/index.vue')['default']
   }
 }
