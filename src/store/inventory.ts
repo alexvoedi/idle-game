@@ -76,7 +76,8 @@ export const useInventoryStore = defineStore("inventory", {
 
         const income = getItem(item.id).saleValue * item.amount;
 
-        statsStore.stats.soldItems += item.amount;
+        statsStore.sellItem(item);
+
         statsStore.stats.moneyEarned += income;
 
         this.money += income;

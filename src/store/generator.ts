@@ -4,6 +4,7 @@ import Blueprint from "@/interfaces/blueprints/Blueprint";
 import baseBlueprints from "@/data/blueprints/baseBlueprints";
 import Effect from "@/interfaces/effects/Effect";
 import EffectType from "@/data/effects/EffectType";
+import { useStatsStore } from "./stats";
 
 export type GeneratorStore = {
   generators: Array<Generator>;
@@ -78,6 +79,11 @@ export const useGeneratorStore = defineStore("generator", {
             generator.timer = 0;
 
             inventoryStore.addItems(generator.blueprint.output);
+
+            const statsStore = useStatsStore();
+            generator.blueprint.output.forEach((output) =>
+              statsStore.produceItem(output)
+            );
           }
         }
       }

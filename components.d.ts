@@ -25,9 +25,8 @@ declare module 'vue' {
     'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     'IconIc:baselineAttachMoney': typeof import('~icons/ic/baseline-attach-money')['default']
     'IconIc:baselineSell': typeof import('~icons/ic/baseline-sell')['default']
-    'IconIc:roundNumbers': typeof import('~icons/ic/round-numbers')['default']
     'IconIc:roundScience': typeof import('~icons/ic/round-science')['default']
-    'IconIon:library': typeof import('~icons/ion/library')['default']
+    'IconIon:iosStats': typeof import('~icons/ion/ios-stats')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
     IconMdiCog: typeof import('~icons/mdi/cog')['default']
@@ -39,7 +38,6 @@ declare module 'vue' {
     IconMdiPause: typeof import('~icons/mdi/pause')['default']
     IconMdiPlay: typeof import('~icons/mdi/play')['default']
     IconMdiSitemap: typeof import('~icons/mdi/sitemap')['default']
-    IconMdiTrashCan: typeof import('~icons/mdi/trash-can')['default']
     Inventory: typeof import('./src/views/Inventory/index.vue')['default']
     InventoryItemTable: typeof import('./src/views/Inventory/components/ItemTable.vue')['default']
     InventoryStorageSpaceCard: typeof import('./src/views/Inventory/components/StorageSpaceCard.vue')['default']
@@ -52,6 +50,7 @@ declare module 'vue' {
     ScienceCurrentResearchCard: typeof import('./src/views/Science/components/CurrentResearchCard.vue')['default']
     ScienceResearchedSciencesCard: typeof import('./src/views/Science/components/ResearchedSciencesCard.vue')['default']
     Stats: typeof import('./src/views/Stats/index.vue')['default']
+    StatsItemStatsCard: typeof import('./src/views/Stats/components/ItemStatsCard.vue')['default']
     Tools: typeof import('./src/views/Tools/index.vue')['default']
   }
 }

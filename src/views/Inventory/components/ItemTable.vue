@@ -69,10 +69,6 @@ const columns = ref([
 <template>
   <BaseCard class="overflow-hidden">
     <BaseTable :items="items" :columns="columns">
-      <template #item="{ item }">
-        {{ item.name }}
-      </template>
-
       <template #production-rate="{ item }">
         {{ item.productionRate.toFixed(2) }}
       </template>
