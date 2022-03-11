@@ -7,40 +7,12 @@ export type SaleStore = {
   sales: Sale[];
 };
 
-type SaleIdentifier = { itemID: number; rule: SaleRule };
-
 export const useSaleStore = defineStore("sale", {
   state: (): SaleStore => ({
     sales: [],
   }),
 
   actions: {
-    addSale(sale: Sale) {
-      const existingSales = this.getSales(sale.itemID);
-
-      const hasSaleType = existingSales.some(
-        (existingSale) => existingSale.rule === sale.rule
-      );
-
-      if (hasSaleType) return;
-
-      this.sales.push(sale);
-    },
-
-    removeSale(sale: SaleIdentifier) {
-      this.sales
-        .reduce((indices, curr, index) => {
-          if (curr.itemID === sale.itemID && curr.rule === sale.rule) {
-            indices.push(index);
-          }
-
-          return indices;
-        }, [] as number[])
-        .forEach((index) => {
-          this.sales.splice(index, 1);
-        });
-    },
-
     sellItems() {
       const inventoryStore = useInventoryStore();
 

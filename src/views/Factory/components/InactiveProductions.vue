@@ -72,6 +72,10 @@ const columns = ref([
     </div>
 
     <BaseTable :items="items" :columns="columns">
+      <template #productionTime-header>
+        <icon-mdi-clock class="ml-auto"></icon-mdi-clock>
+      </template>
+
       <template #progress="{ item }">
         <FactoryProgressCircle
           :progress="item.progress"

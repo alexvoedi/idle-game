@@ -159,8 +159,8 @@ const researchedBlueprints: Blueprint[] = [
     ],
     output: [
       {
-        id: ItemID.Salt,
-        amount: 3,
+        id: ItemID.Bread,
+        amount: 1,
       },
     ],
   },

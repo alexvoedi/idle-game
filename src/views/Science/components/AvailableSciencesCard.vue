@@ -63,7 +63,11 @@ const getItemAmount = (requiredItem: ItemAmount) => {
 </script>
 
 <template>
-  <BaseCard class="overflow-hidden">
+  <BaseCard class="space-y-8 overflow-hidden">
+    <div class="px-8 pt-6">
+      <h2 class="text-2xl font-bold">Available Sciences</h2>
+    </div>
+
     <BaseTable :items="items" :columns="columns">
       <template #requirements="{ item }">
         <div

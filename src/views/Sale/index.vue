@@ -52,16 +52,12 @@ const columns = ref([
             <div
               v-for="(rule, index) in saleStore.getSales(item.id)"
               :key="index"
-              class="grid grid-cols-2"
             >
-              <div>
-                {{ rule.stock }}
-              </div>
-              <div>
-                {{ rule.active }}
-              </div>
+              sell if more than <b>{{ rule.stock }}</b> items
             </div>
           </template>
+
+          <template v-else>-</template>
         </template>
 
         <template #selling-options="{ item }">

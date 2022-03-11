@@ -16,6 +16,7 @@ const scienceStore = useScienceStore();
     ></ScienceCurrentResearchCard>
 
     <ScienceAvailableSciencesCard></ScienceAvailableSciencesCard>
+    <ScienceResearchedSciencesCard></ScienceResearchedSciencesCard>
   </div>
 </template>
 

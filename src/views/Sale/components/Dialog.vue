@@ -3,6 +3,8 @@ import Item from "@/interfaces/items/Item";
 import SaleRule from "@/data/sales/SaleRule";
 import { useSaleStore } from "@/store/sale";
 import { useItem } from "@/composables/useItem";
+import BaseSale from "@/interfaces/sales/BaseSale";
+import Sale from "@/interfaces/sales/Sale";
 
 interface ComponentProps {
   item: Item;
@@ -13,7 +15,52 @@ const props = defineProps<ComponentProps>();
 const saleStore = useSaleStore();
 const { getItem } = useItem();
 
-const rules = computed(() => saleStore.getSales(props.item.id));
+const availableSales = [
+  {
+    itemID: props.item.id,
+    rule: SaleRule.SellUntil,
+    stock: 0,
+    active: false,
+  },
+];
+
+const activeSales = saleStore.getSales(props.item.id);
+
+availableSales.forEach((availableSale) => {
+  const activeSale = activeSales.find(
+    (activeSale) => availableSale.itemID === activeSale.itemID
+  );
+
+  if (activeSale) {
+    Object.assign(availableSale, activeSale);
+  }
+});
+
+const rules = reactive<Sale[]>(availableSales);
+
+const saveRules = () => {
+  rules.forEach((rule) => {
+    const ruleIsActive = saleStore.sales.some(
+      (sale) => sale.itemID === props.item.id && sale.rule === rule.rule
+    );
+
+    const saleIndex = saleStore.sales.findIndex(
+      (sale) => sale.itemID === props.item.id && sale.rule === rule.rule
+    );
+
+    if (rule.active) {
+      if (ruleIsActive) {
+        saleStore.sales.splice(saleIndex, 1, { ...rule });
+      } else {
+        saleStore.sales.push({ ...rule });
+      }
+    } else {
+      if (ruleIsActive) {
+        saleStore.sales.splice(saleIndex, 1);
+      }
+    }
+  });
+};
 </script>
 
 <template>
@@ -33,40 +80,29 @@ const rules = computed(() => saleStore.getSales(props.item.id));
     <template #description></template>
 
     <template #default="{ setIsOpen }">
-      <div class="space-y-4">
+      <form
+        class="space-y-4"
+        @keypress.enter="
+          saveRules();
+          setIsOpen(false);
+        "
+      >
         <div
           v-for="(rule, index) in rules"
           :key="index"
           class="flex items-center gap-4"
         >
-          Maximum Inventory Items: <input type="number" v-model="rule.stock" />
+          Sell items until there are
+          <input
+            type="number"
+            min="0"
+            step="1"
+            pattern="\d*"
+            v-model="rule.stock"
+          />
 
           <input type="checkbox" v-model="rule.active" />
-
-          <BaseButton
-            @click="
-              saleStore.removeSale({
-                itemID: rule.itemID,
-                rule: rule.rule,
-              })
-            "
-          >
-            <icon-mdi-trash-can></icon-mdi-trash-can>
-          </BaseButton>
         </div>
-
-        <button
-          @click="
-            saleStore.addSale({
-              itemID: item.id,
-              rule: SaleRule.SellUntil,
-              stock: 100,
-              active: true,
-            })
-          "
-        >
-          add test rule
-        </button>
 
         <div class="flex justify-between">
           <BaseButton
@@ -77,11 +113,19 @@ const rules = computed(() => saleStore.getSales(props.item.id));
             Close
           </BaseButton>
 
-          <BaseButton class="text-white bg-indigo-600" hover="bg-indigo-500">
+          <BaseButton
+            type="submit"
+            class="text-white bg-indigo-600"
+            hover="bg-indigo-500"
+            @click="
+              saveRules();
+              setIsOpen(false);
+            "
+          >
             Save
           </BaseButton>
         </div>
-      </div>
+      </form>
     </template>
   </BaseDialog>
 </template>

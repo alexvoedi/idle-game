@@ -42,7 +42,7 @@ const links = [
   },
   {
     to: "Sale",
-    text: "Sale",
+    text: "Selling",
     icon: SaleIcon,
   },
   {

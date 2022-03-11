@@ -41,14 +41,14 @@ onUnmounted(() => {
     <div class="flex flex-grow overflow-hidden">
       <AppNavigation></AppNavigation>
 
-      <div
-        class="w-full flex flex-grow flex-col overflow-y-auto max-w-screen-xl mx-auto p-8"
-      >
-        <router-view #default="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component"></component>
-          </transition>
-        </router-view>
+      <div class="w-full flex-grow overflow-y-auto p-8">
+        <div class="flex flex-col max-w-screen-xl mx-auto">
+          <router-view #default="{ Component }">
+            <transition name="fade" mode="out-in">
+              <component :is="Component"></component>
+            </transition>
+          </router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -61,13 +61,13 @@ body,
   @apply bg-true-gray-900 h-full;
 }
 
-.v-enter-active,
-.v-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.1s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface ComponentProps {
   disabled?: boolean;
+  type?: "button" | "submit";
 }
 
 defineProps<ComponentProps>();
@@ -8,6 +9,7 @@ defineProps<ComponentProps>();
 
 <template>
   <button
+    :type="type"
     :disabled="disabled"
     class="px-4 py-2 rounded-lg transition font-semibold disabled:opacity-30 disabled:hover:cursor-not-allowed"
   >

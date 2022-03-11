@@ -1,6 +1,6 @@
 enum EffectType {
-  ProductionSpeed,
-  MaxGeneratorsCount,
+  ProductionSpeed = "production-speed",
+  MaxGeneratorsCount = "max-generators-count",
 }
 
 export default EffectType;

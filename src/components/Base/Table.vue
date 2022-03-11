@@ -31,8 +31,11 @@ withDefaults(defineProps<ComponentProps>(), {
           v-for="(column, index) in columns"
           :key="index"
           :class="[column.classes, column.headClasses]"
-          v-html="column.text"
-        ></th>
+        >
+          <slot :name="`${column.id}-header`" :item="column">
+            {{ column.text }}
+          </slot>
+        </th>
       </tr>
     </thead>
     <tbody v-if="items.length > 0">

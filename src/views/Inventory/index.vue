@@ -11,9 +11,7 @@
       <InventoryStorageSpaceCard></InventoryStorageSpaceCard>
     </div>
 
-    <BaseCard class="overflow-hidden">
-      <InventoryItemTable></InventoryItemTable>
-    </BaseCard>
+    <InventoryItemTable></InventoryItemTable>
   </div>
 </template>
 
