@@ -58,8 +58,8 @@ export const useStatsStore = defineStore("stats", {
       if (lastEntry) {
         const timeDifference = now - lastEntry[0];
 
-        if (timeDifference > 1000) {
-          for (let i = 0; i < timeDifference; i += 1000) {
+        if (timeDifference > 10000) {
+          for (let i = 0; i < timeDifference; i += 10000) {
             item.history.push([lastEntry[0] + i, lastEntry[1]]);
           }
         }

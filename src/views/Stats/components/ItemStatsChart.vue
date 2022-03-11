@@ -77,7 +77,7 @@ const chartOptions = reactive({
     </div>
 
     <div v-if="chartData" class="p-4">
-      <LineChart :chartData="chartData" :options="chartOptions"></LineChart>
+      <LineChart :chart-data="chartData" :options="chartOptions"></LineChart>
     </div>
   </BaseCard>
 </template>
