@@ -1,0 +1,1 @@
+import{_ as e}from"./index.5a26b072.js";import{o,e as t,H as n}from"./vendor.fa9a4d3e.js";const s={},_={class:"bg-true-gray-800 rounded-xl border border-true-gray-800"};function a(r,c){return o(),t("div",_,[n(r.$slots,"default")])}var u=e(s,[["render",a]]);export{u as _};
