@@ -27,7 +27,6 @@ const columns = ref([
     id: "requirements",
     text: "Requirements",
     field: "requirements",
-    classes: "text-right",
     bodyClasses: "font-mono",
   },
   {
@@ -83,18 +82,26 @@ const getItemAmount = (requiredItem: ItemAmount) => {
                   ? 'text-green-500'
                   : 'text-red-500',
               ]"
+              class="grid grid-cols-[4fr,1fr,1fr] gap-2"
             >
-              {{ getItem(requiredItem.id).name }} * {{ requiredItem.amount }}
-            </span>
+              <div class="text-right">
+                {{ getItem(requiredItem.id).name }}
+              </div>
 
-            <span
-              v-if="
-                getItemAmount(requiredItem) < requiredItem.amount &&
-                !researchStarted(item.id)
-              "
-            >
-              ({{ getItemAmount(requiredItem) }})</span
-            >
+              <div class="text-right">
+                {{ requiredItem.amount }}
+              </div>
+
+              <div
+                v-if="
+                  getItemAmount(requiredItem) < requiredItem.amount &&
+                  !researchStarted(item.id)
+                "
+                class="text-left"
+              >
+                ({{ getItemAmount(requiredItem) }})
+              </div>
+            </span>
           </div>
         </div>
         <div v-else>-</div>

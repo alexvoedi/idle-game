@@ -82,9 +82,17 @@ export const useScienceStore = defineStore("science", {
     loadNewGenerators(science: Science) {
       const generatorStore = useGeneratorStore();
 
-      const newBlueprints = blueprints.filter((blueprint) =>
-        blueprint.requirements.sciences.includes(science.id)
-      );
+      const newBlueprints = blueprints
+        .filter((blueprint) =>
+          blueprint.requirements.sciences.some(
+            (scienceID) => scienceID === science.id
+          )
+        )
+        .filter((blueprint) =>
+          blueprint.requirements.sciences.every((scienceID) =>
+            this.researched.includes(scienceID)
+          )
+        );
 
       generatorStore.addGenerators(newBlueprints);
     },

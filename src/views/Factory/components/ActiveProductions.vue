@@ -49,13 +49,14 @@ const columns = ref([
     id: "output",
     text: "Output",
     field: "output",
-    classes: "text-left font-mono",
+    classes: "text-right font-mono",
   },
   {
     id: "input",
     text: "Input",
     field: "input",
     classes: "text-right",
+    headerClasses: "text-center",
     bodyClasses: "font-mono",
   },
   {
@@ -92,21 +93,36 @@ const columns = ref([
       </template>
 
       <template #output="{ item }">
-        <div v-for="(output, index) in item.output" :key="index" class="">
-          <span>{{ output.name }}</span
-          ><span v-if="output.amount > 1"> * {{ output.amount }}</span>
+        <div
+          v-for="(output, index) in item.output"
+          :key="index"
+          class="grid grid-cols-[4fr,1fr] gap-4"
+        >
+          <div class="text-right">
+            {{ output.name }}
+          </div>
+
+          <div class="text-right">
+            {{ output.amount }}
+          </div>
         </div>
       </template>
 
       <template #input="{ item }">
-        <div v-if="item.input">
-          <div v-for="(input, index) in item.input" :key="index">
-            <div :class="[item.hasEnough ? 'text-green-500' : 'text-red-500']">
-              {{ input.name }} * {{ input.amount }}
+        <div v-for="(input, index) in item.input" :key="index">
+          <div
+            :class="[item.hasEnough ? 'text-green-500' : 'text-red-500']"
+            class="grid grid-cols-[4fr,1fr] gap-4"
+          >
+            <div class="text-right">
+              {{ input.name }}
+            </div>
+
+            <div class="text-right">
+              {{ input.amount }}
             </div>
           </div>
         </div>
-        <div v-else>-</div>
       </template>
 
       <template #actions="{ item }">
