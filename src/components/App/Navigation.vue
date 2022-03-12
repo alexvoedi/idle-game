@@ -8,6 +8,9 @@ import StatsIcon from "~icons/ion/ios-stats";
 import SaleIcon from "~icons/ic/baseline-sell";
 import AchievementsIcon from "~icons/mdi/trophy";
 import LibraryIcon from "~icons/ion/library";
+import { useDevStore } from "@/store/dev";
+
+const devStore = useDevStore();
 
 const links = [
   {
@@ -75,7 +78,11 @@ const links = [
     </div>
 
     <div class="w-full py-4">
-      <router-link :to="{ name: 'Dev' }" class="router-link">
+      <router-link
+        :to="{ name: 'Dev' }"
+        class="router-link"
+        v-if="devStore.isDev"
+      >
         <icon-mdi-bug></icon-mdi-bug>
         <span>Dev</span>
       </router-link>
