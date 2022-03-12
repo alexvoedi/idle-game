@@ -206,6 +206,15 @@ const sciences: Science[] = [
       sciences: [ScienceID.Automation1],
     },
   },
+  {
+    id: ScienceID.EfficientStorage1,
+    name: "Higher Storage Space",
+    researchTime: 240,
+    requirements: {
+      items: [],
+      sciences: [],
+    },
+  },
 ];
 
 export default sciences;

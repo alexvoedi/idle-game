@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useGeneratorStore } from "@/store/generator";
 import { useItem } from "@/composables/useItem";
+import { useInventoryStore } from "@/store/inventory";
 
 const generatorStore = useGeneratorStore();
+const inventoryStore = useInventoryStore();
 const { getItem } = useItem();
 
 const items = computed(() => {
@@ -21,10 +23,17 @@ const items = computed(() => {
           name: getItem(item.id).name,
           amount: item.amount,
         })),
-        input: input?.map((item) => ({
-          name: getItem(item.id).name,
-          amount: item.amount,
-        })),
+        input: input?.map((item) => {
+          const inventoryItem = inventoryStore.getItem(item.id);
+
+          return {
+            name: getItem(item.id).name,
+            amount: item.amount,
+            hasEnough: inventoryItem
+              ? item.amount >= inventoryItem.amount
+              : false,
+          };
+        }),
       };
     });
 });
@@ -92,7 +101,9 @@ const columns = ref([
       <template #input="{ item }">
         <div v-if="item.input">
           <div v-for="(input, index) in item.input" :key="index">
-            {{ input.name }} * {{ input.amount }}
+            <div :class="[item.hasEnough ? 'text-green-500' : 'text-red-500']">
+              {{ input.name }} * {{ input.amount }}
+            </div>
           </div>
         </div>
         <div v-else>-</div>

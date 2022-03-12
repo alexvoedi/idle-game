@@ -15,6 +15,7 @@ interface ComponentProps {
   columns: Column[];
   items: Item[];
   search?: string;
+  hoverable?: boolean;
 }
 
 withDefaults(defineProps<ComponentProps>(), {
@@ -38,8 +39,15 @@ withDefaults(defineProps<ComponentProps>(), {
         </th>
       </tr>
     </thead>
+
     <tbody v-if="items.length > 0">
-      <tr v-for="(item, index) in items" :key="index">
+      <tr
+        v-for="(item, index) in items"
+        :key="index"
+        :class="{
+          '!hover:bg-true-gray-600': hoverable,
+        }"
+      >
         <td
           v-for="(column, index) in columns"
           :key="index"
@@ -48,6 +56,14 @@ withDefaults(defineProps<ComponentProps>(), {
           <slot :name="column.id" :item="item">
             {{ item[column.field] }}
           </slot>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody v-else>
+      <tr>
+        <td colspan="100%" class="text-center text-neutral-300">
+          There is nothing here!
         </td>
       </tr>
     </tbody>
@@ -66,7 +82,6 @@ table thead tr {
 table thead tr th {
   @apply px-2 py-4 sticky top-0 bg-true-gray-900;
 }
-
 table tbody tr td {
   @apply p-2;
 }

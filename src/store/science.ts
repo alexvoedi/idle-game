@@ -92,6 +92,7 @@ export const useScienceStore = defineStore("science", {
     loadNewEffects(science: Science) {
       const generatorStore = useGeneratorStore();
       const effectStore = useEffectStore();
+      const inventoryStore = useInventoryStore();
 
       const newEffects = effects.filter((effect) =>
         effect.requirements.sciences.includes(science.id)
@@ -111,6 +112,8 @@ export const useScienceStore = defineStore("science", {
           }
         } else if (effect.type === EffectType.MaxGeneratorsCount) {
           generatorStore.maxActiveGenerators += effect.count;
+        } else if (effect.type === EffectType.StorageSpace) {
+          inventoryStore.storage += effect.value;
         }
       });
     },

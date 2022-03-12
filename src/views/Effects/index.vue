@@ -13,7 +13,11 @@ const effectStore = useEffectStore();
     </h1>
 
     <div class="flex flex-wrap gap-8">
-      <div v-for="(effect, index) in effectStore.effects" :key="index">
+      <div
+        v-for="(effect, index) in effectStore.effects"
+        :key="index"
+        class="flex-grow"
+      >
         <EffectsMaxGeneratorsCountCard
           v-if="effect.type === EffectType.MaxGeneratorsCount"
           :effect="effect"
@@ -23,6 +27,11 @@ const effectStore = useEffectStore();
           v-else-if="effect.type === EffectType.ProductionSpeed"
           :effect="effect"
         ></EffectsProductionSpeedCard>
+
+        <EffectsStorageSpaceCard
+          v-else-if="effect.type === EffectType.StorageSpace"
+          :effect="effect"
+        ></EffectsStorageSpaceCard>
       </div>
     </div>
   </div>

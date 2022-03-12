@@ -25,11 +25,11 @@ const links = [
     text: "Science",
     icon: ScienceIcon,
   },
-  {
-    to: "Tools",
-    text: "Tools",
-    icon: ToolsIcon,
-  },
+  // {
+  //   to: "Tools",
+  //   text: "Tools",
+  //   icon: ToolsIcon,
+  // },
   {
     to: "Effects",
     text: "Effects",
@@ -75,6 +75,11 @@ const links = [
     </div>
 
     <div class="w-full py-4">
+      <router-link :to="{ name: 'Dev' }" class="router-link">
+        <icon-mdi-bug></icon-mdi-bug>
+        <span>Dev</span>
+      </router-link>
+
       <router-link :to="{ name: 'Game' }" class="router-link">
         <icon-mdi-cog></icon-mdi-cog>
         <span>Game</span>

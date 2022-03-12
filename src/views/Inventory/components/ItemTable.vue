@@ -9,13 +9,13 @@ const generatorStore = useGeneratorStore();
 const { getItem } = useItem();
 
 const getProductionRate = (itemID: ItemID) => {
-  const generators = generatorStore.generators.filter(
-    (generator) =>
-      generator.active &&
+  const generators = generatorStore.generators
+    .filter((generator) => generator.active)
+    .filter((generator) =>
       generator.blueprint.output.some(
         (blueprintItem) => blueprintItem.id === itemID
       )
-  );
+    );
 
   if (generators.length > 0) {
     const productionTime = generators.reduce((totalTime, generator) => {
@@ -68,9 +68,12 @@ const columns = ref([
 
 <template>
   <BaseCard class="overflow-hidden">
-    <BaseTable :items="items" :columns="columns">
+    <BaseTable :items="items" :columns="columns" hoverable>
       <template #production-rate="{ item }">
-        {{ item.productionRate.toFixed(2) }}
+        <span
+          :class="[item.productionRate > 0 ? 'text-green-500' : 'text-red-500']"
+          >{{ item.productionRate.toFixed(2) }}</span
+        >
       </template>
     </BaseTable>
   </BaseCard>

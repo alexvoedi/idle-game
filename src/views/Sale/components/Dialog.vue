@@ -82,7 +82,7 @@ const saveRules = () => {
     <template #default="{ setIsOpen }">
       <form
         class="space-y-4"
-        @keypress.enter="
+        @keypress.enter.prevent="
           saveRules();
           setIsOpen(false);
         "
@@ -117,7 +117,7 @@ const saveRules = () => {
             type="submit"
             class="text-white bg-indigo-600"
             hover="bg-indigo-500"
-            @click="
+            @click.prevent="
               saveRules();
               setIsOpen(false);
             "

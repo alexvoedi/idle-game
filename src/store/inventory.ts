@@ -18,16 +18,23 @@ export const useInventoryStore = defineStore("inventory", {
     },
 
     addItem(item: ItemAmount) {
-      if (!this.hasInventorySpace) return;
+      if (this.remainingInventorySpace === 0) return;
 
       const inventoryItem = this.inventory.find(
         (inventoryItem) => inventoryItem.id === item.id
       );
 
+      const effectiveAmount = item.amount > this.remainingInventorySpace;
+
       if (inventoryItem) {
-        inventoryItem.amount += item.amount;
+        inventoryItem.amount += effectiveAmount
+          ? this.remainingInventorySpace
+          : item.amount;
       } else {
-        this.inventory.push({ ...item });
+        this.inventory.push({
+          id: item.id,
+          amount: effectiveAmount ? this.remainingInventorySpace : item.amount,
+        });
       }
     },
 

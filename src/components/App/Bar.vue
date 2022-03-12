@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useBaseStore } from "@/store/base";
+import { useDevStore } from "@/store/dev";
 import { useInventoryStore } from "@/store/inventory";
 
 const baseStore = useBaseStore();
 const inventoryStore = useInventoryStore();
+const devStore = useDevStore();
 </script>
 
 <template>
@@ -31,6 +33,7 @@ const inventoryStore = useInventoryStore();
 
     <div class="flex gap-8 text-lg">
       <button
+        v-if="devStore.isDev"
         @click="baseStore.toggleRunning"
         class="flex justify-center items-center gap-2"
       >

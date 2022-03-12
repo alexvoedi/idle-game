@@ -6,7 +6,9 @@ export type EffectStore = {
 };
 
 export const useEffectStore = defineStore("effect", {
-  state: (): EffectStore => ({ effects: [] }),
+  state: (): EffectStore => ({
+    effects: [],
+  }),
 
   actions: {
     addEffects(effects: Effect[]) {

@@ -51,6 +51,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Tools",
     component: () => import("@/views/Tools/index.vue"),
   },
+  {
+    path: "/dev",
+    name: "Dev",
+    component: () => import("@/views/Dev/index.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -50,6 +50,15 @@ const effects: Effect[] = [
       value: 1.5,
     },
   },
+  {
+    id: EffectID.StorageSpace1,
+    name: "Higher Storage Space",
+    type: EffectType.StorageSpace,
+    requirements: {
+      sciences: [ScienceID.EfficientStorage1],
+    },
+    value: 1500,
+  },
 ];
 
 export default effects;

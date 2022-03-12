@@ -54,7 +54,7 @@ export const useGeneratorStore = defineStore("generator", {
       );
 
       for (const generator of activeGenerators) {
-        if (inventoryStore.remainingInventorySpace < 1) continue;
+        if (inventoryStore.remainingInventorySpace === 0) continue;
 
         if (generator.timer === 0) {
           if (generator.blueprint.input) {
