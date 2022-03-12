@@ -32,18 +32,19 @@ const devStore = useDevStore();
     </div>
 
     <div class="flex gap-8 text-lg">
-      <button
-        v-if="devStore.isDev"
-        @click="baseStore.toggleRunning"
-        class="flex justify-center items-center gap-2"
-      >
-        <template v-if="baseStore.running">
-          <icon-mdi-pause class="text-green-600"></icon-mdi-pause>
-        </template>
-        <template v-else>
-          <icon-mdi-play class="text-red-600"></icon-mdi-play>
-        </template>
-      </button>
+      <template v-if="devStore.isDev">
+        <button
+          @click="baseStore.toggleRunning"
+          class="flex justify-center items-center gap-2"
+        >
+          <template v-if="baseStore.running">
+            <icon-mdi-pause class="text-green-600"></icon-mdi-pause>
+          </template>
+          <template v-else>
+            <icon-mdi-play class="text-red-600"></icon-mdi-play>
+          </template>
+        </button>
+      </template>
     </div>
   </div>
 </template>
