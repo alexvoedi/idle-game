@@ -11,9 +11,9 @@ watch(
     if (newValue > oldValue) {
       showAchievementCard.value = true;
 
-      // setTimeout(() => {
-      //   showAchievementCard.value = false;
-      // }, 10000);
+      setTimeout(() => {
+        showAchievementCard.value = false;
+      }, 10000);
     }
   }
 );
