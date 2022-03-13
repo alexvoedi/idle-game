@@ -1,0 +1,1 @@
+import{f as o,o as t,e as r,g as e,t as a,K as n}from"./vendor.6b5c0dfd.js";const l={class:"h-1 bg-true-gray-300"},c={class:"sr-only"},p=o({props:{progress:null},setup(s){return(i,d)=>(t(),r("div",l,[e("div",{class:"h-full bg-indigo-600",style:n({width:`${s.progress*100}%`})},[e("div",c,a(`${s.progress*100}%`),1)],4)]))}});export{p as _};
