@@ -11,20 +11,20 @@ watch(
     if (newValue > oldValue) {
       showAchievementCard.value = true;
 
-      setTimeout(() => {
-        showAchievementCard.value = false;
-      }, 10000);
+      // setTimeout(() => {
+      //   showAchievementCard.value = false;
+      // }, 10000);
     }
   }
 );
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative flex justify-center">
     <Transition name="slide" mode="out-in">
       <div
         v-if="showAchievementCard && achievementStore.latestAchievement"
-        class="absolute left-0 right-0 bottom-5 z-100 flex justify-center items-center text-true-gray-200"
+        class="absolute bottom-5 z-100 flex justify-center items-center text-true-gray-200"
       >
         <BaseCard
           class="p-6 flex flex-col gap-4 bg-indigo-600 bg-opacity-60 backdrop-filter backdrop-blur-4 shadow relative"
