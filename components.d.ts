@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Achievements: typeof import('./src/views/Achievements/index.vue')['default']
     AchievementsAchievementCard: typeof import('./src/views/Achievements/components/AchievementCard.vue')['default']
+    AppAchievementPopup: typeof import('./src/components/App/AchievementPopup.vue')['default']
     AppBar: typeof import('./src/components/App/Bar.vue')['default']
     AppNavigation: typeof import('./src/components/App/Navigation.vue')['default']
     BaseButton: typeof import('./src/components/Base/Button.vue')['default']
@@ -28,6 +29,7 @@ declare module 'vue' {
     IconCarbonUpgrade: typeof import('~icons/carbon/upgrade')['default']
     'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     'IconIc:baselineAttachMoney': typeof import('~icons/ic/baseline-attach-money')['default']
+    'IconIc:baselineSell': typeof import('~icons/ic/baseline-sell')['default']
     'IconIc:roundScience': typeof import('~icons/ic/round-science')['default']
     IconMdiBug: typeof import('~icons/mdi/bug')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']

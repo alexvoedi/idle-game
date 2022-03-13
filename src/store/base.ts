@@ -6,8 +6,8 @@ import { useScienceStore } from "./science";
 import { useSaleStore } from "./sale";
 import { useStatsStore } from "./stats";
 import { useDevStore } from "./dev";
-import GameState from "@/interfaces/GameState";
 import { useAchievementStore } from "./achievement";
+import GameState from "@/interfaces/GameState";
 
 export type BaseStore = {
   gameVersion: string;
@@ -36,6 +36,7 @@ export const useBaseStore = defineStore("base", {
       const achievementStore = useAchievementStore();
 
       this.$state = gameState.base;
+
       generatorStore.$state = gameState.generator;
       inventoryStore.$state = gameState.inventory;
       scienceStore.$state = gameState.science;
