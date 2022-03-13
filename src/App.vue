@@ -2,8 +2,10 @@
 import { useBaseStore } from "./store/base";
 import pinia from "@/plugins/pinia";
 import store from "store2";
+import { useAchievementStore } from "./store/achievement";
 
 const baseStore = useBaseStore();
+const achievementStore = useAchievementStore();
 
 useHead({
   title: "Factorior",
@@ -15,6 +17,8 @@ useHead({
   ],
 });
 
+const showAchievementCard = ref(false);
+
 onMounted(() => {
   const gameState = store.get("save-game");
 
@@ -23,6 +27,17 @@ onMounted(() => {
   }
 
   baseStore.runGame();
+
+  watch(
+    () => achievementStore.latestAchievement,
+    () => {
+      showAchievementCard.value = true;
+
+      setTimeout(() => {
+        showAchievementCard.value = false;
+      }, 5000);
+    }
+  );
 });
 
 setInterval(() => {
@@ -52,6 +67,23 @@ onUnmounted(() => {
       </div>
     </div>
   </div>
+
+  <Transition name="fade" mode="out-in">
+    <div
+      v-if="showAchievementCard && achievementStore.latestAchievement"
+      class="absolute left-0 right-0 bottom-10 z-100 flex justify-center items-center text-true-gray-200"
+    >
+      <BaseCard
+        class="p-6 flex flex-col gap-4 bg-opacity-60 backdrop-filter backdrop-blur-4 shadow"
+      >
+        <h1 class="text-3xl text-center font-bold">New Achievement</h1>
+
+        <AchievementsAchievementCard
+          :achievement="achievementStore.latestAchievement"
+        ></AchievementsAchievementCard>
+      </BaseCard>
+    </div>
+  </Transition>
 </template>
 
 <style lang="postcss">

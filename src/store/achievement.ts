@@ -38,5 +38,9 @@ export const useAchievementStore = defineStore("achievement", {
           )
       );
     },
+
+    latestAchievement: (state) => {
+      return state.achievements.at(-1);
+    },
   },
 });

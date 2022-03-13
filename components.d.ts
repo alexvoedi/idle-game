@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     Achievements: typeof import('./src/views/Achievements/index.vue')['default']
+    AchievementsAchievementCard: typeof import('./src/views/Achievements/components/AchievementCard.vue')['default']
     AppBar: typeof import('./src/components/App/Bar.vue')['default']
     AppNavigation: typeof import('./src/components/App/Navigation.vue')['default']
     BaseButton: typeof import('./src/components/Base/Button.vue')['default']
@@ -27,9 +28,7 @@ declare module 'vue' {
     IconCarbonUpgrade: typeof import('~icons/carbon/upgrade')['default']
     'IconFontisto:laboratory': typeof import('~icons/fontisto/laboratory')['default']
     'IconIc:baselineAttachMoney': typeof import('~icons/ic/baseline-attach-money')['default']
-    'IconIc:baselineSell': typeof import('~icons/ic/baseline-sell')['default']
     'IconIc:roundScience': typeof import('~icons/ic/round-science')['default']
-    'IconIon:iosStats': typeof import('~icons/ion/ios-stats')['default']
     IconMdiBug: typeof import('~icons/mdi/bug')['default']
     IconMdiClock: typeof import('~icons/mdi/clock')['default']
     IconMdiClose: typeof import('~icons/mdi/close')['default']
@@ -38,7 +37,6 @@ declare module 'vue' {
     IconMdiExport: typeof import('~icons/mdi/export')['default']
     IconMdiFactory: typeof import('~icons/mdi/factory')['default']
     IconMdiFastForward: typeof import('~icons/mdi/fast-forward')['default']
-    IconMdiForward: typeof import('~icons/mdi/forward')['default']
     IconMdiHammer: typeof import('~icons/mdi/hammer')['default']
     IconMdiImport: typeof import('~icons/mdi/import')['default']
     IconMdiPause: typeof import('~icons/mdi/pause')['default']
@@ -55,6 +53,7 @@ declare module 'vue' {
     Sale: typeof import('./src/views/Sale/index.vue')['default']
     SaleDialog: typeof import('./src/views/Sale/components/Dialog.vue')['default']
     Science: typeof import('./src/views/Science/index.vue')['default']
+    ScienceAchievementNotification: typeof import('./src/views/Science/components/AchievementNotification.vue')['default']
     ScienceAvailableSciencesCard: typeof import('./src/views/Science/components/AvailableSciencesCard.vue')['default']
     ScienceCurrentResearchCard: typeof import('./src/views/Science/components/CurrentResearchCard.vue')['default']
     ScienceResearchedSciencesCard: typeof import('./src/views/Science/components/ResearchedSciencesCard.vue')['default']
