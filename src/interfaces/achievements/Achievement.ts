@@ -7,5 +7,5 @@ export default interface Achievement {
   description: string;
   icon: string;
   checkCondition: (gameState: GameState) => boolean;
-  date?: Date;
+  date?: number;
 }

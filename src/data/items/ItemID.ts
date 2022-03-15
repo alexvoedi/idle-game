@@ -18,7 +18,7 @@ enum ItemID {
   Lime = "lime",
   Magnet = "magnet",
   Magnetit = "magnetit",
-  Methan = "methan",
+  Methane = "methane",
   Petroleum = "petroleum",
   Plastic = "plastic",
   Quartz = "quartz",
@@ -31,6 +31,12 @@ enum ItemID {
   Wood = "wood",
   WoodenChair = "wooden-chair",
   WoodenPlank = "wooden-plank",
+  ElectricalConnector = "electrical-connector",
+  Pipe = "pipe",
+  Lubricant = "lubricant",
+  Coke = "coke",
+  HeavyOil = "heavy-oil",
+  LightOil = "light-oil",
 }
 
 export default ItemID;

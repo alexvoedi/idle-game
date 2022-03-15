@@ -109,7 +109,7 @@ const items: Item[] = [
   },
   {
     id: ItemID.ElectricGenerator,
-    name: "Electric Coil",
+    name: "Electric Generator",
     saleValue: 250.0,
   },
   {
@@ -138,7 +138,7 @@ const items: Item[] = [
     saleValue: 0.9,
   },
   {
-    id: ItemID.Methan,
+    id: ItemID.Methane,
     name: "Methan",
     saleValue: 1.05,
   },
@@ -166,6 +166,46 @@ const items: Item[] = [
     id: ItemID.WoodenPlank,
     name: "Wooden Plank",
     saleValue: 4.25,
+  },
+  {
+    id: ItemID.ElectricalConnector,
+    name: "Electrical Connector",
+    saleValue: 0.9,
+  },
+  {
+    id: ItemID.Pipe,
+    name: "Pipe",
+    saleValue: 1.2,
+  },
+  {
+    id: ItemID.Petroleum,
+    name: "Petroleum",
+    saleValue: 1.4,
+  },
+  {
+    id: ItemID.Methane,
+    name: "Methane",
+    saleValue: 0.85,
+  },
+  {
+    id: ItemID.Lubricant,
+    name: "Lubricant",
+    saleValue: 0.65,
+  },
+  {
+    id: ItemID.Coke,
+    name: "Coke",
+    saleValue: 0.4,
+  },
+  {
+    id: ItemID.HeavyOil,
+    name: "Heavy Oil",
+    saleValue: 0.7,
+  },
+  {
+    id: ItemID.LightOil,
+    name: "Light Oil",
+    saleValue: 0.3,
   },
 ];
 

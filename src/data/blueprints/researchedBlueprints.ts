@@ -219,6 +219,87 @@ const researchedBlueprints: Blueprint[] = [
       },
     ],
   },
+  {
+    id: BlueprintID.ElectricCoil,
+    productionTime: 8,
+    requirements: {
+      sciences: [ScienceID.BasicElectric1],
+    },
+    input: [
+      {
+        id: ItemID.Iron,
+        amount: 1,
+      },
+      {
+        id: ItemID.CopperWire,
+        amount: 2,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.ElectricCoil,
+        amount: 1,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.ElectricalConnector,
+    productionTime: 3,
+    requirements: {
+      sciences: [ScienceID.BasicElectric1],
+    },
+    input: [
+      {
+        id: ItemID.CopperWire,
+        amount: 5,
+      },
+      {
+        id: ItemID.Plastic,
+        amount: 1,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.ElectricalConnector,
+        amount: 1,
+      },
+    ],
+  },
+  {
+    id: BlueprintID.PetroleumRefining,
+    productionTime: 8,
+    requirements: {
+      sciences: [ScienceID.BasicElectric1],
+    },
+    input: [
+      {
+        id: ItemID.Petroleum,
+        amount: 10,
+      },
+      {
+        id: ItemID.Water,
+        amount: 5,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.HeavyOil,
+        amount: 2,
+      },
+      {
+        id: ItemID.LightOil,
+        amount: 4,
+      },
+      {
+        id: ItemID.Methane,
+        amount: 7,
+      },
+      {
+        id: ItemID.Coke,
+        amount: 2,
+      },
+    ],
+  },
 ];
 
 export default researchedBlueprints;

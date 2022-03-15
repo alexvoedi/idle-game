@@ -16,6 +16,10 @@ enum BlueprintID {
   Quartz = "quartz",
   Cement = "cement",
   Bread = "bread",
+  ElectricCoil = "electric-coil",
+  ElectricalConnector = "electrical-connector",
+  Pipe = "pipe",
+  PetroleumRefining = "petroleum-refining",
 }
 
 export default BlueprintID;

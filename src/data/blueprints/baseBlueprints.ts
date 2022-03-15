@@ -87,6 +87,25 @@ const baseBlueprints: Blueprint[] = [
       },
     ],
   },
+  {
+    id: BlueprintID.Pipe,
+    productionTime: 5,
+    requirements: {
+      sciences: [],
+    },
+    input: [
+      {
+        id: ItemID.Copper,
+        amount: 5,
+      },
+    ],
+    output: [
+      {
+        id: ItemID.Pipe,
+        amount: 3,
+      },
+    ],
+  },
 ];
 
 export default baseBlueprints;

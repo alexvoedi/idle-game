@@ -22,7 +22,7 @@ export const useAchievementStore = defineStore("achievement", {
         if (conditionsMet) {
           this.achievements.push({
             ...achievement,
-            date: new Date(),
+            date: Date.now(),
           });
         }
       });

@@ -215,6 +215,64 @@ const sciences: Science[] = [
       sciences: [],
     },
   },
+  {
+    id: ScienceID.BasicElectric1,
+    name: "Basic Electric 1",
+    researchTime: 450,
+    requirements: {
+      items: [
+        {
+          id: ItemID.Magnet,
+          amount: 10,
+        },
+        {
+          id: ItemID.CopperWire,
+          amount: 200,
+        },
+      ],
+      sciences: [ScienceID.Automation1, ScienceID.Magnetism1],
+    },
+  },
+  {
+    id: ScienceID.Chemistry1,
+    name: "Chemistry 1",
+    researchTime: 360,
+    requirements: {
+      items: [],
+      sciences: [
+        ScienceID.FossilFuels1,
+        ScienceID.SaltMining1,
+        ScienceID.Magnetism1,
+      ],
+    },
+  },
+  {
+    id: ScienceID.FossilFuels1,
+    name: "Fossil Fuels 1",
+    researchTime: 600,
+    requirements: {
+      items: [
+        {
+          id: ItemID.Pipe,
+          amount: 200,
+        },
+        {
+          id: ItemID.Iron,
+          amount: 80,
+        },
+      ],
+      sciences: [ScienceID.Mining1],
+    },
+  },
+  {
+    id: ScienceID.PetroleumRefining1,
+    name: "Petroleum Refining 1",
+    researchTime: 540,
+    requirements: {
+      items: [],
+      sciences: [ScienceID.Chemistry1],
+    },
+  },
 ];
 
 export default sciences;

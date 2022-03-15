@@ -13,6 +13,10 @@ enum ScienceID {
   Pottery1 = "pottery-1",
   WaterCollection1 = "water-collection-1",
   EfficientStorage1 = "efficient-storage-1",
+  BasicElectric1 = "basic-electric-1",
+  Chemistry1 = "chemistry-1",
+  FossilFuels1 = "fossil-fuels-1",
+  PetroleumRefining1 = "petroleum-refining-1",
 }
 
 export default ScienceID;

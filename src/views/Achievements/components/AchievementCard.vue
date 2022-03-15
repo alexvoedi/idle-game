@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useTime } from "@/composables/useTime";
 import Achievement from "@/interfaces/achievements/Achievement";
 
 interface ComponentProps {
@@ -6,6 +7,8 @@ interface ComponentProps {
 }
 
 defineProps<ComponentProps>();
+
+const { toDateString, toTimeString } = useTime();
 </script>
 
 <template>
@@ -22,11 +25,11 @@ defineProps<ComponentProps>();
 
     <div class="flex flex-col justify-between text-center">
       <div>
-        {{ achievement.date?.toLocaleDateString() }}
+        {{ toDateString(achievement.date) }}
       </div>
 
       <div>
-        {{ achievement.date?.toLocaleTimeString() }}
+        {{ toTimeString(achievement.date) }}
       </div>
     </div>
   </div>
