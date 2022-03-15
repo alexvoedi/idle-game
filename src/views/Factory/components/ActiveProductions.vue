@@ -2,6 +2,7 @@
 import { useGeneratorStore } from "@/store/generator";
 import { useItem } from "@/composables/useItem";
 import { useInventoryStore } from "@/store/inventory";
+import ItemID from "@/data/items/ItemID";
 
 const generatorStore = useGeneratorStore();
 const inventoryStore = useInventoryStore();
@@ -26,11 +27,20 @@ const items = computed(() => {
         input: input?.map((item) => {
           const inventoryItem = inventoryStore.getItem(item.id);
 
+          if (inventoryItem) {
+            console.log(
+              output,
+              item.amount,
+              inventoryItem.amount,
+              inventoryItem.amount >= item.amount
+            );
+          }
+
           return {
             name: getItem(item.id).name,
             amount: item.amount,
             hasEnough: inventoryItem
-              ? item.amount >= inventoryItem.amount
+              ? inventoryItem.amount >= item.amount
               : false,
           };
         }),
@@ -111,7 +121,7 @@ const columns = ref([
       <template #input="{ item }">
         <div v-for="(input, index) in item.input" :key="index">
           <div
-            :class="[item.hasEnough ? 'text-green-500' : 'text-red-500']"
+            :class="[input.hasEnough ? 'text-green-500' : 'text-red-500']"
             class="grid grid-cols-[4fr,1fr] gap-4"
           >
             <div class="text-right">
