@@ -2,7 +2,6 @@
 import { useGeneratorStore } from "@/store/generator";
 import { useItem } from "@/composables/useItem";
 import { useInventoryStore } from "@/store/inventory";
-import ItemID from "@/data/items/ItemID";
 
 const generatorStore = useGeneratorStore();
 const inventoryStore = useInventoryStore();
@@ -26,15 +25,6 @@ const items = computed(() => {
         })),
         input: input?.map((item) => {
           const inventoryItem = inventoryStore.getItem(item.id);
-
-          if (inventoryItem) {
-            console.log(
-              output,
-              item.amount,
-              inventoryItem.amount,
-              inventoryItem.amount >= item.amount
-            );
-          }
 
           return {
             name: getItem(item.id).name,
