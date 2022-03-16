@@ -9,7 +9,12 @@ const achievements: Achievement[] = [
     description: "Produce an item",
     icon: "✨",
     checkCondition: (gameState: GameState) => {
-      return gameState.stats.stats.items.length > 0;
+      return (
+        gameState.stats.stats.items.reduce(
+          (sum, item) => sum + item.produced,
+          0
+        ) > 0
+      );
     },
   },
   {
@@ -18,7 +23,12 @@ const achievements: Achievement[] = [
     description: "Produce 1,000 items.",
     icon: "✨",
     checkCondition: (gameState: GameState) => {
-      return gameState.stats.stats.items.length >= 1_000;
+      return (
+        gameState.stats.stats.items.reduce(
+          (sum, item) => sum + item.produced,
+          0
+        ) >= 1_000
+      );
     },
   },
   {
@@ -27,7 +37,12 @@ const achievements: Achievement[] = [
     description: "Produce 1,000,000 items.",
     icon: "✨",
     checkCondition: (gameState: GameState) => {
-      return gameState.stats.stats.items.length >= 1_000_000;
+      return (
+        gameState.stats.stats.items.reduce(
+          (sum, item) => sum + item.produced,
+          0
+        ) >= 1_000_00
+      );
     },
   },
   {
@@ -36,7 +51,12 @@ const achievements: Achievement[] = [
     description: "Produce 1,000,000,000 items.",
     icon: "✨",
     checkCondition: (gameState: GameState) => {
-      return gameState.stats.stats.items.length >= 1_000_000_000;
+      return (
+        gameState.stats.stats.items.reduce(
+          (sum, item) => sum + item.produced,
+          0
+        ) >= 1_000_000_000
+      );
     },
   },
   {
